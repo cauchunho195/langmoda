@@ -1,0 +1,186 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "modadep8386"
+  },
+  "general": {
+    "brandName": "MỘ ĐÁ ĐẸP",
+    "siteTitle": "MỘ ĐÁ ĐẸP (modadep.com.vn) - Chuyên Thiết Kế Thi Công Lăng Mộ Đá Cao Cấp",
+    "domain": "modadep.com.vn",
+    "hotline": "0988.226.951",
+    "phoneRaw": "0988226951",
+    "email": "Modadep8386@gmail.com",
+    "address": "Làng Nghề Đá Mỹ Nghệ Ninh Vân, Hoa Lư, Ninh Bình",
+    "workingHours": "7h30 - 20h00 (Cả Thứ 7, CN)",
+    "badgeText": "Nghệ nhân Quốc Gia - 25+ Năm Làng Nghề",
+    "facebookUrl": "https://facebook.com",
+    "youtubeUrl": "https://youtube.com",
+    "tiktokUrl": "https://tiktok.com"
+  },
+  "hero": {
+    "badge": "Tinh Hoa Làng Nghề Đá Truyền Thống Ninh Vân",
+    "title1": "THIẾT KẾ & THI CÔNG",
+    "title2": "KHU LĂNG MỘ ĐÁ GIA TỘC",
+    "description": "Kế thừa tinh hoa chế tác đá tự nhiên nguyên khối hơn 25 năm. Chạm khắc hoa văn tinh xảo, chuẩn kích thước Lỗ Ban âm trạch mang lại đại cát, hưng thịnh và trường tồn cho nhiều đời con cháu.",
+    "bgImage": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1920&q=80",
+    "statYears": "25+ Năm",
+    "statYearsDesc": "Kinh nghiệm làng nghề",
+    "statProjects": "1.800+",
+    "statProjectsDesc": "Công trình toàn quốc",
+    "statQuality": "100%",
+    "statQualityDesc": "Đá tự nhiên nguyên khối"
+  },
+  "about": {
+    "badge": "Về Xưởng Chế Tác Chúng Tôi",
+    "title": "CƠ SỞ ĐÁ MỸ NGHỆ MỘ ĐÁ ĐẸP (MODADEP.COM.VN)",
+    "p1": "Chào mừng quý khách đến với Mộ Đá Đẹp (modadep.com.vn)! Sinh ra và lớn lên tại cái nôi của làng nghề đá truyền thống Ninh Vân (Hoa Lư – Ninh Bình), chúng tôi tự hào là đơn vị tiên phong kết hợp giữa bàn tay hoa mỹ của nghệ nhân kỳ cựu cùng hệ thống máy cắt tiện CNC công nghệ cao để tạo ra những tác phẩm lăng mộ đá, đồ thờ tâm linh đạt độ tinh xảo tột bậc.",
+    "p2": "Mỗi phiến đá xanh rêu Thanh Hóa, đá xanh đen Ninh Bình hay đá hoa cương nguyên khối đều được tuyển chọn kỹ càng, không nứt rạn rêu phong, chạm rồng phượng, hoa sen mềm mại, đáp ứng mọi yêu cầu khắt khe về mặt phong thủy âm trạch.",
+    "image": "https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=800&q=80",
+    "imageBadgeNumber": "100%",
+    "imageBadgeText": "Đá Khai Thác Mỏ Tự Nhiên Loại 1",
+    "features": [
+      { "title": "Chất Liệu Đá Tuyển Chọn", "desc": "Đá xanh rêu, xanh đen, đá trắng, granite mỏ tự nhiên." },
+      { "title": "Thiết Kế 3D Miễn Phí", "desc": "Lên phối cảnh khuôn viên gia tộc trước khi chế tác." },
+      { "title": "Thước Lỗ Ban Chuẩn Chỉ", "desc": "Vào các cung Đại Cát: Tiến Bảo, Đăng Khoa, Tài Vượng." },
+      { "title": "Bảo Hành Vĩnh Cửu", "desc": "Bền bỉ cùng thời gian, cam kết bảo hành lâu dài." }
+    ]
+  },
+  "categories": [
+    { "id": "lang-mo", "name": "Khu Lăng Mộ Gia Tộc", "count": "120+ Mẫu đẹp", "icon": "fa-landmark-dome" },
+    { "id": "mo-don", "name": "Mộ Đá 1, 2, 3 Mái", "count": "85+ Mẫu chuẩn", "icon": "fa-monument" },
+    { "id": "cuon-thu", "name": "Cuốn Thư / Bình Phong", "count": "Trấn phong thủy", "icon": "fa-scroll" },
+    { "id": "lan-can", "name": "Lan Can Đá Tự Nhiên", "count": "Đục tứ quý, hoa sen", "icon": "fa-bars" },
+    { "id": "cong-tam-quan", "name": "Cổng Tam Quan & Cột Đá", "count": "Cột đồng trụ đình chùa", "icon": "fa-torii-gate" },
+    { "id": "do-tho", "name": "Lư Hương & Bàn Lễ Đá", "count": "Đồ thờ tâm linh", "icon": "fa-fire-burner" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "lang-mo",
+      "name": "Khu Lăng Mộ Gia Tộc Đá Xanh Rêu Thanh Hóa",
+      "code": "LMD-GT88",
+      "badge": "Hot Nhất 2026",
+      "dimension": "Diện tích: 60m² - 200m²",
+      "material": "Chất liệu: Đá xanh rêu loại 1",
+      "price": "Liên Hệ",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 2,
+      "category": "mo-don",
+      "name": "Mẫu Mộ Đá Hai Mái Chạm Rồng Đá Xanh Ninh Bình",
+      "code": "MD-2M09",
+      "badge": "Chuẩn Lỗ Ban",
+      "dimension": "Kích thước: 89 x 147 cm",
+      "material": "Hoa văn: Mây rồng đao lá",
+      "price": "Liên Hệ",
+      "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 3,
+      "category": "mo-don",
+      "name": "Mộ Đá Đôi Ba Mái Cha Mẹ Tự Nhiên Nguyên Khối",
+      "code": "MDD-3M02",
+      "badge": "Mộ Đôi Đẹp",
+      "dimension": "Kích thước: 167 x 197 cm",
+      "material": "Đá xanh rêu không rạn nứt",
+      "price": "Liên Hệ",
+      "image": "https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 4,
+      "category": "cuon-thu",
+      "name": "Cuốn Thư Đá (Bình Phong) Trấn Phong Thủy Ngũ Phúc",
+      "code": "CT-NP01",
+      "badge": "Trấn Phong Thủy",
+      "dimension": "Chiều dài: 155cm - 217cm",
+      "material": "Khắc Ngũ Phúc, Chữ Thọ, Bút Kiếm",
+      "price": "Liên Hệ",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "commitments": [
+    { "title": "100% Đá Tự Nhiên", "desc": "Nói không với đá gắn ghép, đá non nứt vỡ. Toàn bộ là đá khối già được tuyển lựa khắt khe từ mỏ.", "icon": "fa-shield-halved" },
+    { "title": "Chuẩn Thước Lỗ Ban", "desc": "Thiết kế chính xác theo thước Lỗ Ban 38.8cm (âm phần), chọn đúng cung Đỏ mang lại cát tường cho gia đạo.", "icon": "fa-compass-drafting" },
+    { "title": "Lắp Đặt Toàn Quốc", "desc": "Trang bị xe cẩu tự hành, đội ngũ thợ lành nghề vận chuyển và lắp dựng an toàn tại cả 63 tỉnh thành.", "icon": "fa-truck-fast" },
+    { "title": "Giá Gốc Tại Xưởng", "desc": "Sản xuất trực tiếp tại làng nghề Ninh Vân, không qua bất kỳ khâu trung gian nào, tiết kiệm tối đa chi phí.", "icon": "fa-handshake-angle" }
+  ],
+  "reasons": [
+    { "step": "01", "title": "Đội Ngũ Nghệ Nhân Kỳ Cựu", "desc": "Nghệ nhân được công nhận cấp Quốc Gia, hơn 25 năm kinh nghiệm truyền đời với tay nghề đục gọt tinh xảo." },
+    { "step": "02", "title": "Quy Trình Thi Công Minh Bạch", "desc": "Khảo sát địa hình thực tế, tư vấn phong thủy hướng mộ miễn phí, ký hợp đồng rõ ràng và không phụ thu chi phí." },
+    { "step": "03", "title": "Ứng Dụng Công Nghệ CNC Hiện Đại", "desc": "Kết hợp máy tiện đá và máy điêu khắc CNC giúp đường nét chính xác 100%, sắc sảo từng milimet." },
+    { "step": "04", "title": "Đúng Tiến Độ & Giờ Hoàng Đạo", "desc": "Lắp đặt chính xác vào ngày lành tháng tốt theo nguyện vọng gia chủ để nghi lễ tạ mộ diễn ra trang trọng nhất." }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Hoàn Thiện Khu Lăng Mộ Họ Nguyễn Văn (Nam Sách, Hải Dương)",
+      "location": "Hải Dương",
+      "desc": "Quy mô 150m², chất liệu đá xanh rêu nguyên khối gồm 1 lăng thờ cánh, 6 mộ đơn và lan can chạm sen.",
+      "date": "Tháng 10/2026",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Công Trình Mộ Đôi Đá Hoa Cương Granite Tại Kim Bảng",
+      "location": "Hà Nam",
+      "desc": "Mộ đá hoa cương nguyên khối bóng gương chịu mưa nắng vĩnh cửu, thiết kế hiện đại trang nhã.",
+      "date": "Tháng 09/2026",
+      "image": "https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Lắp Đặt Cổng Tam Quan & Cuốn Thư Đá Nhà Thờ Tổ Tại Giao Thủy",
+      "location": "Nam Định",
+      "desc": "Cột tứ trụ chạm câu đối chữ Nho, cuốn thư đá trấn trạch ngũ phúc lâm môn sắc nét.",
+      "date": "Tháng 08/2026",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "certifications": [
+    { "title": "Nghệ Nhân Bàn Tay Vàng", "desc": "Hiệp Hội Làng Nghề Việt Nam cấp chứng nhận", "icon": "fa-award" },
+    { "title": "Chứng Nhận OCOP 4 Sao", "desc": "Sản phẩm điêu khắc đá mỹ nghệ Ninh Bình", "icon": "fa-certificate" },
+    { "title": "Kiểm Định Mỏ Đá Tự Nhiên", "desc": "Viện Khoa Học Vật Liệu Xây Dựng kiểm chuẩn", "icon": "fa-microscope" },
+    { "title": "Thương Hiệu Xuất Sắc", "desc": "Top 10 cơ sở chế tác đá uy tín miền Bắc", "icon": "fa-star" }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "category": "Phong Thủy Lăng Mộ",
+      "title": "Bảng Tra Kích Thước Lăng Mộ Đá Chuẩn Thước Lỗ Ban 38.8cm Mới Nhất",
+      "desc": "Cách chọn cung đỏ Tiến Bảo, Thêm Phúc, Đăng Khoa để xây mộ mang lại phúc lộc cho con cháu muôn đời.",
+      "date": "02/11/2026",
+      "readTime": "5 phút đọc",
+      "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 2,
+      "category": "Kinh Nghiệm Chọn Đá",
+      "title": "So Sánh Đá Xanh Rêu Thanh Hóa Và Đá Xanh Đen Ninh Bình: Loại Nào Bền Hơn?",
+      "desc": "Phân tích chi tiết độ cứng, thớ đá, khả năng chịu thời tiết và sự chênh lệch giá giữa hai loại đá được ưa chuộng nhất.",
+      "date": "28/10/2026",
+      "readTime": "7 phút đọc",
+      "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 3,
+      "category": "Nghi Lễ Tâm Linh",
+      "title": "Bài Văn Khấn Và Lễ Vật Cúng Tạ Mộ Mới Xây Đầy Đủ & Trang Trọng Nhất",
+      "desc": "Hướng dẫn chuẩn bị mâm lễ chay, mâm lễ mặn và văn khấn thần linh, thổ địa sau khi hoàn thành lắp đặt mộ phần.",
+      "date": "20/10/2026",
+      "readTime": "6 phút đọc",
+      "image": "https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "quotes": [
+    {
+      "id": 1,
+      "name": "Nguyễn Văn Hùng",
+      "phone": "0912.888.999",
+      "item": "Khu Lăng Mộ Gia Tộc Trọn Gói",
+      "address": "Nam Sách, Hải Dương",
+      "note": "Diện tích đất 120m2, đá xanh rêu, làm trước tháng 10 âm lịch.",
+      "createdAt": "2026-11-08 14:30"
+    }
+  ]
+}

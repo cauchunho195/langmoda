@@ -1,0 +1,17 @@
+services:
+  web-lang-mo-da:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web_lang_mo_da
+    image: web-lang-mo-da:latest
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount thư mục dữ liệu và thư mục ảnh tải lên trực tiếp ra máy host
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    restart: always
+    environment:
+      - PORT=80
+      - NODE_ENV=production

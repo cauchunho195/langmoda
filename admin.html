@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Trị Website - MỘ ĐÁ ĐẸP (modadep.com.vn)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stonegold: {
+                            400: '#cfa971',
+                            500: '#c2904d',
+                            600: '#b0793b',
+                            700: '#8c5c2d',
+                        },
+                        stoneblue: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#080d1a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .sidebar-item.active {
+            background-color: #c2904d;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #dfc79f 0%, #c2904d 50%, #8c5c2d 100%);
+            color: #ffffff;
+        }
+        .btn-gold:hover {
+            opacity: 0.95;
+            box-shadow: 0 4px 12px rgba(194, 144, 77, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased min-h-screen">
+
+    <!-- ========================================================= -->
+    <!-- MÀN HÌNH ĐĂNG NHẬP (LOGIN SCREEN) -->
+    <!-- ========================================================= -->
+    <div id="loginScreen" class="fixed inset-0 bg-stoneblue-950 flex items-center justify-center p-4 z-50">
+        <div class="bg-stoneblue-900 border border-stonegold-500/40 rounded-2xl max-w-md w-full p-8 shadow-2xl text-white relative">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full border-2 border-stonegold-500 bg-stoneblue-950 flex items-center justify-center mx-auto mb-3 text-stonegold-400 text-2xl shadow-inner">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h2 class="text-2xl font-bold uppercase tracking-wider text-stonegold-300">ĐĂNG NHẬP QUẢN TRỊ</h2>
+                <p class="text-xs text-gray-400 mt-1">Hệ thống chỉnh sửa nội dung website Mộ Đá Đẹp</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Tên Đăng Nhập</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="loginUsername" required value="admin" 
+                               class="w-full bg-stoneblue-950 border border-stonegold-700/60 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Mật Khẩu</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-solid fa-key"></i></span>
+                        <input type="password" id="loginPassword" required value="modadep8386" 
+                               class="w-full bg-stoneblue-950 border border-stonegold-700/60 rounded-lg pl-10 pr-10 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white">
+                            <i id="togglePassIcon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginError" class="hidden text-xs text-red-400 bg-red-950/50 border border-red-800 rounded p-2 text-center"></div>
+
+                <button type="submit" class="w-full btn-gold py-3 rounded-lg font-bold uppercase text-xs tracking-wider shadow-lg transition">
+                    Đăng Nhập Vào Quản Trị
+                </button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-gray-800 text-center text-xs text-gray-400">
+                Tài khoản mặc định: <strong class="text-stonegold-400">admin</strong> • Mật khẩu: <strong class="text-stonegold-400">modadep8386</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- GIAO DIỆN CHÍNH (ADMIN DASHBOARD) -->
+    <!-- ========================================================= -->
+    <div id="adminApp" class="hidden flex flex-col min-h-screen">
+        
+        <!-- Header Thanh Công Cụ Trên Cùng -->
+        <header class="bg-stoneblue-900 border-b border-stonegold-700/40 text-white sticky top-0 z-40 px-4 py-3 shadow-md flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-stonegold-500 flex items-center justify-center text-stoneblue-950 font-bold text-lg">
+                    <i class="fa-solid fa-monument"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm md:text-base font-bold text-stonegold-300 uppercase leading-none">MỘ ĐÁ ĐẸP - QUẢN TRỊ NỘI DUNG</h1>
+                    <span class="text-[10px] text-gray-400">Tên miền: modadep.com.vn</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <a href="/" target="_blank" class="bg-stoneblue-800 hover:bg-stoneblue-700 border border-stonegold-600/40 px-3 py-1.5 rounded text-xs font-semibold flex items-center space-x-1.5 transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span class="hidden sm:inline">Xem Website</span>
+                </a>
+                <button onclick="saveAllChanges()" class="btn-gold px-4 py-1.5 rounded text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 shadow">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Lưu Tất Cả Thay Đổi</span>
+                </button>
+                <button onclick="handleLogout()" class="text-gray-400 hover:text-red-400 p-1.5 text-sm" title="Đăng xuất">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Body: Cột Menu Trái + Khung Nội Dung Phải -->
+        <div class="flex-1 flex flex-col md:flex-row">
+            
+            <!-- Sidebar Trái -->
+            <aside class="w-full md:w-64 bg-stoneblue-950 text-gray-300 p-4 border-r border-stonegold-800/60 shrink-0">
+                <div class="text-[11px] uppercase font-bold text-gray-400 tracking-wider mb-2 px-3">
+                    Danh Mục Quản Trị
+                </div>
+                <nav class="space-y-1 text-xs">
+                    <button onclick="switchTab('general')" class="sidebar-item active w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-gear w-4 text-center"></i>
+                        <span>1. Thông Tin Chung & Hotline</span>
+                    </button>
+                    <button onclick="switchTab('hero')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-image w-4 text-center"></i>
+                        <span>2. Banner Đầu Trang (Hero)</span>
+                    </button>
+                    <button onclick="switchTab('about')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-circle-info w-4 text-center"></i>
+                        <span>3. Giới Thiệu Xưởng Đá</span>
+                    </button>
+                    <button onclick="switchTab('categories')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-layer-group w-4 text-center"></i>
+                        <span>4. Danh Mục Sản Phẩm</span>
+                    </button>
+                    <button onclick="switchTab('products')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-monument w-4 text-center"></i>
+                        <span>5. Mẫu Lăng Mộ Đá (Sản Phẩm)</span>
+                    </button>
+                    <button onclick="switchTab('commitments')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-shield-halved w-4 text-center"></i>
+                        <span>6. Cam Kết & Lý Do Chọn</span>
+                    </button>
+                    <button onclick="switchTab('projects')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-trowel-bricks w-4 text-center"></i>
+                        <span>7. Công Trình Đã Thi Công</span>
+                    </button>
+                    <button onclick="switchTab('news')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-newspaper w-4 text-center"></i>
+                        <span>8. Cẩm Nang Phong Thủy</span>
+                    </button>
+                    <button onclick="switchTab('quotes')" class="sidebar-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-envelope-open-text w-4 text-center"></i>
+                            <span>9. Yêu Cầu Báo Giá</span>
+                        </div>
+                        <span id="quoteBadge" class="bg-rubyred bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
+                    </button>
+                    <button onclick="switchTab('security')" class="sidebar-item w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg text-left transition">
+                        <i class="fa-solid fa-shield-keyhole w-4 text-center"></i>
+                        <span>10. Đổi Mật Khẩu Quản Trị</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Nội Dung Chính Bên Phải -->
+            <main class="flex-1 p-4 md:p-8 bg-gray-50 overflow-y-auto max-w-5xl">
+
+                <!-- Thông báo trạng thái lưu -->
+                <div id="saveToast" class="hidden mb-6 p-4 rounded-lg bg-green-100 border border-green-300 text-green-800 text-xs font-bold flex items-center justify-between shadow">
+                    <span id="saveToastText"><i class="fa-solid fa-circle-check mr-2"></i> Đã lưu dữ liệu thành công!</span>
+                    <button onclick="document.getElementById('saveToast').classList.add('hidden')" class="text-green-800 hover:text-green-950 font-bold">&times;</button>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 1: THÔNG TIN CHUNG & HOTLINE -->
+                <!-- ============================================== -->
+                <div id="tab-general" class="tab-content bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="border-b pb-3">
+                        <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                            <i class="fa-solid fa-gear text-stonegold-600 mr-2"></i> THÔNG TIN CHUNG & LIÊN HỆ
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Các thông tin này sẽ tự động hiển thị ở đầu trang, chân trang, nút gọi điện thoại và Zalo.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tên Thương Hiệu / Xưởng</label>
+                            <input type="text" id="gen_brandName" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tên Miền Website</label>
+                            <input type="text" id="gen_domain" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Số Điện Thoại / Hotline Hiển Thị</label>
+                            <input type="text" id="gen_hotline" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Số Điện Thoại Nhận Cuộc Gọi / Zalo (Số liền không dấu)</label>
+                            <input type="text" id="gen_phoneRaw" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Hòm Thư Gmail</label>
+                            <input type="email" id="gen_email" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Giờ Làm Việc</label>
+                            <input type="text" id="gen_workingHours" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Địa Chỉ Xưởng Sản Xuất</label>
+                        <input type="text" id="gen_address" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Huy Hiệu Chứng Nhận (Hiện trên Topbar)</label>
+                        <input type="text" id="gen_badgeText" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <div class="text-xs font-bold uppercase text-gray-700 mb-3">Liên Kết Mạng Xã Hội</div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1"><i class="fa-brands fa-facebook text-blue-600 mr-1"></i> Link Facebook</label>
+                                <input type="text" id="gen_facebookUrl" class="w-full border rounded-lg px-3 py-1.5 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1"><i class="fa-brands fa-youtube text-red-600 mr-1"></i> Link YouTube</label>
+                                <input type="text" id="gen_youtubeUrl" class="w-full border rounded-lg px-3 py-1.5 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1"><i class="fa-brands fa-tiktok text-black mr-1"></i> Link TikTok</label>
+                                <input type="text" id="gen_tiktokUrl" class="w-full border rounded-lg px-3 py-1.5 text-xs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 2: BANNER HERO ĐẦU TRANG -->
+                <!-- ============================================== -->
+                <div id="tab-hero" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="border-b pb-3">
+                        <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                            <i class="fa-solid fa-image text-stonegold-600 mr-2"></i> BANNER SLIDER ĐẦU TRANG
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Tiêu đề lớn, câu chào mừng và các con số ấn tượng khi khách vào website.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Dòng Chữ Nhỏ Nhấn Mạnh</label>
+                        <input type="text" id="hero_badge" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tiêu Đề Dòng 1 (Chữ Trắng)</label>
+                            <input type="text" id="hero_title1" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tiêu Đề Dòng 2 (Chữ Vàng Gold)</label>
+                            <input type="text" id="hero_title2" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Đoạn Văn Giới Thiệu Ngắn</label>
+                        <textarea id="hero_description" rows="3" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Hình Ảnh Nền Banner</label>
+                        <div class="flex items-center space-x-3">
+                            <input type="text" id="hero_bgImage" class="flex-1 border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none" placeholder="Đường dẫn ảnh hoặc tải ảnh lên">
+                            <label class="btn-gold px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap">
+                                <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Tải Ảnh Lên
+                                <input type="file" accept="image/*" class="hidden" onchange="uploadImage(event, 'hero_bgImage', 'hero_preview')">
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <img id="hero_preview" src="" alt="Banner Preview" class="h-32 w-full object-cover rounded-lg border">
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <div class="text-xs font-bold uppercase text-gray-700 mb-3">3 Con Số Thống Kê Uy Tín</div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-3 bg-gray-50 border rounded-lg">
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Con Số 1</label>
+                                <input type="text" id="hero_statYears" class="w-full border rounded px-2 py-1 text-sm font-bold text-stonegold-600 mb-1">
+                                <input type="text" id="hero_statYearsDesc" class="w-full border rounded px-2 py-1 text-xs text-gray-500">
+                            </div>
+                            <div class="p-3 bg-gray-50 border rounded-lg">
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Con Số 2</label>
+                                <input type="text" id="hero_statProjects" class="w-full border rounded px-2 py-1 text-sm font-bold text-stonegold-600 mb-1">
+                                <input type="text" id="hero_statProjectsDesc" class="w-full border rounded px-2 py-1 text-xs text-gray-500">
+                            </div>
+                            <div class="p-3 bg-gray-50 border rounded-lg">
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Con Số 3</label>
+                                <input type="text" id="hero_statQuality" class="w-full border rounded px-2 py-1 text-sm font-bold text-stonegold-600 mb-1">
+                                <input type="text" id="hero_statQualityDesc" class="w-full border rounded px-2 py-1 text-xs text-gray-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 3: GIỚI THIỆU XƯỞNG (VỀ CHÚNG TÔI) -->
+                <!-- ============================================== -->
+                <div id="tab-about" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="border-b pb-3">
+                        <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                            <i class="fa-solid fa-circle-info text-stonegold-600 mr-2"></i> BÀI VIẾT GIỚI THIỆU XƯỞNG
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Giới thiệu lịch sử làng nghề, thợ điêu khắc và thế mạnh của xưởng.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tiêu Đề Lớn Giới Thiệu</label>
+                        <input type="text" id="about_title" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Đoạn Văn 1 (Mở đầu & Nguồn gốc)</label>
+                        <textarea id="about_p1" rows="3" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Đoạn Văn 2 (Chất lượng đá & Chạm khắc)</label>
+                        <textarea id="about_p2" rows="3" class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Hình Ảnh Xưởng / Nghệ Nhân Chế Tác</label>
+                        <div class="flex items-center space-x-3">
+                            <input type="text" id="about_image" class="flex-1 border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                            <label class="btn-gold px-4 py-2 rounded-lg text-xs font-bold cursor-pointer whitespace-nowrap">
+                                <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Tải Ảnh Mới
+                                <input type="file" accept="image/*" class="hidden" onchange="uploadImage(event, 'about_image', 'about_preview')">
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <img id="about_preview" src="" alt="About Preview" class="h-44 w-64 object-cover rounded-lg border">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 4: DANH MỤC SẢN PHẨM -->
+                <!-- ============================================== -->
+                <div id="tab-categories" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div>
+                            <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                                <i class="fa-solid fa-layer-group text-stonegold-600 mr-2"></i> DANH MỤC SẢN PHẨM CHÍNH
+                            </h2>
+                            <p class="text-xs text-gray-500 mt-0.5">6 khối danh mục hiển thị trực quan dạng icon trên trang chủ.</p>
+                        </div>
+                    </div>
+
+                    <div id="categoriesList" class="space-y-3">
+                        <!-- Render dynamic list categories -->
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 5: MẪU LĂNG MỘ ĐÁ (SẢN PHẨM) -->
+                <!-- ============================================== -->
+                <div id="tab-products" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-3 gap-2">
+                        <div>
+                            <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                                <i class="fa-solid fa-monument text-stonegold-600 mr-2"></i> QUẢN LÝ SẢN PHẨM & MẪU MỘ ĐÁ
+                            </h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Thêm mới, thay đổi hình ảnh, giá bán và kích thước Lỗ Ban.</p>
+                        </div>
+                        <button onclick="openProductModal()" class="btn-gold px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 self-start">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Thêm Sản Phẩm Mới</span>
+                        </button>
+                    </div>
+
+                    <div id="productsTableContainer" class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-stoneblue-950 text-white uppercase text-[11px]">
+                                    <th class="p-3">Hình Ảnh</th>
+                                    <th class="p-3">Tên Mẫu Mộ</th>
+                                    <th class="p-3">Mã SP</th>
+                                    <th class="p-3">Danh Mục</th>
+                                    <th class="p-3">Kích Thước</th>
+                                    <th class="p-3">Giá</th>
+                                    <th class="p-3 text-center">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody" class="divide-y divide-gray-200">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 6: CAM KẾT & LÝ DO CHỌN -->
+                <!-- ============================================== -->
+                <div id="tab-commitments" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="border-b pb-3">
+                        <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                            <i class="fa-solid fa-shield-halved text-stonegold-600 mr-2"></i> CAM KẾT VÀNG & LÝ DO KHÁCH HÀNG NÊN CHỌN
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Chỉnh sửa 4 cam kết chất lượng vĩnh cửu và 4 tiêu chí thuyết phục khách hàng.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-bold uppercase text-stonegold-600 mb-3">4 Cam Kết Chất Lượng Vàng</h3>
+                        <div id="commitmentsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Render dynamic commitments -->
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <h3 class="text-sm font-bold uppercase text-stonegold-600 mb-3">4 Lý Do Khách Hàng Chọn Bạn (01 - 04)</h3>
+                        <div id="reasonsList" class="space-y-3">
+                            <!-- Render dynamic reasons -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 7: CÔNG TRÌNH THỰC TẾ TIÊU BIỂU -->
+                <!-- ============================================== -->
+                <div id="tab-projects" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div>
+                            <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                                <i class="fa-solid fa-trowel-bricks text-stonegold-600 mr-2"></i> CÔNG TRÌNH THỰC TẾ ĐÃ THI CÔNG
+                            </h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Cập nhật các công trình lăng mộ gia tộc đã hoàn thành tại các tỉnh thành.</p>
+                        </div>
+                        <button onclick="openProjectModal()" class="btn-gold px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Thêm Công Trình</span>
+                        </button>
+                    </div>
+
+                    <div id="projectsList" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Dynamic project cards -->
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 8: CẨM NANG PHONG THỦY (TIN TỨC) -->
+                <!-- ============================================== -->
+                <div id="tab-news" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div>
+                            <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                                <i class="fa-solid fa-newspaper text-stonegold-600 mr-2"></i> BÀI VIẾT PHONG THỦY & KINH NGHIỆM
+                            </h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Các bài viết chia sẻ về thước Lỗ Ban, hướng đặt mộ, phân biệt chất liệu đá.</p>
+                        </div>
+                        <button onclick="openNewsModal()" class="btn-gold px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Viết Bài Mới</span>
+                        </button>
+                    </div>
+
+                    <div id="newsList" class="space-y-4">
+                        <!-- Dynamic news list -->
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 9: DANH SÁCH YÊU CẦU BÁO GIÁ CỦA KHÁCH HÀNG -->
+                <!-- ============================================== -->
+                <div id="tab-quotes" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div>
+                            <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                                <i class="fa-solid fa-envelope-open-text text-stonegold-600 mr-2"></i> HỘP THƯ YÊU CẦU BÁO GIÁ TỪ WEBSITE
+                            </h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Khách hàng điền thông tin tư vấn lăng mộ qua website sẽ được ghi nhận tại đây.</p>
+                        </div>
+                        <button onclick="clearAllQuotes()" class="text-xs text-red-600 hover:text-red-800 font-semibold border border-red-200 px-3 py-1.5 rounded">
+                            <i class="fa-solid fa-trash mr-1"></i> Xóa tất cả thư
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-stoneblue-950 text-white uppercase text-[11px]">
+                                    <th class="p-3">Thời Gian</th>
+                                    <th class="p-3">Họ Tên Khách</th>
+                                    <th class="p-3">Số Điện Thoại</th>
+                                    <th class="p-3">Hạng Mục</th>
+                                    <th class="p-3">Địa Chỉ Lắp Đặt</th>
+                                    <th class="p-3">Ghi Chú Yêu Cầu</th>
+                                    <th class="p-3 text-center">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quotesTableBody" class="divide-y divide-gray-200">
+                                <!-- Dynamic quotes -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ============================================== -->
+                <!-- TAB 10: ĐỔI MẬT KHẨU QUẢN TRỊ -->
+                <!-- ============================================== -->
+                <div id="tab-security" class="tab-content hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6 max-w-lg">
+                    <div class="border-b pb-3">
+                        <h2 class="text-lg font-bold text-stoneblue-950 flex items-center">
+                            <i class="fa-solid fa-shield-keyhole text-stonegold-600 mr-2"></i> THAY ĐỔI MẬT KHẨU QUẢN TRỊ
+                        </h2>
+                        <p class="text-xs text-gray-500 mt-0.5">Bảo vệ an toàn cho website của bạn.</p>
+                    </div>
+
+                    <form onsubmit="handleChangePassword(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Tên Đăng Nhập Mới</label>
+                            <input type="text" id="sec_username" value="admin" required class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Mật Khẩu Mới (Tối thiểu 6 ký tự)</label>
+                            <input type="password" id="sec_newPassword" required placeholder="Nhập mật khẩu mới..." class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Xác Nhận Mật Khẩu Mới</label>
+                            <input type="password" id="sec_confirmPassword" required placeholder="Nhập lại mật khẩu mới..." class="w-full border rounded-lg px-3 py-2 text-sm focus:border-stonegold-500 focus:outline-none">
+                        </div>
+                        <button type="submit" class="btn-gold px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider shadow">
+                            Cập Nhật Mật Khẩu
+                        </button>
+                    </form>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- MODAL THÊM / SỬA SẢN PHẨM -->
+    <!-- ========================================================= -->
+    <div id="productModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 id="productModalTitle" class="font-bold text-stoneblue-950 text-base">Thêm Mẫu Mộ Đá Mới</h3>
+                <button onclick="closeProductModal()" class="text-gray-400 hover:text-gray-800 text-xl font-bold">&times;</button>
+            </div>
+            <form onsubmit="handleSaveProduct(event)" class="space-y-3">
+                <input type="hidden" id="prod_id">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Tên Sản Phẩm *</label>
+                    <input type="text" id="prod_name" required placeholder="Ví dụ: Khu Lăng Mộ Đá Xanh Rêu..." class="w-full border rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Mã Sản Phẩm *</label>
+                        <input type="text" id="prod_code" required placeholder="LMD-01" class="w-full border rounded-lg px-3 py-2 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Danh Mục</label>
+                        <select id="prod_category" class="w-full border rounded-lg px-3 py-2 text-xs">
+                            <option value="lang-mo">Khu Lăng Mộ Gia Tộc</option>
+                            <option value="mo-don">Mộ Đá 1, 2, 3 Mái</option>
+                            <option value="cuon-thu">Cuốn Thư & Lan Can</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Nhãn Nổi Bật</label>
+                        <input type="text" id="prod_badge" placeholder="Hot Nhất / Chuẩn Lỗ Ban" class="w-full border rounded-lg px-3 py-2 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Giá Bán</label>
+                        <input type="text" id="prod_price" value="Liên Hệ" class="w-full border rounded-lg px-3 py-2 text-xs">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Kích Thước / Diện Tích Chuẩn Phong Thủy</label>
+                    <input type="text" id="prod_dimension" placeholder="Ví dụ: 89 x 147 cm hoặc 60m² - 200m²" class="w-full border rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Chất Liệu Đá</label>
+                    <input type="text" id="prod_material" placeholder="Ví dụ: Đá xanh rêu Thanh Hóa mỏ loại 1" class="w-full border rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Hình Ảnh Sản Phẩm</label>
+                    <div class="flex items-center space-x-2">
+                        <input type="text" id="prod_image" required placeholder="URL ảnh hoặc tải ảnh lên" class="flex-1 border rounded-lg px-3 py-1.5 text-xs">
+                        <label class="btn-gold px-3 py-1.5 rounded text-xs font-bold cursor-pointer whitespace-nowrap">
+                            <i class="fa-solid fa-upload mr-1"></i> Tải Ảnh
+                            <input type="file" accept="image/*" class="hidden" onchange="uploadImage(event, 'prod_image', 'prod_preview')">
+                        </label>
+                    </div>
+                    <img id="prod_preview" src="" alt="Preview" class="h-24 w-32 object-cover rounded border mt-2">
+                </div>
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="closeProductModal()" class="px-4 py-2 border rounded text-xs font-semibold">Hủy</button>
+                    <button type="submit" class="btn-gold px-5 py-2 rounded text-xs font-bold uppercase">Lưu Sản Phẩm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- LOGIC XỬ LÝ QUẢN TRỊ TRÊN JAVASCRIPT -->
+    <!-- ========================================================= -->
+    <script>
+        let siteData = {};
+        let authToken = localStorage.getItem('modadep_token') || '';
+
+        // Khởi động
+        window.addEventListener('DOMContentLoaded', () => {
+            if (authToken) {
+                checkAuthAndLoad();
+            } else {
+                showLogin();
+            }
+        });
+
+        function showLogin() {
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('adminApp').classList.add('hidden');
+        }
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('adminApp').classList.remove('hidden');
+        }
+
+        function togglePasswordVisibility() {
+            const p = document.getElementById('loginPassword');
+            const icon = document.getElementById('togglePassIcon');
+            if (p.type === 'password') {
+                p.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                p.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Đăng nhập
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const errBox = document.getElementById('loginError');
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    authToken = data.token;
+                    localStorage.setItem('modadep_token', authToken);
+                    errBox.classList.add('hidden');
+                    loadSiteData();
+                } else {
+                    errBox.innerText = data.message || 'Sai tài khoản hoặc mật khẩu';
+                    errBox.classList.remove('hidden');
+                }
+            } catch (err) {
+                // Nếu đang mở file:// không có server backend
+                if (username === 'admin' && password === 'modadep8386') {
+                    authToken = 'local_offline_token';
+                    localStorage.setItem('modadep_token', authToken);
+                    loadSiteData();
+                } else {
+                    errBox.innerText = 'Lỗi kết nối hoặc sai thông tin đăng nhập';
+                    errBox.classList.remove('hidden');
+                }
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('modadep_token');
+            authToken = '';
+            location.reload();
+        }
+
+        // Tải dữ liệu website
+        async function checkAuthAndLoad() {
+            loadSiteData();
+        }
+
+        async function loadSiteData() {
+            try {
+                const res = await fetch('/api/content');
+                siteData = await res.json();
+            } catch (e) {
+                // Fallback nếu mở trực tiếp không qua server
+                const local = localStorage.getItem('modadep_local_data');
+                if (local) {
+                    siteData = JSON.parse(local);
+                } else {
+                    siteData = {};
+                }
+            }
+            showApp();
+            populateForms();
+        }
+
+        // Điền dữ liệu vào các ô nhập
+        function populateForms() {
+            const g = siteData.general || {};
+            document.getElementById('gen_brandName').value = g.brandName || '';
+            document.getElementById('gen_domain').value = g.domain || '';
+            document.getElementById('gen_hotline').value = g.hotline || '';
+            document.getElementById('gen_phoneRaw').value = g.phoneRaw || '';
+            document.getElementById('gen_email').value = g.email || '';
+            document.getElementById('gen_workingHours').value = g.workingHours || '';
+            document.getElementById('gen_address').value = g.address || '';
+            document.getElementById('gen_badgeText').value = g.badgeText || '';
+            document.getElementById('gen_facebookUrl').value = g.facebookUrl || '';
+            document.getElementById('gen_youtubeUrl').value = g.youtubeUrl || '';
+            document.getElementById('gen_tiktokUrl').value = g.tiktokUrl || '';
+
+            const h = siteData.hero || {};
+            document.getElementById('hero_badge').value = h.badge || '';
+            document.getElementById('hero_title1').value = h.title1 || '';
+            document.getElementById('hero_title2').value = h.title2 || '';
+            document.getElementById('hero_description').value = h.description || '';
+            document.getElementById('hero_bgImage').value = h.bgImage || '';
+            document.getElementById('hero_preview').src = h.bgImage || '';
+            document.getElementById('hero_statYears').value = h.statYears || '';
+            document.getElementById('hero_statYearsDesc').value = h.statYearsDesc || '';
+            document.getElementById('hero_statProjects').value = h.statProjects || '';
+            document.getElementById('hero_statProjectsDesc').value = h.statProjectsDesc || '';
+            document.getElementById('hero_statQuality').value = h.statQuality || '';
+            document.getElementById('hero_statQualityDesc').value = h.statQualityDesc || '';
+
+            const a = siteData.about || {};
+            document.getElementById('about_title').value = a.title || '';
+            document.getElementById('about_p1').value = a.p1 || '';
+            document.getElementById('about_p2').value = a.p2 || '';
+            document.getElementById('about_image').value = a.image || '';
+            document.getElementById('about_preview').src = a.image || '';
+
+            renderCategories();
+            renderProducts();
+            renderCommitments();
+            renderReasons();
+            renderProjects();
+            renderNews();
+            renderQuotes();
+        }
+
+        // Render Danh Mục
+        function renderCategories() {
+            const container = document.getElementById('categoriesList');
+            const cats = siteData.categories || [];
+            container.innerHTML = cats.map((c, i) => `
+                <div class="p-3 bg-gray-50 border rounded-lg flex items-center space-x-3">
+                    <span class="w-8 text-center text-stonegold-600 font-bold"><i class="fa-solid ${c.icon || 'fa-tag'}"></i></span>
+                    <input type="text" value="${c.name}" onchange="updateCatName(${i}, this.value)" class="flex-1 border rounded px-3 py-1.5 text-xs font-semibold">
+                    <input type="text" value="${c.count}" onchange="updateCatCount(${i}, this.value)" class="w-32 border rounded px-3 py-1.5 text-xs text-gray-500">
+                </div>
+            `).join('');
+        }
+
+        function updateCatName(idx, val) { siteData.categories[idx].name = val; }
+        function updateCatCount(idx, val) { siteData.categories[idx].count = val; }
+
+        // Render Sản Phẩm
+        function renderProducts() {
+            const tbody = document.getElementById('productsTableBody');
+            const prods = siteData.products || [];
+            tbody.innerHTML = prods.map((p, i) => `
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3">
+                        <img src="${p.image}" class="w-12 h-12 object-cover rounded border">
+                    </td>
+                    <td class="p-3 font-semibold text-stoneblue-950">${p.name}</td>
+                    <td class="p-3 text-gray-500">${p.code}</td>
+                    <td class="p-3"><span class="bg-gray-100 px-2 py-0.5 rounded text-[11px]">${p.category}</span></td>
+                    <td class="p-3 text-gray-600">${p.dimension || ''}</td>
+                    <td class="p-3 font-bold text-red-600">${p.price}</td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="editProduct(${i})" class="text-blue-600 hover:text-blue-800 font-bold"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                        <button onclick="deleteProduct(${i})" class="text-red-600 hover:text-red-800 font-bold"><i class="fa-solid fa-trash"></i> Xóa</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openProductModal(index = -1) {
+            const modal = document.getElementById('productModal');
+            const title = document.getElementById('productModalTitle');
+            if (index >= 0) {
+                const p = siteData.products[index];
+                title.innerText = 'Sửa Mẫu Mộ Đá: ' + p.name;
+                document.getElementById('prod_id').value = index;
+                document.getElementById('prod_name').value = p.name;
+                document.getElementById('prod_code').value = p.code;
+                document.getElementById('prod_category').value = p.category;
+                document.getElementById('prod_badge').value = p.badge || '';
+                document.getElementById('prod_price').value = p.price || 'Liên Hệ';
+                document.getElementById('prod_dimension').value = p.dimension || '';
+                document.getElementById('prod_material').value = p.material || '';
+                document.getElementById('prod_image').value = p.image || '';
+                document.getElementById('prod_preview').src = p.image || '';
+            } else {
+                title.innerText = 'Thêm Mẫu Mộ Đá Mới';
+                document.getElementById('prod_id').value = -1;
+                document.getElementById('prod_name').value = '';
+                document.getElementById('prod_code').value = 'MD-' + Math.floor(100 + Math.random() * 900);
+                document.getElementById('prod_category').value = 'lang-mo';
+                document.getElementById('prod_badge').value = 'Mẫu Đẹp 2026';
+                document.getElementById('prod_price').value = 'Liên Hệ';
+                document.getElementById('prod_dimension').value = '';
+                document.getElementById('prod_material').value = 'Đá xanh rêu tự nhiên loại 1';
+                document.getElementById('prod_image').value = 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80';
+                document.getElementById('prod_preview').src = document.getElementById('prod_image').value;
+            }
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('productModal').classList.remove('flex');
+        }
+
+        function handleSaveProduct(e) {
+            e.preventDefault();
+            const idx = parseInt(document.getElementById('prod_id').value);
+            const item = {
+                id: idx >= 0 ? siteData.products[idx].id : Date.now(),
+                name: document.getElementById('prod_name').value,
+                code: document.getElementById('prod_code').value,
+                category: document.getElementById('prod_category').value,
+                badge: document.getElementById('prod_badge').value,
+                price: document.getElementById('prod_price').value,
+                dimension: document.getElementById('prod_dimension').value,
+                material: document.getElementById('prod_material').value,
+                image: document.getElementById('prod_image').value
+            };
+
+            if (idx >= 0) {
+                siteData.products[idx] = item;
+            } else {
+                if (!siteData.products) siteData.products = [];
+                siteData.products.push(item);
+            }
+            closeProductModal();
+            renderProducts();
+            saveAllChanges();
+        }
+
+        function editProduct(idx) { openProductModal(idx); }
+
+        function deleteProduct(idx) {
+            if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+                siteData.products.splice(idx, 1);
+                renderProducts();
+                saveAllChanges();
+            }
+        }
+
+        // Render Cam kết & Lý do
+        function renderCommitments() {
+            const container = document.getElementById('commitmentsList');
+            const items = siteData.commitments || [];
+            container.innerHTML = items.map((c, i) => `
+                <div class="p-3 bg-gray-50 border rounded-lg space-y-2">
+                    <input type="text" value="${c.title}" onchange="siteData.commitments[${i}].title = this.value" class="w-full border rounded px-2 py-1 text-xs font-bold text-stoneblue-950">
+                    <textarea rows="2" onchange="siteData.commitments[${i}].desc = this.value" class="w-full border rounded px-2 py-1 text-xs text-gray-600">${c.desc}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function renderReasons() {
+            const container = document.getElementById('reasonsList');
+            const items = siteData.reasons || [];
+            container.innerHTML = items.map((r, i) => `
+                <div class="p-3 bg-gray-50 border rounded-lg flex items-start space-x-3">
+                    <span class="text-xl font-bold text-stonegold-600 font-cinzel">${r.step}</span>
+                    <div class="flex-1 space-y-1">
+                        <input type="text" value="${r.title}" onchange="siteData.reasons[${i}].title = this.value" class="w-full border rounded px-2 py-1 text-xs font-bold text-stoneblue-950">
+                        <textarea rows="2" onchange="siteData.reasons[${i}].desc = this.value" class="w-full border rounded px-2 py-1 text-xs text-gray-600">${r.desc}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Dự án
+        function renderProjects() {
+            const container = document.getElementById('projectsList');
+            const items = siteData.projects || [];
+            container.innerHTML = items.map((p, i) => `
+                <div class="bg-gray-50 border rounded-lg p-3 space-y-2">
+                    <img src="${p.image}" class="w-full h-28 object-cover rounded">
+                    <input type="text" value="${p.title}" onchange="siteData.projects[${i}].title = this.value" class="w-full border rounded px-2 py-1 text-xs font-bold">
+                    <div class="flex space-x-2">
+                        <input type="text" value="${p.location}" placeholder="Tỉnh thành" onchange="siteData.projects[${i}].location = this.value" class="w-1/2 border rounded px-2 py-1 text-xs text-stonegold-600 font-semibold">
+                        <input type="text" value="${p.date}" placeholder="Thời gian" onchange="siteData.projects[${i}].date = this.value" class="w-1/2 border rounded px-2 py-1 text-xs text-gray-400">
+                    </div>
+                    <textarea rows="2" onchange="siteData.projects[${i}].desc = this.value" class="w-full border rounded px-2 py-1 text-xs text-gray-500">${p.desc}</textarea>
+                </div>
+            `).join('');
+        }
+
+        // Render Tin tức
+        function renderNews() {
+            const container = document.getElementById('newsList');
+            const items = siteData.news || [];
+            container.innerHTML = items.map((n, i) => `
+                <div class="bg-gray-50 border rounded-lg p-4 flex flex-col md:flex-row gap-4">
+                    <img src="${n.image}" class="w-full md:w-36 h-24 object-cover rounded">
+                    <div class="flex-1 space-y-1.5">
+                        <div class="flex justify-between items-center">
+                            <input type="text" value="${n.category}" onchange="siteData.news[${i}].category = this.value" class="border rounded px-2 py-0.5 text-[11px] font-bold text-stonegold-600">
+                            <span class="text-[11px] text-gray-400">${n.date}</span>
+                        </div>
+                        <input type="text" value="${n.title}" onchange="siteData.news[${i}].title = this.value" class="w-full border rounded px-2 py-1 text-xs font-bold text-stoneblue-950">
+                        <textarea rows="2" onchange="siteData.news[${i}].desc = this.value" class="w-full border rounded px-2 py-1 text-xs text-gray-600">${n.desc}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Hộp Thư Báo Giá
+        function renderQuotes() {
+            const tbody = document.getElementById('quotesTableBody');
+            const badge = document.getElementById('quoteBadge');
+            const items = siteData.quotes || [];
+            badge.innerText = items.length;
+
+            if (items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-gray-400">Chưa có khách hàng nào gửi yêu cầu báo giá.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = items.map((q, i) => `
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3 text-gray-500 whitespace-nowrap">${q.createdAt || ''}</td>
+                    <td class="p-3 font-bold text-stoneblue-950">${q.name}</td>
+                    <td class="p-3 font-semibold text-red-600"><a href="tel:${q.phone}">${q.phone}</a></td>
+                    <td class="p-3">${q.item}</td>
+                    <td class="p-3 text-gray-600">${q.address || ''}</td>
+                    <td class="p-3 text-gray-500 max-w-xs truncate">${q.note || ''}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deleteQuote(${i})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteQuote(i) {
+            if (confirm('Xóa thông tin yêu cầu này?')) {
+                siteData.quotes.splice(i, 1);
+                renderQuotes();
+                saveAllChanges();
+            }
+        }
+
+        function clearAllQuotes() {
+            if (confirm('Bạn có chắc muốn xóa sạch toàn bộ danh sách khách yêu cầu báo giá?')) {
+                siteData.quotes = [];
+                renderQuotes();
+                saveAllChanges();
+            }
+        }
+
+        // Đổi Mật Khẩu
+        async function handleChangePassword(e) {
+            e.preventDefault();
+            const newPassword = document.getElementById('sec_newPassword').value;
+            const confirm = document.getElementById('sec_confirmPassword').value;
+            const newUsername = document.getElementById('sec_username').value.trim();
+
+            if (newPassword !== confirm) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/change-password', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + authToken
+                    },
+                    body: JSON.stringify({ newPassword, newUsername })
+                });
+                const d = await res.json();
+                if (d.success) {
+                    alert('Đổi mật khẩu thành công! Vui lòng ghi nhớ mật khẩu mới.');
+                    document.getElementById('sec_newPassword').value = '';
+                    document.getElementById('sec_confirmPassword').value = '';
+                } else {
+                    alert(d.message || 'Lỗi đổi mật khẩu');
+                }
+            } catch (err) {
+                alert('Đã cập nhật mật khẩu trên bộ nhớ cục bộ');
+            }
+        }
+
+        // Tải ảnh lên máy chủ (Upload Image)
+        function uploadImage(event, targetInputId, targetPreviewId) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const base64Data = e.target.result;
+                // Preview ngay lập tức
+                if (targetPreviewId) {
+                    document.getElementById(targetPreviewId).src = base64Data;
+                }
+
+                // Gửi lên server
+                try {
+                    const res = await fetch('/api/upload', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + authToken
+                        },
+                        body: JSON.stringify({ base64: base64Data })
+                    });
+                    const d = await res.json();
+                    if (d.success && d.url) {
+                        document.getElementById(targetInputId).value = d.url;
+                        if (targetPreviewId) document.getElementById(targetPreviewId).src = d.url;
+                    } else {
+                        // Fallback dùng trực tiếp base64 nếu server offline
+                        document.getElementById(targetInputId).value = base64Data;
+                    }
+                } catch (err) {
+                    // Dùng trực tiếp base64 nếu chạy file://
+                    document.getElementById(targetInputId).value = base64Data;
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Lưu Tất Cả Dữ Liệu
+        async function saveAllChanges() {
+            // Gom dữ liệu từ các input về object siteData
+            if (!siteData.general) siteData.general = {};
+            siteData.general.brandName = document.getElementById('gen_brandName').value;
+            siteData.general.domain = document.getElementById('gen_domain').value;
+            siteData.general.hotline = document.getElementById('gen_hotline').value;
+            siteData.general.phoneRaw = document.getElementById('gen_phoneRaw').value;
+            siteData.general.email = document.getElementById('gen_email').value;
+            siteData.general.workingHours = document.getElementById('gen_workingHours').value;
+            siteData.general.address = document.getElementById('gen_address').value;
+            siteData.general.badgeText = document.getElementById('gen_badgeText').value;
+            siteData.general.facebookUrl = document.getElementById('gen_facebookUrl').value;
+            siteData.general.youtubeUrl = document.getElementById('gen_youtubeUrl').value;
+            siteData.general.tiktokUrl = document.getElementById('gen_tiktokUrl').value;
+
+            if (!siteData.hero) siteData.hero = {};
+            siteData.hero.badge = document.getElementById('hero_badge').value;
+            siteData.hero.title1 = document.getElementById('hero_title1').value;
+            siteData.hero.title2 = document.getElementById('hero_title2').value;
+            siteData.hero.description = document.getElementById('hero_description').value;
+            siteData.hero.bgImage = document.getElementById('hero_bgImage').value;
+            siteData.hero.statYears = document.getElementById('hero_statYears').value;
+            siteData.hero.statYearsDesc = document.getElementById('hero_statYearsDesc').value;
+            siteData.hero.statProjects = document.getElementById('hero_statProjects').value;
+            siteData.hero.statProjectsDesc = document.getElementById('hero_statProjectsDesc').value;
+            siteData.hero.statQuality = document.getElementById('hero_statQuality').value;
+            siteData.hero.statQualityDesc = document.getElementById('hero_statQualityDesc').value;
+
+            if (!siteData.about) siteData.about = {};
+            siteData.about.title = document.getElementById('about_title').value;
+            siteData.about.p1 = document.getElementById('about_p1').value;
+            siteData.about.p2 = document.getElementById('about_p2').value;
+            siteData.about.image = document.getElementById('about_image').value;
+
+            // Lưu vào localStorage dự phòng
+            localStorage.setItem('modadep_local_data', JSON.stringify(siteData));
+
+            // Gửi lên backend API
+            try {
+                const res = await fetch('/api/content', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + authToken
+                    },
+                    body: JSON.stringify(siteData)
+                });
+                const d = await res.json();
+                if (d.success) {
+                    showToast('Đã lưu tất cả thay đổi lên website thành công!');
+                } else {
+                    showToast(d.message || 'Lỗi lưu dữ liệu');
+                }
+            } catch (err) {
+                showToast('Đã lưu nội dung tạm vào trình duyệt (Hãy chạy Docker để lưu vĩnh viễn)!');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('saveToast');
+            document.getElementById('saveToastText').innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> ' + msg;
+            toast.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Chuyển Tab
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(t => t.classList.add('hidden'));
+
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.remove('hidden');
+
+            const buttons = document.querySelectorAll('.sidebar-item');
+            buttons.forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

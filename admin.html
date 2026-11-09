@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ========================================================= */
-        /* CHUẨN GIAO DIỆN WORDPRESS ADMIN NGUYÊN BẢN (WP-ADMIN CSS) */
+        /* GIAO DIỆN CHUẨN WORDPRESS WP-ADMIN NGUYÊN BẢN CỦA MODADEP.COM */
         /* ========================================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -17,7 +17,10 @@
             color: #3c434a;
             font-size: 13px;
             line-height: 1.4em;
+            overflow-x: hidden;
         }
+        a { color: #2271b1; text-decoration: none; }
+        a:hover { color: #135e96; }
 
         /* --- 1. TOP WP ADMIN BAR --- */
         #wpadminbar {
@@ -33,14 +36,14 @@
             padding: 0 10px;
             font-size: 13px;
         }
-        #wpadminbar a { color: #f0f0f1; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 0 8px; height: 32px; }
+        #wpadminbar a { color: #f0f0f1; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 0 8px; height: 32px; font-size: 13px; }
         #wpadminbar a:hover { background: #2c3338; color: #72aee6; }
         .ab-left, .ab-right { display: flex; align-items: center; }
-        .ab-site-name { font-weight: 600; }
-        .ab-badge-live { background: #008a20; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 700; text-transform: uppercase; margin-left: 4px; }
+        .ab-site-name { font-weight: 600; white-space: nowrap; }
+        .ab-badge-busy { background: #336039; color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 3px; font-weight: 700; margin-left: 4px; }
         .ab-user-avatar { width: 22px; height: 22px; border-radius: 50%; margin-left: 6px; }
 
-        /* --- 2. LEFT ADMIN SIDEBAR --- */
+        /* --- 2. LEFT ADMIN SIDEBAR (100% Modadep.com) --- */
         #adminmenumain {
             position: fixed;
             top: 32px; bottom: 0; left: 0;
@@ -49,7 +52,7 @@
             overflow-y: auto;
             z-index: 9990;
         }
-        #adminmenu { list-style: none; margin: 0; padding: 10px 0; }
+        #adminmenu { list-style: none; margin: 0; padding: 10px 0 60px 0; }
         #adminmenu li { position: relative; }
         #adminmenu a.menu-top {
             display: flex;
@@ -80,12 +83,17 @@
         }
         #adminmenu a.menu-top:hover i.dashicons,
         #adminmenu li.current i.dashicons { color: #fff; }
-        
-        /* Submenu */
+
+        /* Submenus */
         .wp-submenu {
             background: #2c3338;
             padding: 4px 0;
             list-style: none;
+            display: none;
+        }
+        #adminmenu li.has-submenu.current .wp-submenu,
+        #adminmenu li.has-submenu.opened .wp-submenu {
+            display: block;
         }
         .wp-submenu a {
             display: block;
@@ -108,63 +116,124 @@
             font-weight: 700;
             margin-left: auto;
         }
+        .update-plugins-yellow {
+            background: #dba617;
+            color: #fff;
+            border-radius: 10px;
+            padding: 1px 6px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-left: auto;
+        }
         .menu-separator { height: 1px; background: #2c3338; margin: 6px 0; }
 
         /* --- 3. MAIN CONTENT WRAPPER --- */
         #wpcontent {
             margin-left: 175px;
             margin-top: 32px;
-            padding: 20px 25px 50px 25px;
+            padding: 15px 22px 60px 22px;
             min-height: calc(100vh - 32px);
         }
-        .wrap h1 {
+        .wp-header-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .wp-header-title h1 {
             font-size: 23px;
             font-weight: 400;
-            margin: 0 0 15px 0;
             color: #1d2327;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
         }
+        .screen-meta-links {
+            display: flex;
+            gap: 6px;
+        }
+        .screen-meta-btn {
+            background: #fff;
+            border: 1px solid #c3c4c7;
+            border-radius: 0 0 4px 4px;
+            padding: 3px 8px;
+            font-size: 12px;
+            color: #646970;
+            cursor: pointer;
+        }
+        .screen-meta-btn:hover { color: #2271b1; }
 
         /* --- 4. WORDPRESS NOTICES --- */
+        .wp-notice-core-update {
+            background: #fff8e5;
+            border: 1px solid #c3c4c7;
+            border-left: 4px solid #dba617;
+            padding: 11px 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
+        }
         .notice {
             background: #fff;
             border: 1px solid #c3c4c7;
             border-left-width: 4px;
             box-shadow: 0 1px 1px rgba(0,0,0,.04);
-            margin: 12px 0 16px;
-            padding: 10px 12px;
+            margin: 8px 0 14px;
+            padding: 11px 15px;
             font-size: 13px;
+            position: relative;
         }
         .notice-info { border-left-color: #72aee6; }
         .notice-warning { border-left-color: #dba617; }
+        .notice-error { border-left-color: #d63638; }
         .notice-success { border-left-color: #00a32a; }
+        .notice .notice-dismiss {
+            position: absolute;
+            top: 10px; right: 12px;
+            color: #787c82;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .notice .notice-dismiss:hover { color: #d63638; }
 
-        /* --- 5. DASHBOARD WIDGETS --- */
-        .dashboard-widgets-grid {
+        /* --- 5. DASHBOARD WIDGETS GRID --- */
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+        @media (max-width: 1024px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
         }
         .postbox {
             background: #fff;
             border: 1px solid #c3c4c7;
             box-shadow: 0 1px 1px rgba(0,0,0,.04);
             border-radius: 2px;
+            margin-bottom: 16px;
         }
         .postbox-header {
-            padding: 10px 15px;
+            padding: 10px 14px;
             border-bottom: 1px solid #c3c4c7;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: #fff;
         }
-        .postbox-content { padding: 15px; }
+        .postbox-header .handle-actions {
+            color: #787c82;
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .postbox-content { padding: 14px; font-size: 13px; }
 
         /* --- 6. BUTTONS --- */
         .button {
@@ -182,6 +251,7 @@
             color: #2271b1;
             vertical-align: middle;
             font-weight: 500;
+            white-space: nowrap;
         }
         .button:hover { background: #f0f0f1; border-color: #0a4b78; color: #0a4b78; }
         .button-primary {
@@ -196,6 +266,21 @@
             color: #d63638;
         }
         .button-danger:hover { background: #d63638; color: #fff; }
+        .page-title-action {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 2.15384615;
+            min-height: 30px;
+            padding: 0 10px;
+            cursor: pointer;
+            border: 1px solid #2271b1;
+            border-radius: 3px;
+            background: #f6f7f7;
+            color: #2271b1;
+            font-weight: 600;
+        }
+        .page-title-action:hover { background: #2271b1; color: #fff; }
 
         /* --- 7. WORDPRESS LIST TABLE --- */
         .wp-list-table {
@@ -211,14 +296,27 @@
             border-bottom: 1px solid #c3c4c7;
             text-align: left;
             font-size: 13px;
+            vertical-align: middle;
         }
         .wp-list-table th {
             background: #f6f7f7;
             font-weight: 600;
             color: #2c3338;
         }
-        .wp-list-table tr:hover { background: #f6f7f7; }
-        .product-thumbnail { width: 50px; height: 50px; object-fit: cover; border-radius: 3px; border: 1px solid #dcdcde; }
+        .wp-list-table tr:hover td { background: #fbfbfb; }
+        .product-thumbnail { width: 55px; height: 55px; object-fit: cover; border-radius: 3px; border: 1px solid #dcdcde; }
+
+        /* Row actions */
+        .row-actions {
+            font-size: 12px;
+            color: #a7aaad;
+            margin-top: 4px;
+            visibility: hidden;
+        }
+        tr:hover .row-actions { visibility: visible; }
+        .row-actions a { color: #2271b1; text-decoration: none; }
+        .row-actions a:hover { color: #135e96; text-decoration: underline; }
+        .row-actions a.delete { color: #b32d2e; }
 
         /* Form Table */
         .form-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -231,1509 +329,1811 @@
             border-color: #2271b1; box-shadow: 0 0 0 1px #2271b1; outline: none;
         }
         textarea.large-text {
-            width: 100%; max-width: 600px; padding: 8px; font-size: 13px; border: 1px solid #8c8f94; border-radius: 4px;
+            width: 100%; max-width: 650px; padding: 8px; font-size: 13px; border: 1px solid #8c8f94; border-radius: 4px;
         }
         .description { font-size: 12px; color: #646970; margin-top: 4px; }
 
-        /* Modal Popup */
-        .wp-modal {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.65);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
-            padding: 20px;
-        }
-        .wp-modal.show { display: flex; }
-        .wp-modal-box {
-            background: #fff;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 650px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-        }
-        .wp-modal-header {
-            padding: 12px 20px;
-            background: #f6f7f7;
-            border-bottom: 1px solid #dcdcde;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 15px;
-        }
-        .wp-modal-body { padding: 20px; }
-        .wp-modal-footer {
-            padding: 12px 20px;
-            background: #f6f7f7;
-            border-top: 1px solid #dcdcde;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        /* 2-Columns Layout for Categories */
+        /* 2-Columns Layout for Categories & Posts */
         .col-container { display: flex; gap: 20px; margin-top: 15px; }
-        .col-left { width: 340px; shrink: 0; }
+        .col-left { width: 340px; flex-shrink: 0; }
         .col-right { flex: 1; }
-
-        /* Plugin cards & Themes */
-        .theme-card {
-            border: 1px solid #c3c4c7;
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 1px 1px rgba(0,0,0,.04);
-        }
-        .theme-screenshot { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #dcdcde; }
-        .theme-body { padding: 12px; }
 
         /* Screens */
         .screen-view { display: none; }
         .screen-view.active { display: block; }
+
+        /* Themes Grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .theme-card {
+            border: 1px solid #c3c4c7;
+            background: #fff;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
+            position: relative;
+        }
+        .theme-card.active-theme {
+            border: 2px solid #2271b1;
+            box-shadow: 0 0 0 1px #2271b1;
+        }
+        .theme-screenshot {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            border-bottom: 1px solid #dcdcde;
+            display: block;
+        }
+        .theme-name {
+            padding: 12px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .theme-badge-active {
+            background: #2271b1;
+            color: #fff;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+        .theme-actions {
+            padding: 10px 14px;
+            background: #f6f7f7;
+            border-top: 1px solid #dcdcde;
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Gutenberg-like Post Editor */
+        .editor-wrap {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .editor-main { flex: 1; background: #fff; border: 1px solid #c3c4c7; padding: 25px; box-shadow: 0 1px 1px rgba(0,0,0,.04); }
+        .editor-sidebar { width: 300px; flex-shrink: 0; }
+        .editor-title-input {
+            width: 100%;
+            font-size: 24px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            outline: none;
+            color: #1d2327;
+        }
+        .editor-title-input:focus { border-bottom: 1px solid #2271b1; }
+        .editor-toolbar {
+            display: flex;
+            gap: 4px;
+            background: #f6f7f7;
+            border: 1px solid #c3c4c7;
+            padding: 6px;
+            margin-bottom: 12px;
+            border-radius: 2px;
+        }
+        .editor-toolbar button {
+            background: none;
+            border: 1px solid transparent;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #3c434a;
+        }
+        .editor-toolbar button:hover { background: #e0e0e0; }
+
+        /* Toast notification */
+        #wpToast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1d2327;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999999;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #00a32a;
+        }
     </style>
 </head>
 <body>
 
     <!-- ========================================================= -->
-    <!-- 1. TOP WP ADMIN BAR -->
+    <!-- 1. TOP WP ADMIN BAR (1:1 CHUẨN MODADEP.COM/WP-ADMIN) -->
     <!-- ========================================================= -->
     <div id="wpadminbar">
         <div class="ab-left">
             <a href="javascript:void(0)" title="WordPress.org"><i class="fa-brands fa-wordpress font-bold text-lg"></i></a>
-            <a href="/" target="_blank" class="ab-site-name">
+            <a href="./index.html" target="_blank" class="ab-site-name" title="Xem trang chủ ngoài">
                 <i class="fa-solid fa-house"></i>
-                <span>Công ty TNHH Mộ Đá Đẹp Ninh Bình</span>
-                <span class="ab-badge-live">Đang bán</span>
+                <span>Công ty TNHH Mộ Đá Đẹp Ninh Bình là Thươ...</span>
+                <span class="ab-badge-busy">Đang bận</span>
             </a>
-            <a href="javascript:void(0)" onclick="switchScreen('view-hero')"><i class="fa-solid fa-gem"></i> Flatsome</a>
-            <a href="javascript:void(0)" onclick="switchScreen('view-quotes')"><i class="fa-solid fa-comment"></i> <span id="topbarQuotesCount">1</span></a>
-            <a href="javascript:void(0)" onclick="openProductModal()"><i class="fa-solid fa-plus"></i> Tạo mới</a>
-            <a href="javascript:void(0)" onclick="switchScreen('view-plugins')"><i class="fa-solid fa-chart-line"></i> Rank Math SEO</a>
+            <a href="javascript:void(0)" onclick="switchScreen('view-themes')"><i class="fa-solid fa-gem"></i> Flatsome <span class="update-plugins" style="margin-left: 4px;">19</span></a>
+            <a href="javascript:void(0)" onclick="switchScreen('view-quotes')"><i class="fa-solid fa-comment"></i> <span>3</span></a>
+            <a href="javascript:void(0)" onclick="switchScreen('view-new-post')"><i class="fa-solid fa-plus"></i> Tạo mới</a>
+            <a href="javascript:void(0)" onclick="switchScreen('view-rankmath')"><i class="fa-solid fa-chart-line"></i> Rank Math SEO</a>
+            <a href="javascript:void(0)" onclick="alert('Bộ nhớ đệm Performance đang tối ưu.')"><i class="fa-solid fa-gauge-high"></i> Performance</a>
+            <a href="javascript:void(0)" onclick="alert('WP Rocket đang hoạt động với tốc độ tải trang 0.8s.')"><i class="fa-solid fa-rocket"></i> WP Rocket</a>
         </div>
         <div class="ab-right">
             <a href="javascript:void(0)">
                 <span>Xin chào, <strong>modadep hungleo</strong></span>
                 <img src="https://secure.gravatar.com/avatar/46b06ee22a7b94951af09a426fefb8831fa483b03c147322b87b31da797692b8?s=48&d=mm&r=g" class="ab-user-avatar" alt="Avatar">
             </a>
-            <a href="javascript:void(0)" onclick="saveAllChanges()" style="background: #2271b1; color: #fff; font-weight: 600; padding: 0 12px;">
+            <a href="./index.html" target="_blank" style="background: #336039; color: #fff; font-weight: 600; padding: 0 10px; border-radius: 2px;">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem website
+            </a>
+            <a href="javascript:void(0)" onclick="saveAllChanges(true)" style="background: #2271b1; color: #fff; font-weight: 600; padding: 0 12px; margin-left: 6px; border-radius: 2px;">
                 <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi
             </a>
         </div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 2. LEFT ADMIN SIDEBAR (ĐẦY ĐỦ 100% CÁC MỤC WORDPRESS) -->
+    <!-- 2. LEFT ADMIN SIDEBAR (1:1 CHUẨN MENU MODADEP.COM) -->
     <!-- ========================================================= -->
     <div id="adminmenumain">
         <ul id="adminmenu">
             <!-- 1. BẢNG TIN -->
-            <li id="menu-dashboard" class="current active">
-                <a href="javascript:void(0)" onclick="switchScreen('view-dashboard')" class="menu-top">
+            <li id="menu-dashboard" class="has-submenu current active">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-dashboard'); switchScreen('view-dashboard')" class="menu-top">
                     <i class="dashicons fa-solid fa-gauge-high"></i>
                     <span>Bảng tin</span>
                 </a>
+                <ul class="wp-submenu">
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-dashboard')" class="current-sub">Tổng quan</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-dashboard')">Cập nhật <span class="update-plugins">19</span></a></li>
+                </ul>
             </li>
-            
+
             <li class="menu-separator"></li>
 
             <!-- 2. FLATSOME -->
             <li id="menu-flatsome">
-                <a href="javascript:void(0)" onclick="switchScreen('view-hero')" class="menu-top">
+                <a href="javascript:void(0)" onclick="switchScreen('view-themes')" class="menu-top">
                     <i class="dashicons fa-solid fa-gem"></i>
-                    <span>Flatsome / Banner</span>
+                    <span>Flatsome</span>
                 </a>
             </li>
 
             <!-- 3. BÀI VIẾT (POSTS) -->
-            <li id="menu-posts">
-                <a href="javascript:void(0)" onclick="switchScreen('view-posts')" class="menu-top">
+            <li id="menu-posts" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-posts'); switchScreen('view-posts')" class="menu-top">
                     <i class="dashicons fa-solid fa-thumbtack"></i>
                     <span>Bài viết</span>
                 </a>
                 <ul class="wp-submenu">
                     <li><a href="javascript:void(0)" onclick="switchScreen('view-posts')">Tất cả bài viết</a></li>
-                    <li><a href="javascript:void(0)" onclick="openNewPostModal()">Viết bài mới</a></li>
-                    <li><a href="javascript:void(0)" onclick="switchScreen('view-post-categories')">Chuyên mục bài viết</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-new-post')">Viết bài mới</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-post-categories')">Chuyên mục</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Đã cập nhật các Thẻ tag SEO.')">Thẻ</a></li>
                 </ul>
             </li>
 
             <!-- 4. MEDIA -->
             <li id="menu-media">
-                <a href="javascript:void(0)" onclick="switchScreen('view-media')" class="menu-top">
+                <a href="javascript:void(0)" onclick="alert('Thư viện Media có sẵn 185 hình ảnh mẫu lăng mộ đá.')" class="menu-top">
                     <i class="dashicons fa-solid fa-photo-film"></i>
-                    <span>Media (Thư viện)</span>
+                    <span>Media</span>
                 </a>
             </li>
 
-            <!-- 5. TRANG (PAGES) -->
+            <!-- 5. TRANG -->
             <li id="menu-pages">
-                <a href="javascript:void(0)" onclick="switchScreen('view-about')" class="menu-top">
+                <a href="javascript:void(0)" onclick="alert('Quản lý Trang: Trang chủ, Giới thiệu, Thước Lỗ Ban, Báo giá, Liên hệ.')" class="menu-top">
                     <i class="dashicons fa-solid fa-file"></i>
-                    <span>Trang (Giới thiệu)</span>
+                    <span>Trang</span>
                 </a>
             </li>
 
-            <!-- 6. CÔNG TRÌNH THỰC TẾ -->
+            <!-- 6. BÌNH LUẬN -->
             <li id="menu-comments">
-                <a href="javascript:void(0)" onclick="switchScreen('view-projects')" class="menu-top">
-                    <i class="dashicons fa-solid fa-trowel-bricks"></i>
-                    <span>Công trình thực tế</span>
+                <a href="javascript:void(0)" onclick="switchScreen('view-quotes')" class="menu-top">
+                    <i class="dashicons fa-solid fa-comment"></i>
+                    <span>Bình luận</span>
+                    <span class="update-plugins">1</span>
+                </a>
+            </li>
+
+            <!-- 7. UX BLOCKS -->
+            <li id="menu-uxblocks">
+                <a href="javascript:void(0)" onclick="alert('UX Blocks: Khối Header, Footer, Banner Mộ Đá Đẹp đang hoạt động.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-cubes"></i>
+                    <span>UX Blocks</span>
+                </a>
+            </li>
+
+            <!-- 8. FORM LIÊN HỆ -->
+            <li id="menu-contactform">
+                <a href="javascript:void(0)" onclick="switchScreen('view-quotes')" class="menu-top">
+                    <i class="dashicons fa-solid fa-envelope"></i>
+                    <span>Form liên hệ</span>
+                </a>
+            </li>
+
+            <!-- 9. RANK MATH SEO -->
+            <li id="menu-rankmath">
+                <a href="javascript:void(0)" onclick="switchScreen('view-rankmath')" class="menu-top">
+                    <i class="dashicons fa-solid fa-chart-line"></i>
+                    <span>Rank Math SEO</span>
                 </a>
             </li>
 
             <li class="menu-separator"></li>
 
-            <!-- 7. FORM LIÊN HỆ -->
-            <li id="menu-forms">
-                <a href="javascript:void(0)" onclick="switchScreen('view-quotes')" class="menu-top">
-                    <i class="dashicons fa-solid fa-envelope"></i>
-                    <span>Form liên hệ</span>
-                    <span id="menuQuoteBadge" class="update-plugins">1</span>
+            <!-- 10. WOOCOMMERCE -->
+            <li id="menu-woocommerce" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-woocommerce'); switchScreen('view-quotes')" class="menu-top">
+                    <i class="dashicons fa-solid fa-cart-shopping"></i>
+                    <span>WooCommerce</span>
                 </a>
+                <ul class="wp-submenu">
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-quotes')">Đơn hàng / Báo giá</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-quotes')">Khách hàng</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-settings')">Cài đặt</a></li>
+                </ul>
             </li>
 
-            <!-- 8. WOOCOMMERCE & SẢN PHẨM -->
-            <li id="menu-products">
-                <a href="javascript:void(0)" onclick="switchScreen('view-products')" class="menu-top">
+            <!-- 11. SẢN PHẨM -->
+            <li id="menu-products" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-products'); switchScreen('view-products')" class="menu-top">
                     <i class="dashicons fa-solid fa-box-archive"></i>
                     <span>Sản phẩm</span>
                 </a>
                 <ul class="wp-submenu">
                     <li><a href="javascript:void(0)" onclick="switchScreen('view-products')">Tất cả sản phẩm</a></li>
-                    <li><a href="javascript:void(0)" onclick="openProductModal()">Thêm mới sản phẩm</a></li>
-                    <li><a href="javascript:void(0)" onclick="switchScreen('view-product-categories')">Danh mục sản phẩm</a></li>
+                    <li><a href="javascript:void(0)" onclick="openProductModal()">Thêm mới</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-product-categories')">Danh mục</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Quản lý Từ khóa sản phẩm.')">Từ khóa</a></li>
                 </ul>
             </li>
 
-            <!-- 9. CAM KẾT & LÝ DO CHỌN -->
-            <li id="menu-commitments">
-                <a href="javascript:void(0)" onclick="switchScreen('view-commitments')" class="menu-top">
-                    <i class="dashicons fa-solid fa-shield-halved"></i>
-                    <span>Cam kết & Lý do</span>
+            <!-- 12. THANH TOÁN -->
+            <li id="menu-payment">
+                <a href="javascript:void(0)" onclick="alert('Hình thức thanh toán: Đặt cọc 30% khi ký hợp đồng, nghiệm thu hoàn tất thanh toán phần còn lại.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-credit-card"></i>
+                    <span>Thanh toán</span>
+                </a>
+            </li>
+
+            <!-- 13. PHÂN TÍCH -->
+            <li id="menu-analytics">
+                <a href="javascript:void(0)" onclick="switchScreen('view-rankmath')" class="menu-top">
+                    <i class="dashicons fa-solid fa-chart-simple"></i>
+                    <span>Phân tích</span>
+                </a>
+            </li>
+
+            <!-- 14. TIẾP THỊ -->
+            <li id="menu-marketing">
+                <a href="javascript:void(0)" onclick="alert('Kênh tiếp thị: Google Search, Zalo Ads, Facebook Fanpage Mộ Đá Đẹp Ninh Bình.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-bullhorn"></i>
+                    <span>Tiếp thị</span>
                 </a>
             </li>
 
             <li class="menu-separator"></li>
 
-            <!-- 10. GIAO DIỆN (APPEARANCE) -->
-            <li id="menu-appearance">
-                <a href="javascript:void(0)" onclick="switchScreen('view-themes')" class="menu-top">
+            <!-- 15. GIAO DIỆN (THEMES) -->
+            <li id="menu-appearance" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-appearance'); switchScreen('view-themes')" class="menu-top">
                     <i class="dashicons fa-solid fa-paintbrush"></i>
                     <span>Giao diện</span>
                 </a>
                 <ul class="wp-submenu">
                     <li><a href="javascript:void(0)" onclick="switchScreen('view-themes')">Giao diện (Themes)</a></li>
-                    <li><a href="javascript:void(0)" onclick="switchScreen('view-hero')">Tùy biến (Flatsome)</a></li>
-                    <li><a href="javascript:void(0)" onclick="switchScreen('view-menus')">Menu trang web</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-themes')">Tùy biến</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Quản lý Widgets sidebar & footer.')">Widget</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Quản lý Menu điều hướng.')">Menu</a></li>
                 </ul>
             </li>
 
-            <!-- 11. PLUGIN (ĐÃ CÀI ĐẶT & CÀI MỚI) -->
-            <li id="menu-plugins">
-                <a href="javascript:void(0)" onclick="switchScreen('view-plugins')" class="menu-top">
+            <!-- 16. PLUGIN -->
+            <li id="menu-plugins" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-plugins'); switchScreen('view-plugins')" class="menu-top">
                     <i class="dashicons fa-solid fa-plug"></i>
                     <span>Plugin</span>
                     <span class="update-plugins">14</span>
                 </a>
                 <ul class="wp-submenu">
                     <li><a href="javascript:void(0)" onclick="switchScreen('view-plugins')">Plugin đã cài đặt</a></li>
-                    <li><a href="javascript:void(0)" onclick="switchScreen('view-install-plugins')">Cài mới plugin</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-add-plugin')">Cài mới</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Sửa tệp plugin.')">Sửa tệp plugin</a></li>
                 </ul>
             </li>
 
-            <!-- 12. CÀI ĐẶT CHUNG -->
-            <li id="menu-settings">
-                <a href="javascript:void(0)" onclick="switchScreen('view-settings')" class="menu-top">
+            <!-- 17. THÀNH VIÊN -->
+            <li id="menu-users">
+                <a href="javascript:void(0)" onclick="alert('Tài khoản quản trị viên: modadep hungleo (Quản trị viên tối cao).')" class="menu-top">
+                    <i class="dashicons fa-solid fa-users"></i>
+                    <span>Thành viên</span>
+                </a>
+            </li>
+
+            <!-- 18. CÔNG CỤ -->
+            <li id="menu-tools">
+                <a href="javascript:void(0)" onclick="alert('Công cụ: Nhập/Xuất dữ liệu sản phẩm, Duplicator Backup.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-wrench"></i>
+                    <span>Công cụ</span>
+                </a>
+            </li>
+
+            <!-- 19. CÀI ĐẶT -->
+            <li id="menu-settings" class="has-submenu">
+                <a href="javascript:void(0)" onclick="toggleSubmenu('menu-settings'); switchScreen('view-settings')" class="menu-top">
                     <i class="dashicons fa-solid fa-gear"></i>
-                    <span>Cài đặt chung</span>
+                    <span>Cài đặt</span>
+                </a>
+                <ul class="wp-submenu">
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-settings')">Tổng quan</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-settings')">Viết & Đọc</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchScreen('view-settings')">Đường dẫn tĩnh</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-separator"></li>
+
+            <!-- 20. WP MAIL SMTP -->
+            <li id="menu-wpmail">
+                <a href="javascript:void(0)" onclick="alert('WP Mail SMTP: Đã kết nối Modadep8386@gmail.com thành công.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-paper-plane"></i>
+                    <span>WP Mail SMTP</span>
+                </a>
+            </li>
+
+            <!-- 21. STRUCTURED DATA -->
+            <li id="menu-schema">
+                <a href="javascript:void(0)" onclick="alert('Structured Data: Schema LocalBusiness và Product đã chuẩn SEO Google.')" class="menu-top">
+                    <i class="dashicons fa-solid fa-code"></i>
+                    <span>Structured Data</span>
+                </a>
+            </li>
+
+            <!-- 22. BUTTON CONTACT -->
+            <li id="menu-buttoncontact">
+                <a href="javascript:void(0)" onclick="switchScreen('view-settings')" class="menu-top">
+                    <i class="dashicons fa-solid fa-phone"></i>
+                    <span>Button contact</span>
                 </a>
             </li>
         </ul>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 3. MAIN WPCONTENT (Khung làm việc trung tâm) -->
+    <!-- 3. MAIN WPCONTENT (KHUNG NỘI DUNG CHÍNH) -->
     <!-- ========================================================= -->
     <div id="wpcontent">
-        <div class="wrap">
 
-            <div id="wpSaveNotice" class="notice notice-success" style="display: none;">
-                <p><strong>Cài đặt đã được lưu thành công.</strong> Website đã cập nhật theo nội dung mới nhất.</p>
+        <!-- ========================================================= -->
+        <!-- SCREEN 1: BẢNG TIN TỔNG QUAN (1:1 KHỚP ẢNH MODADEP.COM/WP-ADMIN) -->
+        <!-- ========================================================= -->
+        <div id="view-dashboard" class="screen-view active">
+            <div class="wp-header-title">
+                <h1>Bảng tin</h1>
+                <div class="screen-meta-links">
+                    <button class="screen-meta-btn">Tùy chọn màn hình ▼</button>
+                    <button class="screen-meta-btn">Trợ giúp ▼</button>
+                </div>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 1. BẢNG TIN TỔNG QUAN (DASHBOARD) -->
-            <!-- ========================================================= -->
-            <div id="view-dashboard" class="screen-view active">
-                <h1>
-                    <span>Bảng tin</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi ngay</button>
-                </h1>
+            <!-- Notice 1: WordPress Core update -->
+            <div class="wp-notice-core-update">
+                <span><strong>WordPress 7.1.4 đang có sẵn!</strong> Vui lòng cập nhật ngay.</span>
+                <a href="javascript:void(0)" onclick="alert('Hệ thống WordPress đã được cập nhật phiên bản mới nhất!')" class="button" style="height: 28px; line-height: 26px;">Cập nhật ngay</a>
+            </div>
 
-                <div class="notice notice-warning">
-                    <p><strong>WordPress 6.8.12</strong> đang hoạt động ổn định trên hệ thống <code>modadep.com.vn</code>. Tất cả các nội dung đều có thể tự chỉnh sửa.</p>
+            <!-- Notice 2: WC Product Compare License -->
+            <div class="notice notice-warning">
+                <p><strong>WC Product Compare:</strong> Plugin chưa kích hoạt license hoặc license không hợp lệ. <a href="javascript:void(0)" onclick="alert('Đã kích hoạt License thành công!')">Nhập license tại đây.</a></p>
+                <span class="notice-dismiss" onclick="this.parentElement.style.display='none'">✕</span>
+            </div>
+
+            <!-- Notice 3: WP Rocket compatibility -->
+            <div class="notice notice-error" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <p style="margin-bottom: 4px;"><strong>WP Rocket:</strong> The following plugins are not compatible with this plugin and may cause unexpected results:</p>
+                    <ul style="margin-left: 20px; list-style-type: disc;">
+                        <li>W3 Total Cache</li>
+                        <li>LiteSpeed Cache</li>
+                    </ul>
                 </div>
-
-                <div class="notice notice-info">
-                    <p><strong>Giao diện Flatsome Lăng Mộ Đá:</strong> Đã kích hoạt bản quyền đầy đủ. Cấu hình sản phẩm, bài viết và hotline hoạt động hoàn hảo.</p>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <button class="button" onclick="this.innerText='Deactivated'; this.disabled=true;">Deactivate</button>
+                    <button class="button" onclick="this.innerText='Deactivated'; this.disabled=true;">Deactivate</button>
                 </div>
+            </div>
 
-                <div class="dashboard-widgets-grid">
-                    <div class="postbox">
-                        <div class="postbox-header"><span><i class="fa-solid fa-clock-rotate-left mr-1"></i> Hoạt động gần đây</span></div>
-                        <div class="postbox-content">
-                            <p style="color: #646970; margin-bottom: 8px;"><strong>Bài viết & Mẫu mộ mới xuất bản:</strong></p>
-                            <ul style="list-style: none; line-height: 1.8em;">
-                                <li>• <a href="javascript:void(0)" onclick="switchScreen('view-products')">Khu Lăng Mộ Gia Tộc Đá Xanh Rêu Thanh Hóa</a></li>
-                                <li>• <a href="javascript:void(0)" onclick="switchScreen('view-products')">Mẫu Mộ Đá Hai Mái Chạm Rồng Đá Xanh Ninh Bình</a></li>
-                                <li>• <a href="javascript:void(0)" onclick="switchScreen('view-posts')">Bảng Tra Kích Thước Lăng Mộ Đá Chuẩn Thước Lỗ Ban 38.8cm</a></li>
-                            </ul>
+            <!-- Notice 4: Flatsome outdated templates -->
+            <div class="notice notice-info" style="border-left-color: #0073aa;">
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                    <div style="font-size: 24px; color: #0073aa;"><i class="fa-solid fa-gem"></i></div>
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Flatsome</h4>
+                        <p style="margin-bottom: 6px;">Your theme (<strong>Noithat</strong>) contains outdated copies of some Flatsome template files. These files may need updating to ensure they are compatible with the current version of Flatsome. Suggestions:</p>
+                        <ol style="margin-left: 20px; margin-bottom: 10px; line-height: 1.6em;">
+                            <li>If you copied over a template file to change something, then you will need to copy the new version of the template and apply your changes again.</li>
+                            <li>If you are unfamiliar with code/templates and resolving potential conflicts, reach out to a developer for assistance.</li>
+                        </ol>
+                        <div style="display: flex; gap: 8px;">
+                            <a href="javascript:void(0)" onclick="alert('Mở tài liệu hướng dẫn sửa template Flatsome')" class="button button-primary">Learn more about templates</a>
+                            <a href="javascript:void(0)" onclick="alert('Các tệp template đang hoạt động bình thường.')" class="button">View affected templates</a>
                         </div>
                     </div>
+                </div>
+                <span class="notice-dismiss" onclick="this.parentElement.style.display='none'">✕</span>
+            </div>
 
+            <!-- Notice 5: Rank Math notice -->
+            <div class="notice notice-warning" style="border-left-color: #10ac84;">
+                <p><strong>Thông báo SEO:</strong> Bạn vừa thay đổi slug của sản phẩm và <strong>Rank Math</strong> đã tự động tạo chuyển hướng. Bạn có thể chỉnh sửa chuyển hướng bằng cách <a href="javascript:void(0)" onclick="switchScreen('view-rankmath')">nhấp vào đây.</a></p>
+                <span class="notice-dismiss" onclick="this.parentElement.style.display='none'">✕</span>
+            </div>
+
+            <!-- 2-COLUMN DASHBOARD WIDGETS GRID -->
+            <div class="dashboard-grid">
+                
+                <!-- CỘT TRÁI (LEFT COLUMN) -->
+                <div>
+                    <!-- Widget 1: Tổng quan về Rank Math -->
                     <div class="postbox">
                         <div class="postbox-header">
-                            <span><i class="fa-solid fa-envelope-open-text mr-1"></i> Khách hàng yêu cầu báo giá</span>
-                            <a href="javascript:void(0)" onclick="switchScreen('view-quotes')" class="button" style="padding: 0 6px; font-size: 11px;">Xem tất cả</a>
+                            <span><i class="fa-solid fa-chart-line" style="color: #10ac84; margin-right: 6px;"></i> Tổng quan về Rank Math</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
                         </div>
-                        <div class="postbox-content" id="dashboardQuotesWidget"></div>
+                        <div class="postbox-content">
+                            <div style="display: flex; justify-content: space-around; text-align: center; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 24px; font-weight: 700; color: #10ac84;">88 / 100</div>
+                                    <div style="font-size: 11px; color: #646970;">Điểm SEO trung bình</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: 700; color: #2271b1;">142</div>
+                                    <div style="font-size: 11px; color: #646970;">Từ khóa vào Top</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: 700; color: #336039;">100%</div>
+                                    <div style="font-size: 11px; color: #646970;">Sitemap Index</div>
+                                </div>
+                            </div>
+                            <p style="font-size: 12px; color: #646970;">Từ khóa dẫn đầu: <em>"lăng mộ đá ninh bình", "mộ đá hoa cương granite", "kích thước lăng mộ chuẩn lỗ ban 38.8cm"</em></p>
+                        </div>
                     </div>
 
+                    <!-- Widget 2: Tình trạng website (Site Health) -->
                     <div class="postbox">
-                        <div class="postbox-header"><span><i class="fa-solid fa-heart-pulse mr-1"></i> Tình trạng website</span></div>
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-heart-pulse" style="color: #dba617; margin-right: 6px;"></i> Tình trạng website</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
                         <div class="postbox-content">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div style="width: 48px; height: 48px; border-radius: 50%; border: 4px solid #00a32a; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #00a32a;">Tốt</div>
-                                <div>
-                                    <p><strong>Website tối ưu SEO Rank Math và tải trang siêu nhanh.</strong></p>
-                                    <p class="description">Đầy đủ Thước Lỗ Ban 38.8cm và hệ thống nút Hotline/Zalo nổi.</p>
+                            <div style="display: flex; align-items: center; gap: 18px;">
+                                <div style="width: 70px; height: 70px; border-radius: 50%; border: 6px solid #dba617; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #dba617; text-align: center; line-height: 1.2;">
+                                    Nên cải thiện
+                                </div>
+                                <div style="flex: 1;">
+                                    <p style="margin-bottom: 6px;">Trang web của bạn có các vấn đề quan trọng cần được giải quyết càng sớm càng tốt để cải thiện hiệu suất và bảo mật của nó.</p>
+                                    <p class="description">Hãy nhìn vào mục 10 trong màn hình <a href="javascript:void(0)" onclick="alert('Đã kiểm tra 10 mục: HTTPS hợp lệ, Cache bật, PHP 8.2 tốt, Bản quyền modadep.com hoạt động.')">Tình trạng trang web</a>.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Widget 3: Bản nháp nhanh (Quick Draft) -->
                     <div class="postbox">
-                        <div class="postbox-header"><span><i class="fa-solid fa-pen mr-1"></i> Bản nháp nhanh</span></div>
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-pen" style="margin-right: 6px;"></i> Bản nháp nhanh</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
                         <div class="postbox-content">
-                            <input type="text" id="quickDraftTitle" placeholder="Tiêu đề mẫu mộ mới..." class="regular-text" style="width: 100%; margin-bottom: 8px;">
-                            <textarea id="quickDraftContent" placeholder="Ghi chú nhanh kích thước, giá bán..." rows="3" class="large-text" style="width: 100%; margin-bottom: 8px;"></textarea>
-                            <button type="button" onclick="alert('Đã lưu bản nháp nhanh!'); document.getElementById('quickDraftTitle').value=''; document.getElementById('quickDraftContent').value='';" class="button">Lưu bản nháp</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 2. BÀI VIẾT: DANH SÁCH & THÊM BÀI MỚI (POSTS) -->
-            <!-- ========================================================= -->
-            <div id="view-posts" class="screen-view">
-                <h1>
-                    <span>Bài viết <button onclick="openNewPostModal()" class="button button-primary" style="margin-left: 8px;">Viết bài mới</button></span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <table class="wp-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 60px;">Ảnh</th>
-                            <th>Tiêu đề bài viết</th>
-                            <th>Chuyên mục</th>
-                            <th>Tóm tắt nội dung</th>
-                            <th>Ngày đăng</th>
-                            <th style="width: 80px; text-align: center;">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wpPostsTableBody">
-                        <!-- Dynamic Posts -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 3. CHUYÊN MỤC BÀI VIẾT (POST CATEGORIES) -->
-            <!-- ========================================================= -->
-            <div id="view-post-categories" class="screen-view">
-                <h1>
-                    <span>Chuyên mục bài viết</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <div class="col-container">
-                    <!-- Form thêm chuyên mục mới -->
-                    <div class="col-left postbox" style="padding: 15px;">
-                        <h3 style="font-size: 14px; margin-bottom: 12px; font-weight: 600;">Thêm chuyên mục mới</h3>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên chuyên mục *</label>
-                            <input type="text" id="new_post_cat_name" placeholder="Ví dụ: Phong thủy lăng mộ" class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Đường dẫn (Slug)</label>
-                            <input type="text" id="new_post_cat_slug" placeholder="phong-thuy-lang-mo" class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mô tả</label>
-                            <textarea id="new_post_cat_desc" rows="3" class="large-text" style="width: 100%;"></textarea>
-                        </div>
-                        <button type="button" onclick="addNewPostCategory()" class="button button-primary">Thêm chuyên mục</button>
-                    </div>
-
-                    <!-- Bảng danh sách chuyên mục bài viết -->
-                    <div class="col-right">
-                        <table class="wp-list-table">
-                            <thead>
-                                <tr>
-                                    <th>Tên chuyên mục</th>
-                                    <th>Đường dẫn (Slug)</th>
-                                    <th>Mô tả</th>
-                                    <th>Số bài viết</th>
-                                    <th style="width: 60px; text-align: center;">Xóa</th>
-                                </tr>
-                            </thead>
-                            <tbody id="wpPostCategoriesTableBody">
-                                <!-- Dynamic Post Categories -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 4. SẢN PHẨM (WOOCOMMERCE PRODUCTS) -->
-            <!-- ========================================================= -->
-            <div id="view-products" class="screen-view">
-                <h1>
-                    <span>Sản phẩm <button onclick="openProductModal()" class="button button-primary" style="margin-left: 8px;">Thêm mới sản phẩm</button></span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <div style="margin-bottom: 10px; display: flex; gap: 8px; align-items: center;">
-                    <span>Tất cả (<strong id="totalProductsCount">4</strong>)</span> |
-                    <a href="javascript:void(0)" onclick="filterTableCategory('all')">Tất cả</a> |
-                    <a href="javascript:void(0)" onclick="filterTableCategory('lang-mo')">Khu lăng mộ</a> |
-                    <a href="javascript:void(0)" onclick="filterTableCategory('mo-don')">Mộ đá 1-2-3 mái</a> |
-                    <a href="javascript:void(0)" onclick="filterTableCategory('cuon-thu')">Cuốn thư & Lan can</a>
-                </div>
-
-                <table class="wp-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 60px;">Hình ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Mã SP (SKU)</th>
-                            <th>Danh mục</th>
-                            <th>Kích thước Lỗ Ban</th>
-                            <th>Giá bán</th>
-                            <th style="width: 110px; text-align: center;">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wpProductsTableBody">
-                        <!-- Dynamic Product Rows -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 5. DANH MỤC SẢN PHẨM (PRODUCT CATEGORIES) -->
-            <!-- ========================================================= -->
-            <div id="view-product-categories" class="screen-view">
-                <h1>
-                    <span>Danh mục sản phẩm</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <div class="col-container">
-                    <!-- Form thêm danh mục sản phẩm mới -->
-                    <div class="col-left postbox" style="padding: 15px;">
-                        <h3 style="font-size: 14px; margin-bottom: 12px; font-weight: 600;">Thêm danh mục mới</h3>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên danh mục *</label>
-                            <input type="text" id="new_prod_cat_name" placeholder="Ví dụ: Mộ Đá Tròn Phong Thủy" class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Đường dẫn (Slug)</label>
-                            <input type="text" id="new_prod_cat_slug" placeholder="mo-da-tron" class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Số lượng mẫu hiển thị</label>
-                            <input type="text" id="new_prod_cat_count" placeholder="Ví dụ: 30+ Mẫu đẹp" class="regular-text" style="width: 100%;">
-                        </div>
-                        <button type="button" onclick="addNewProductCategory()" class="button button-primary">Thêm danh mục</button>
-                    </div>
-
-                    <!-- Bảng danh sách danh mục sản phẩm -->
-                    <div class="col-right">
-                        <table class="wp-list-table">
-                            <thead>
-                                <tr>
-                                    <th>Icon</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Mã / Slug</th>
-                                    <th>Số lượng mẫu</th>
-                                    <th style="width: 60px; text-align: center;">Xóa</th>
-                                </tr>
-                            </thead>
-                            <tbody id="wpProductCategoriesTableBody">
-                                <!-- Dynamic Product Categories -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 6. GIAO DIỆN (THEMES) -->
-            <!-- ========================================================= -->
-            <div id="view-themes" class="screen-view">
-                <h1>
-                    <span>Giao diện (Themes)</span>
-                    <a href="/" target="_blank" class="button button-primary">Xem trực tiếp ngoài trang chủ</a>
-                </h1>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 15px;">
-                    <!-- Theme 1: Flatsome Lăng Mộ Đá (Đang kích hoạt) -->
-                    <div class="theme-card" style="border: 2px solid #2271b1;">
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" class="theme-screenshot">
-                        <div class="theme-body">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                                <strong style="font-size: 15px;">Flatsome — Lăng Mộ Đá Cao Cấp</strong>
-                                <span style="background: #2271b1; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: bold;">ĐANG KÍCH HOẠT</span>
+                            <div style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tiêu đề</label>
+                                <input type="text" id="quickDraftTitle" placeholder="Tiêu đề bài viết hoặc mẫu mộ mới..." class="regular-text" style="width: 100%;">
                             </div>
-                            <p style="font-size: 12px; color: #646970; margin-bottom: 12px;">Phiên bản thiết kế riêng cho ngành đá mỹ nghệ Ninh Vân theo chuẩn khung HanoiFire.</p>
-                            <div style="display: flex; gap: 8px;">
-                                <button onclick="switchScreen('view-hero')" class="button button-primary">Tùy biến Banner</button>
-                                <button onclick="switchScreen('view-about')" class="button">Sửa trang giới thiệu</button>
+                            <div style="margin-bottom: 10px;">
+                                <label style="display: block; font-weight: 600; margin-bottom: 4px;">Nội dung</label>
+                                <textarea id="quickDraftContent" placeholder="Bạn đang nghĩ gì?" rows="3" class="large-text" style="width: 100%;"></textarea>
+                            </div>
+                            <button type="button" onclick="saveQuickDraft()" class="button button-primary">Lưu bản nháp</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- CỘT PHẢI (RIGHT COLUMN) -->
+                <div>
+                    <!-- Widget 4: Đánh giá gần đây của WooCommerce -->
+                    <div class="postbox">
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-star" style="color: #dba617; margin-right: 6px;"></i> Đánh giá gần đây của WooCommerce</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
+                        <div class="postbox-content" style="color: #646970;">
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f1;">
+                                <div style="color: #dba617;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <div>
+                                    <strong>Bác Hoàng Đình Trọng (Hà Nội):</strong> "Xưởng Mộ Đá Đẹp Ninh Bình thi công khu lăng mộ gia tộc rất uy tín, đá xanh nguyên khối không nứt vỡ, đúng kích thước Lỗ Ban 38.8cm."
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <div style="color: #dba617;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <div>
+                                    <strong>Anh Vũ Minh Đức (Thanh Hóa):</strong> "Mẫu mộ Granite đơn bóng đẹp, sang trọng, tiến độ nhanh hơn cam kết."
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Theme 2: Dự phòng -->
-                    <div class="theme-card">
-                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" class="theme-screenshot">
-                        <div class="theme-body">
-                            <strong style="font-size: 15px;">Twenty Twenty-Four</strong>
-                            <p style="font-size: 12px; color: #646970; margin: 6px 0 12px;">Giao diện mặc định của WordPress.</p>
-                            <button onclick="alert('Flatsome là giao diện tối ưu nhất cho website Mộ Đá Đẹp của bạn.')" class="button">Kích hoạt</button>
+                    <!-- Widget 5: Hoạt động (Activity) -->
+                    <div class="postbox">
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-clock-rotate-left" style="margin-right: 6px;"></i> Hoạt động</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
+                        <div class="postbox-content">
+                            <p style="font-weight: 600; color: #2c3338; margin-bottom: 10px;">Bài mới xuất bản</p>
+                            <ul style="list-style: none; line-height: 2em;">
+                                <li>
+                                    <span style="color: #8c8f94; font-size: 12px; margin-right: 8px;">Th 8 13h, 11:12</span>
+                                    <a href="javascript:void(0)" onclick="switchScreen('view-posts')">Làm Bia Mộ Đá Ở Đâu Uy Tín? Xưởng Chế Tác Đá Hoa Cương Granite Giá Gốc</a>
+                                </li>
+                                <li>
+                                    <span style="color: #8c8f94; font-size: 12px; margin-right: 8px;">Th 8 12h, 15:55</span>
+                                    <a href="javascript:void(0)" onclick="switchScreen('view-posts')">Tư Vấn Kích Thước Lăng Mộ Chuẩn Lỗ Ban</a>
+                                </li>
+                                <li>
+                                    <span style="color: #8c8f94; font-size: 12px; margin-right: 8px;">Th 8 12h, 15:53</span>
+                                    <a href="javascript:void(0)" onclick="switchScreen('view-posts')">Thi Công Lắp Đặt Lăng Mộ Đá Trọn Gói Cho Khu Lăng Mộ Gia Tộc</a>
+                                </li>
+                                <li>
+                                    <span style="color: #8c8f94; font-size: 12px; margin-right: 8px;">Th 8 12h, 15:51</span>
+                                    <a href="javascript:void(0)" onclick="switchScreen('view-posts')">Báo Giá Lăng Mộ Đá Granite Đơn</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Widget 6: WP Mail SMTP -->
+                    <div class="postbox">
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-paper-plane" style="color: #d63638; margin-right: 6px;"></i> WP Mail SMTP</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
+                        <div class="postbox-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <div style="display: flex; gap: 8px;">
+                                    <select style="font-size: 12px; padding: 3px 6px;"><option>Tất cả email</option></select>
+                                    <select style="font-size: 12px; padding: 3px 6px;"><option>Tất cả thời gian</option></select>
+                                </div>
+                                <i class="fa-solid fa-gear" style="color: #8c8f94; cursor: pointer;"></i>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; background: #f6f7f7; padding: 10px 14px; border-radius: 3px; margin-bottom: 10px;">
+                                <div><i class="fa-solid fa-envelope" style="color: #646970;"></i> Tổng cộng: <strong>3602</strong></div>
+                                <div><i class="fa-solid fa-circle-check" style="color: #2271b1;"></i> Đã gửi: <strong>N/A</strong></div>
+                                <div><i class="fa-solid fa-circle-xmark" style="color: #d63638;"></i> Thất bại: <strong>N/A</strong></div>
+                            </div>
+                            <p style="font-size: 12px; color: #646970;">Nâng cấp lên Pro để biết số liệu thống kê chi tiết, nhật ký email và hơn thế nữa!</p>
+                        </div>
+                    </div>
+
+                    <!-- Widget 7: Duplicator -->
+                    <div class="postbox">
+                        <div class="postbox-header">
+                            <span><i class="fa-solid fa-box-open" style="color: #2271b1; margin-right: 6px;"></i> Duplicator</span>
+                            <div class="handle-actions">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </div>
+                        </div>
+                        <div class="postbox-content">
+                            <p><strong>Bản sao lưu dự phòng:</strong> Gói dữ liệu website <code>modadep_backup_full.zip</code> đã tạo thành công.</p>
+                            <p class="description">Dung lượng: 128 MB — Sẵn sàng tải về hoặc phục hồi khi cần.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 2: BÀI VIẾT (TẤT CẢ BÀI VIẾT) -->
+        <!-- ========================================================= -->
+        <div id="view-posts" class="screen-view">
+            <div class="wp-header-title">
+                <h1>
+                    <span>Bài viết</span>
+                    <button onclick="switchScreen('view-new-post')" class="page-title-action">Viết bài mới</button>
+                </h1>
+                <div class="screen-meta-links">
+                    <button class="screen-meta-btn">Tùy chọn màn hình ▼</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13px;">
+                    <strong>Tất cả (4)</strong> | <a href="javascript:void(0)">Đã xuất bản (4)</a> | <a href="javascript:void(0)">Bản nháp (0)</a>
+                </div>
+                <div>
+                    <input type="search" placeholder="Tìm bài viết..." class="regular-text" style="width: 200px; padding: 4px 8px;">
+                    <button class="button">Tìm bài viết</button>
+                </div>
+            </div>
+
+            <table class="wp-list-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;"><input type="checkbox"></th>
+                        <th style="width: 70px;">Ảnh</th>
+                        <th>Tiêu đề bài viết</th>
+                        <th>Tác giả</th>
+                        <th>Chuyên mục</th>
+                        <th>Thẻ</th>
+                        <th>Thời gian</th>
+                    </tr>
+                </thead>
+                <tbody id="postsTableBody">
+                    <!-- Dynamic rendering -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 3: VIẾT BÀI MỚI (ADD NEW POST - CHUẨN WORDPRESS EDITOR) -->
+        <!-- ========================================================= -->
+        <div id="view-new-post" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Viết bài mới</h1>
+                <button onclick="switchScreen('view-posts')" class="button"><i class="fa-solid fa-arrow-left"></i> Quay lại danh sách</button>
+            </div>
+
+            <div class="editor-wrap">
+                <!-- Editor Main Column -->
+                <div class="editor-main">
+                    <input type="text" id="postEditorTitle" placeholder="Thêm tiêu đề bài viết..." class="editor-title-input">
+                    <div style="font-size: 12px; color: #646970; margin-bottom: 15px;">
+                        <strong>Liên kết tĩnh:</strong> https://modadep.com/<span id="postEditorSlugPreview" style="color: #2271b1;">bai-viet-moi</span>/
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="editor-toolbar">
+                        <button type="button" title="In đậm"><i class="fa-solid fa-bold"></i></button>
+                        <button type="button" title="In nghiêng"><i class="fa-solid fa-italic"></i></button>
+                        <button type="button" title="Gạch đầu dòng"><i class="fa-solid fa-list-ul"></i></button>
+                        <button type="button" title="Đánh số"><i class="fa-solid fa-list-ol"></i></button>
+                        <button type="button" title="Trích dẫn"><i class="fa-solid fa-quote-left"></i></button>
+                        <button type="button" title="Tiêu đề H2"><strong>H2</strong></button>
+                        <button type="button" title="Tiêu đề H3"><strong>H3</strong></button>
+                        <button type="button" title="Chèn liên kết"><i class="fa-solid fa-link"></i></button>
+                        <button type="button" title="Thêm Media" class="button" style="height: 24px; line-height: 22px; font-size: 11px; margin-left: 8px;"><i class="fa-solid fa-photo-film"></i> Thêm Media</button>
+                    </div>
+
+                    <textarea id="postEditorContent" rows="16" class="large-text" placeholder="Nhập nội dung chi tiết bài viết, kiến thức phong thủy lăng mộ đá, kích thước Lỗ Ban 38.8cm..."></textarea>
+
+                    <div style="margin-top: 20px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 6px;">Tóm tắt ngắn (Excerpt):</label>
+                        <textarea id="postEditorExcerpt" rows="3" class="large-text" placeholder="Tóm tắt hiển thị trên Google và danh sách bài viết..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Editor Sidebar Column -->
+                <div class="editor-sidebar">
+                    <!-- Hộp Đăng (Publish Postbox) -->
+                    <div class="postbox">
+                        <div class="postbox-header"><span>Đăng bài viết</span></div>
+                        <div class="postbox-content">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <button type="button" onclick="saveNewPost('draft')" class="button">Lưu bản nháp</button>
+                                <button type="button" onclick="alert('Xem thử bài viết trên giao diện người dùng')" class="button">Xem thử</button>
+                            </div>
+                            <div style="font-size: 12px; line-height: 2em; color: #646970; border-top: 1px solid #f0f0f1; padding-top: 8px;">
+                                <div><i class="fa-solid fa-key"></i> Trạng thái: <strong>Đã xuất bản</strong></div>
+                                <div><i class="fa-solid fa-eye"></i> Hiển thị: <strong>Công khai</strong></div>
+                                <div><i class="fa-solid fa-calendar-days"></i> Xuất bản: <strong>Ngay lập tức</strong></div>
+                            </div>
+                            <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #c3c4c7; display: flex; justify-content: space-between; align-items: center;">
+                                <a href="javascript:void(0)" onclick="switchScreen('view-posts')" style="color: #d63638; font-size: 12px;">Bỏ vào thùng rác</a>
+                                <button type="button" onclick="saveNewPost('publish')" class="button button-primary" style="font-weight: 600;">Đăng bài viết</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hộp Chuyên mục (Categories Postbox) -->
+                    <div class="postbox">
+                        <div class="postbox-header"><span>Chuyên mục</span></div>
+                        <div class="postbox-content">
+                            <div id="postCategoriesChecklist" style="max-height: 150px; overflow-y: auto; margin-bottom: 10px;">
+                                <!-- Dynamic checkboxes -->
+                            </div>
+                            <a href="javascript:void(0)" onclick="switchScreen('view-post-categories')" style="font-size: 12px;">+ Thêm chuyên mục mới</a>
+                        </div>
+                    </div>
+
+                    <!-- Hộp Ảnh đại diện (Featured Image) -->
+                    <div class="postbox">
+                        <div class="postbox-header"><span>Ảnh đại diện</span></div>
+                        <div class="postbox-content" style="text-align: center;">
+                            <img id="postEditorImagePreview" src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80" style="width: 100%; height: 140px; object-fit: cover; border-radius: 3px; margin-bottom: 8px; border: 1px solid #dcdcde;">
+                            <input type="text" id="postEditorImageUrl" placeholder="Nhập link ảnh (URL)..." class="regular-text" style="width: 100%; font-size: 12px; margin-bottom: 6px;">
+                            <button type="button" onclick="document.getElementById('postEditorImagePreview').src=document.getElementById('postEditorImageUrl').value" class="button" style="font-size: 11px;">Cập nhật ảnh</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- ========================================================= -->
-            <!-- 7. MENU TRANG WEB (APPEARANCE MENUS) -->
-            <!-- ========================================================= -->
-            <div id="view-menus" class="screen-view">
+        <!-- ========================================================= -->
+        <!-- SCREEN 4: CHUYÊN MỤC BÀI VIẾT (POST CATEGORIES) -->
+        <!-- ========================================================= -->
+        <div id="view-post-categories" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Chuyên mục bài viết</h1>
+            </div>
+
+            <div class="col-container">
+                <!-- Form thêm mới bên trái -->
+                <div class="col-left postbox" style="padding: 16px;">
+                    <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Thêm chuyên mục mới</h3>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên *</label>
+                        <input type="text" id="newPostCatName" placeholder="Tên chuyên mục..." class="regular-text" style="width: 100%;">
+                        <p class="description">Tên riêng sẽ hiển thị trên trang mạng của bạn.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Đường dẫn (Slug)</label>
+                        <input type="text" id="newPostCatSlug" placeholder="duong-dan-chuyen-muc" class="regular-text" style="width: 100%;">
+                        <p class="description">Chuỗi cho đường dẫn URL, thường viết chữ thường không dấu.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mô tả</label>
+                        <textarea id="newPostCatDesc" rows="3" class="large-text" style="width: 100%;"></textarea>
+                    </div>
+                    <button type="button" onclick="addNewPostCategory()" class="button button-primary">Thêm chuyên mục mới</button>
+                </div>
+
+                <!-- Bảng danh sách bên phải -->
+                <div class="col-right">
+                    <table class="wp-list-table">
+                        <thead>
+                            <tr>
+                                <th>Tên chuyên mục</th>
+                                <th>Mô tả</th>
+                                <th>Đường dẫn tĩnh (Slug)</th>
+                                <th style="width: 80px; text-align: center;">Số lượng</th>
+                                <th style="width: 60px; text-align: center;">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="postCategoriesTableBody">
+                            <!-- Dynamic rendering -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 5: SẢN PHẨM (WOOCOMMERCE PRODUCTS) -->
+        <!-- ========================================================= -->
+        <div id="view-products" class="screen-view">
+            <div class="wp-header-title">
                 <h1>
-                    <span>Menu điều hướng chính của Website</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
+                    <span>Sản phẩm</span>
+                    <button onclick="openProductModal()" class="page-title-action">Thêm mới</button>
                 </h1>
-
-                <div class="postbox" style="max-width: 600px; padding: 15px;">
-                    <p style="margin-bottom: 12px; color: #646970;">Danh sách các mục liên kết trên thanh Menu trang chủ:</p>
-                    <ul style="list-style: none; line-height: 2.2em; font-size: 13px;" id="wpMenuStructure">
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 1. <strong>Trang Chủ</strong> (Liên kết: <code>#</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 2. <strong>Giới Thiệu Xưởng</strong> (Liên kết: <code>#gioi-thieu</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 3. <strong>Lăng Mộ Đá</strong> (Liên kết: <code>#san-pham</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 4. <strong>Kiến Trúc & Đồ Thờ Đá</strong> (Liên kết: <code>#danh-muc</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 5. <strong>Thước Lỗ Ban 38.8cm</strong> (Liên kết: <code>#lo-ban</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 6. <strong>Dự Án Đã Thi Công</strong> (Liên kết: <code>#cong-trinh</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 7. <strong>Cẩm Nang Phong Thủy</strong> (Liên kết: <code>#tin-tuc</code>)</li>
-                        <li><i class="fa-solid fa-bars mr-2 text-gray-400"></i> 8. <strong>Liên Hệ & Báo Giá</strong> (Liên kết: <code>#lien-he</code>)</li>
-                    </ul>
+                <div class="screen-meta-links">
+                    <button class="screen-meta-btn">Tùy chọn màn hình ▼</button>
                 </div>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 8. PLUGIN ĐÃ CÀI ĐẶT -->
-            <!-- ========================================================= -->
-            <div id="view-plugins" class="screen-view">
-                <h1>
-                    <span>Plugin đã cài đặt <button onclick="switchScreen('view-install-plugins')" class="button button-primary" style="margin-left: 8px;">Cài mới</button></span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <table class="wp-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 250px;">Tên Plugin</th>
-                            <th>Mô tả chức năng</th>
-                            <th style="width: 140px;">Trạng thái</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wpPluginsTableBody">
-                        <!-- Dynamic Plugins -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 9. CÀI MỚI PLUGIN (INSTALL PLUGINS) -->
-            <!-- ========================================================= -->
-            <div id="view-install-plugins" class="screen-view">
-                <h1>
-                    <span>Thư viện cài đặt Plugin mới</span>
-                    <button onclick="switchScreen('view-plugins')" class="button">Trở lại danh sách Plugin</button>
-                </h1>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; margin-top: 15px;" id="wpInstallPluginsGrid">
-                    <!-- Installable Plugins -->
+            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13px;">
+                    <strong>Tất cả (<span id="productsCountSpan">6</span>)</strong> | 
+                    <a href="javascript:void(0)" onclick="filterProducts('all')">Tất cả</a> | 
+                    <a href="javascript:void(0)" onclick="filterProducts('mo-granite')">Mộ Đá Granite</a> | 
+                    <a href="javascript:void(0)" onclick="filterProducts('khuon-vien')">Khuôn Viên Lăng Mộ</a> | 
+                    <a href="javascript:void(0)" onclick="filterProducts('mo-tam-son')">Mộ Đá Tam Sơn</a>
+                </div>
+                <div>
+                    <input type="search" id="productSearchInput" onkeyup="searchProductsTable()" placeholder="Tìm sản phẩm..." class="regular-text" style="width: 200px; padding: 4px 8px;">
+                    <button class="button" onclick="searchProductsTable()">Tìm sản phẩm</button>
                 </div>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 10. FORM LIÊN HỆ & BÁO GIÁ CỦA KHÁCH HÀNG -->
-            <!-- ========================================================= -->
-            <div id="view-quotes" class="screen-view">
-                <h1>
-                    <span>Hộp thư liên hệ & Yêu cầu báo giá từ website</span>
-                    <button onclick="clearAllQuotesWP()" class="button button-danger">Xóa tất cả thư</button>
-                </h1>
-                <table class="wp-list-table">
-                    <thead>
-                        <tr>
-                            <th>Thời gian gửi</th>
-                            <th>Họ tên khách hàng</th>
-                            <th>Số điện thoại</th>
-                            <th>Hạng mục quan tâm</th>
-                            <th>Địa chỉ thi công</th>
-                            <th>Nội dung yêu cầu</th>
-                            <th style="width: 60px; text-align: center;">Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wpQuotesTableBody">
-                        <!-- Dynamic Quotes -->
-                    </tbody>
-                </table>
+            <table class="wp-list-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;"><input type="checkbox"></th>
+                        <th style="width: 65px;">Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Mã SP (SKU)</th>
+                        <th>Tình trạng</th>
+                        <th>Giá bán</th>
+                        <th>Danh mục</th>
+                        <th>Kích thước Lỗ Ban</th>
+                        <th style="width: 100px; text-align: center;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                    <!-- Dynamic rendering -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 6: DANH MỤC SẢN PHẨM (PRODUCT CATEGORIES) -->
+        <!-- ========================================================= -->
+        <div id="view-product-categories" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Danh mục sản phẩm</h1>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 11. CÀI ĐẶT CHUNG (SETTINGS) -->
-            <!-- ========================================================= -->
-            <div id="view-settings" class="screen-view">
+            <div class="col-container">
+                <!-- Form thêm bên trái -->
+                <div class="col-left postbox" style="padding: 16px;">
+                    <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">Thêm danh mục sản phẩm mới</h3>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên *</label>
+                        <input type="text" id="newProdCatName" placeholder="Tên danh mục..." class="regular-text" style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Đường dẫn (Slug)</label>
+                        <input type="text" id="newProdCatSlug" placeholder="duong-dan-danh-muc" class="regular-text" style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mô tả</label>
+                        <textarea id="newProdCatDesc" rows="3" class="large-text" style="width: 100%;"></textarea>
+                    </div>
+                    <button type="button" onclick="addNewProductCategory()" class="button button-primary">Thêm danh mục</button>
+                </div>
+
+                <!-- Bảng danh mục bên phải -->
+                <div class="col-right">
+                    <table class="wp-list-table">
+                        <thead>
+                            <tr>
+                                <th>Tên danh mục</th>
+                                <th>Mô tả</th>
+                                <th>Đường dẫn tĩnh (Slug)</th>
+                                <th style="width: 80px; text-align: center;">Số lượng SP</th>
+                                <th style="width: 60px; text-align: center;">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productCategoriesTableBody">
+                            <!-- Dynamic rendering -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 7: GIAO DIỆN (THEMES / FLATSOME) -->
+        <!-- ========================================================= -->
+        <div id="view-themes" class="screen-view">
+            <div class="wp-header-title">
                 <h1>
-                    <span>Cài đặt chung</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
+                    <span>Giao diện</span>
+                    <button onclick="alert('Đã tải thư viện theme chuẩn từ kho WordPress.')" class="page-title-action">Thêm mới giao diện</button>
                 </h1>
+            </div>
+
+            <p style="margin-bottom: 15px; color: #646970;">Quản lý và kích hoạt giao diện chuyên biệt cho ngành lăng mộ đá.</p>
+
+            <div class="themes-grid">
+                <!-- Theme 1: Flatsome (Đang kích hoạt) -->
+                <div class="theme-card active-theme">
+                    <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80" class="theme-screenshot" alt="Flatsome Theme">
+                    <div class="theme-name">
+                        <div>
+                            <strong>Flatsome Child</strong>
+                            <div style="font-size: 11px; color: #646970;">Phiên bản 3.19.8 — Tối ưu modadep.com</div>
+                        </div>
+                        <span class="theme-badge-active">Đang kích hoạt</span>
+                    </div>
+                    <div class="theme-actions">
+                        <button class="button button-primary" onclick="alert('Mở công cụ tùy biến giao diện Flatsome UX-Builder!')"><i class="fa-solid fa-paintbrush"></i> Tùy biến</button>
+                        <button class="button" onclick="alert('Chi tiết Theme Flatsome: Tích hợp Thước Lỗ Ban 38.8cm và hệ thống danh mục Mộ Đá Đẹp.')">Chi tiết giao diện</button>
+                    </div>
+                </div>
+
+                <!-- Theme 2: Twenty Twenty-Four -->
+                <div class="theme-card">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=600&q=80" class="theme-screenshot" alt="Twenty Twenty-Four">
+                    <div class="theme-name">
+                        <div>
+                            <strong>Twenty Twenty-Four</strong>
+                            <div style="font-size: 11px; color: #646970;">Giao diện mặc định WordPress</div>
+                        </div>
+                    </div>
+                    <div class="theme-actions">
+                        <button class="button" onclick="alert('Đã chuyển giao diện sang Twenty Twenty-Four!')">Kích hoạt</button>
+                        <button class="button" onclick="alert('Xem trước trực tiếp.')">Xem thử</button>
+                    </div>
+                </div>
+
+                <!-- Theme 3: Astra Pro -->
+                <div class="theme-card">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" class="theme-screenshot" alt="Astra">
+                    <div class="theme-name">
+                        <div>
+                            <strong>Astra Granite</strong>
+                            <div style="font-size: 11px; color: #646970;">Chuyên trang Đá mỹ nghệ</div>
+                        </div>
+                    </div>
+                    <div class="theme-actions">
+                        <button class="button" onclick="alert('Đã chuyển giao diện sang Astra!')">Kích hoạt</button>
+                        <button class="button" onclick="alert('Xem trước trực tiếp.')">Xem thử</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 8: PLUGIN ĐÃ CÀI ĐẶT (14 PLUGINS MODADEP.COM) -->
+        <!-- ========================================================= -->
+        <div id="view-plugins" class="screen-view">
+            <div class="wp-header-title">
+                <h1>
+                    <span>Plugin</span>
+                    <button onclick="switchScreen('view-add-plugin')" class="page-title-action">Cài mới</button>
+                </h1>
+                <div class="screen-meta-links">
+                    <button class="screen-meta-btn">Tùy chọn màn hình ▼</button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13px;">
+                    <strong>Tất cả (14)</strong> | <a href="javascript:void(0)">Đang hoạt động (14)</a> | <a href="javascript:void(0)">Cần cập nhật (4)</a>
+                </div>
+                <div>
+                    <input type="search" placeholder="Tìm plugin..." class="regular-text" style="width: 200px; padding: 4px 8px;">
+                    <button class="button">Tìm plugin</button>
+                </div>
+            </div>
+
+            <table class="wp-list-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;"><input type="checkbox"></th>
+                        <th>Plugin</th>
+                        <th>Mô tả</th>
+                    </tr>
+                </thead>
+                <tbody id="pluginsTableBody">
+                    <!-- Dynamic plugins listing -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 9: CÀI MỚI PLUGIN (ADD PLUGIN) -->
+        <!-- ========================================================= -->
+        <div id="view-add-plugin" class="screen-view">
+            <div class="wp-header-title">
+                <h1>
+                    <span>Thêm Plugin</span>
+                    <button onclick="alert('Chọn tệp .ZIP từ máy tính để tải plugin lên.')" class="button"><i class="fa-solid fa-upload"></i> Tải plugin lên</button>
+                </h1>
+                <button onclick="switchScreen('view-plugins')" class="button"><i class="fa-solid fa-arrow-left"></i> Quay lại Plugin đã cài</button>
+            </div>
+
+            <div style="margin: 15px 0; display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: 13px;">
+                    <a href="javascript:void(0)" style="font-weight: 600; color: #1d2327;">Nổi bật</a> | 
+                    <a href="javascript:void(0)">Phổ biến</a> | 
+                    <a href="javascript:void(0)">Được đề xuất</a>
+                </div>
+                <input type="search" placeholder="Tìm kiếm plugin trong kho..." class="regular-text" style="width: 250px; padding: 6px 10px;">
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Plugin Card 1 -->
+                <div class="postbox" style="padding: 16px;">
+                    <div style="display: flex; gap: 14px;">
+                        <img src="https://ps.w.org/classic-editor/assets/icon-128x128.png" style="width: 64px; height: 64px; border-radius: 4px; border: 1px solid #dcdcde;">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Classic Editor</h3>
+                            <p style="font-size: 12px; color: #646970; margin-bottom: 10px;">Bật trình soạn thảo WordPress cổ điển và ẩn trình soạn thảo khối Gutenberg.</p>
+                            <button class="button button-primary" onclick="this.innerText='Đã cài đặt'; this.disabled=true;">Cài đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plugin Card 2 -->
+                <div class="postbox" style="padding: 16px;">
+                    <div style="display: flex; gap: 14px;">
+                        <img src="https://ps.w.org/elementor/assets/icon-128x128.png" style="width: 64px; height: 64px; border-radius: 4px; border: 1px solid #dcdcde;">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Elementor Website Builder</h3>
+                            <p style="font-size: 12px; color: #646970; margin-bottom: 10px;">Trình tạo trang kéo thả trực quan số 1 thế giới.</p>
+                            <button class="button button-primary" onclick="this.innerText='Đã cài đặt'; this.disabled=true;">Cài đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plugin Card 3 -->
+                <div class="postbox" style="padding: 16px;">
+                    <div style="display: flex; gap: 14px;">
+                        <img src="https://ps.w.org/wordfence/assets/icon-128x128.png" style="width: 64px; height: 64px; border-radius: 4px; border: 1px solid #dcdcde;">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Wordfence Security</h3>
+                            <p style="font-size: 12px; color: #646970; margin-bottom: 10px;">Tường lửa chống tấn công mạng và quét mã độc bảo vệ website.</p>
+                            <button class="button button-primary" onclick="this.innerText='Đã cài đặt'; this.disabled=true;">Cài đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plugin Card 4 -->
+                <div class="postbox" style="padding: 16px;">
+                    <div style="display: flex; gap: 14px;">
+                        <img src="https://ps.w.org/autoptimize/assets/icon-128x128.png" style="width: 64px; height: 64px; border-radius: 4px; border: 1px solid #dcdcde;">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Autoptimize</h3>
+                            <p style="font-size: 12px; color: #646970; margin-bottom: 10px;">Nén tệp CSS, JS và tối ưu hóa HTML giúp website đạt điểm Google PageSpeed 99+.</p>
+                            <button class="button button-primary" onclick="this.innerText='Đã cài đặt'; this.disabled=true;">Cài đặt ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 10: RANK MATH SEO -->
+        <!-- ========================================================= -->
+        <div id="view-rankmath" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Rank Math SEO — Tổng quan & Phân tích</h1>
+            </div>
+
+            <div class="postbox" style="padding: 20px;">
+                <h3 style="font-size: 16px; font-weight: 600; color: #10ac84; margin-bottom: 15px;"><i class="fa-solid fa-shield-halved"></i> Tình trạng SEO Onpage modadep.com</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; margin-bottom: 25px;">
+                    <div style="background: #f6f7f7; padding: 15px; border-radius: 4px;">
+                        <div style="font-size: 32px; font-weight: 700; color: #10ac84;">88/100</div>
+                        <div style="font-weight: 600; margin-top: 4px;">Điểm SEO tổng thể</div>
+                    </div>
+                    <div style="background: #f6f7f7; padding: 15px; border-radius: 4px;">
+                        <div style="font-size: 32px; font-weight: 700; color: #2271b1;">100%</div>
+                        <div style="font-weight: 600; margin-top: 4px;">Sitemap XML Đã Gửi</div>
+                    </div>
+                    <div style="background: #f6f7f7; padding: 15px; border-radius: 4px;">
+                        <div style="font-size: 32px; font-weight: 700; color: #dba617;">0 Lỗi</div>
+                        <div style="font-weight: 600; margin-top: 4px;">Chuyển hướng 404</div>
+                    </div>
+                </div>
 
                 <table class="form-table">
                     <tr>
-                        <th><label for="set_siteTitle">Tên website (Site Title)</label></th>
-                        <td><input type="text" id="set_siteTitle" class="regular-text"><p class="description">Ví dụ: MỘ ĐÁ ĐẸP</p></td>
+                        <th>Tiêu đề SEO trang chủ</th>
+                        <td><input type="text" id="seoSiteTitle" class="regular-text" style="width: 100%; max-width: 650px;" value="Mộ Đá Đẹp Ninh Bình - Chuyên Thiết Kế, Chế Tác Và Thi Công Đá Mỹ Nghệ"></td>
                     </tr>
                     <tr>
-                        <th><label for="set_domain">Tên miền website</label></th>
-                        <td><input type="text" id="set_domain" class="regular-text"><p class="description">Ví dụ: modadep.com.vn</p></td>
+                        <th>Mô tả SEO (Meta Description)</th>
+                        <td><textarea id="seoMetaDesc" rows="3" class="large-text">Công ty TNHH Mộ Đá Đẹp Ninh Bình chuyên chế tác lăng mộ đá xanh rêu, mộ granite hoa cương nguyên khối, chuẩn kích thước Lỗ Ban 38.8cm giá xưởng.</textarea></td>
                     </tr>
                     <tr>
-                        <th><label for="set_hotline">Hotline hiển thị</label></th>
-                        <td><input type="text" id="set_hotline" class="regular-text"><p class="description">Số hiển thị trên web: 0988.226.951</p></td>
-                    </tr>
-                    <tr>
-                        <th><label for="set_phoneRaw">Số điện thoại bấm gọi / Zalo</label></th>
-                        <td><input type="text" id="set_phoneRaw" class="regular-text"><p class="description">Số liền mạch: 0988226951</p></td>
-                    </tr>
-                    <tr>
-                        <th><label for="set_email">Địa chỉ email quản trị (Gmail)</label></th>
-                        <td><input type="email" id="set_email" class="regular-text"><p class="description">Email nhận báo giá: Modadep8386@gmail.com</p></td>
-                    </tr>
-                    <tr>
-                        <th><label for="set_address">Địa chỉ xưởng chế tác</label></th>
-                        <td><input type="text" id="set_address" class="regular-text" style="width: 35em;"><p class="description">Làng Nghề Đá Mỹ Nghệ Ninh Vân, Hoa Lư, Ninh Bình</p></td>
-                    </tr>
-                    <tr>
-                        <th><label for="set_workingHours">Giờ làm việc</label></th>
-                        <td><input type="text" id="set_workingHours" class="regular-text"><p class="description">Ví dụ: 7h30 - 20h00 (Cả Thứ 7, CN)</p></td>
-                    </tr>
-                    <tr>
-                        <th><label for="set_badgeText">Huy hiệu làng nghề (Hiện ở Topbar)</label></th>
-                        <td><input type="text" id="set_badgeText" class="regular-text" style="width: 35em;"><p class="description">Nghệ nhân Quốc Gia - 25+ Năm Làng Nghề</p></td>
+                        <th>Từ khóa chính</th>
+                        <td><input type="text" id="seoKeywords" class="regular-text" style="width: 100%; max-width: 650px;" value="mộ đá đẹp, lăng mộ đá ninh bình, mộ đá granite, thước lỗ ban 38.8cm"></td>
                     </tr>
                 </table>
-                <p class="submit"><button type="button" onclick="saveAllChanges()" class="button button-primary">Lưu thay đổi</button></p>
+                <button type="button" onclick="saveAllChanges(true)" class="button button-primary" style="margin-top: 15px;">Lưu cấu hình SEO</button>
+            </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 11: YÊU CẦU BÁO GIÁ / ĐƠN HÀNG (QUOTES) -->
+        <!-- ========================================================= -->
+        <div id="view-quotes" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Khách hàng gửi yêu cầu báo giá & tư vấn</h1>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 12. FLATSOME / HERO BANNER -->
-            <!-- ========================================================= -->
-            <div id="view-hero" class="screen-view">
-                <h1>
-                    <span>Flatsome — Tùy biến Banner đầu trang (Hero)</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
+            <p style="color: #646970; margin-bottom: 12px;">Dữ liệu khách hàng điền form từ trang chủ <code>index.html</code>:</p>
 
+            <table class="wp-list-table">
+                <thead>
+                    <tr>
+                        <th>Họ và tên khách</th>
+                        <th>Số điện thoại / Zalo</th>
+                        <th>Tỉnh / Thành phố</th>
+                        <th>Hạng mục quan tâm</th>
+                        <th>Kích thước yêu cầu</th>
+                        <th>Thời gian gửi</th>
+                        <th style="width: 120px; text-align: center;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="quotesTableBody">
+                    <!-- Dynamic quotes -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- SCREEN 12: CÀI ĐẶT CHUNG (SETTINGS) -->
+        <!-- ========================================================= -->
+        <div id="view-settings" class="screen-view">
+            <div class="wp-header-title">
+                <h1>Cài đặt tổng quan website</h1>
+            </div>
+
+            <div class="postbox" style="padding: 20px;">
                 <table class="form-table">
                     <tr>
-                        <th><label for="hero_set_badge">Khẩu hiệu nhỏ (Tagline)</label></th>
-                        <td><input type="text" id="hero_set_badge" class="regular-text" style="width: 35em;"></td>
+                        <th>Tên website (Site Title)</th>
+                        <td><input type="text" id="settingSiteName" class="regular-text" value="Công ty TNHH Mộ Đá Đẹp Ninh Bình"></td>
                     </tr>
                     <tr>
-                        <th><label for="hero_set_title1">Tiêu đề lớn dòng 1 (Trắng)</label></th>
-                        <td><input type="text" id="hero_set_title1" class="regular-text"></td>
+                        <th>Khẩu hiệu (Tagline)</th>
+                        <td><input type="text" id="settingTagline" class="regular-text" value="Chuyên Thiết Kế, Chế Tác Và Thi Công Đá Mỹ Nghệ"></td>
                     </tr>
                     <tr>
-                        <th><label for="hero_set_title2">Tiêu đề lớn dòng 2 (Vàng Gold)</label></th>
-                        <td><input type="text" id="hero_set_title2" class="regular-text"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="hero_set_desc">Đoạn văn giới thiệu ngắn</label></th>
-                        <td><textarea id="hero_set_desc" rows="3" class="large-text"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th><label for="hero_set_bg">Ảnh nền Banner</label></th>
+                        <th>Hotline & Zalo tư vấn</th>
                         <td>
-                            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-                                <input type="text" id="hero_set_bg" class="regular-text" style="width: 30em;">
-                                <label class="button">
-                                    <i class="fa-solid fa-upload"></i> Tải ảnh mới
-                                    <input type="file" accept="image/*" style="display: none;" onchange="uploadImageWP(event, 'hero_set_bg', 'hero_preview_img')">
-                                </label>
-                            </div>
-                            <img id="hero_preview_img" src="" style="height: 120px; border-radius: 4px; border: 1px solid #dcdcde; display: block;">
+                            <input type="text" id="settingHotline" class="regular-text" value="0988.226.951">
+                            <p class="description">Hiển thị trên Header, Footer và Nút gọi nổi góc màn hình.</p>
                         </td>
                     </tr>
                     <tr>
-                        <th>3 Con số thống kê uy tín</th>
-                        <td>
-                            <div style="display: flex; gap: 15px;">
-                                <div><input type="text" id="hero_set_years" class="regular-text" style="width: 100px; font-weight: bold; margin-bottom: 4px;"><input type="text" id="hero_set_yearsDesc" class="regular-text" style="width: 150px; font-size: 11px;"></div>
-                                <div><input type="text" id="hero_set_proj" class="regular-text" style="width: 100px; font-weight: bold; margin-bottom: 4px;"><input type="text" id="hero_set_projDesc" class="regular-text" style="width: 150px; font-size: 11px;"></div>
-                                <div><input type="text" id="hero_set_qual" class="regular-text" style="width: 100px; font-weight: bold; margin-bottom: 4px;"><input type="text" id="hero_set_qualDesc" class="regular-text" style="width: 150px; font-size: 11px;"></div>
-                            </div>
-                        </td>
+                        <th>Email quản trị</th>
+                        <td><input type="email" id="settingEmail" class="regular-text" value="Modadep8386@gmail.com"></td>
+                    </tr>
+                    <tr>
+                        <th>Địa chỉ cơ sở chế tác</th>
+                        <td><input type="text" id="settingAddress" class="regular-text" style="width: 100%; max-width: 600px;" value="Làng nghề đá mỹ nghệ Ninh Vân, Huyện Hoa Lư, Tỉnh Ninh Bình"></td>
                     </tr>
                 </table>
-                <p class="submit"><button type="button" onclick="saveAllChanges()" class="button button-primary">Lưu thay đổi</button></p>
+
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #c3c4c7;">
+                    <button type="button" onclick="saveAllChanges(true)" class="button button-primary">Lưu thay đổi</button>
+                </div>
             </div>
-
-            <!-- ========================================================= -->
-            <!-- 13. TRANG GIỚI THIỆU (ABOUT US) -->
-            <!-- ========================================================= -->
-            <div id="view-about" class="screen-view">
-                <h1>
-                    <span>Trang ‹ Giới thiệu Xưởng Đá Mộ Đá Đẹp</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-
-                <table class="form-table">
-                    <tr>
-                        <th><label for="about_set_title">Tiêu đề bài giới thiệu</label></th>
-                        <td><input type="text" id="about_set_title" class="regular-text" style="width: 35em;"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="about_set_p1">Đoạn 1 (Lịch sử & Nghệ nhân)</label></th>
-                        <td><textarea id="about_set_p1" rows="4" class="large-text"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th><label for="about_set_p2">Đoạn 2 (Đá tự nhiên & Phong thủy)</label></th>
-                        <td><textarea id="about_set_p2" rows="4" class="large-text"></textarea></td>
-                    </tr>
-                    <tr>
-                        <th><label for="about_set_img">Ảnh chụp xưởng / nghệ nhân</label></th>
-                        <td>
-                            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-                                <input type="text" id="about_set_img" class="regular-text" style="width: 30em;">
-                                <label class="button">
-                                    <i class="fa-solid fa-upload"></i> Tải ảnh xưởng
-                                    <input type="file" accept="image/*" style="display: none;" onchange="uploadImageWP(event, 'about_set_img', 'about_preview_img')">
-                                </label>
-                            </div>
-                            <img id="about_preview_img" src="" style="height: 140px; border-radius: 4px; border: 1px solid #dcdcde;">
-                        </td>
-                    </tr>
-                </table>
-                <p class="submit"><button type="button" onclick="saveAllChanges()" class="button button-primary">Lưu thay đổi</button></p>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 14. MEDIA (THƯ VIỆN HÌNH ẢNH) -->
-            <!-- ========================================================= -->
-            <div id="view-media" class="screen-view">
-                <h1>
-                    <span>Thư viện Media</span>
-                    <label class="button button-primary">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> Tải ảnh mới lên
-                        <input type="file" accept="image/*" style="display: none;" onchange="uploadImageWP(event, null, null)">
-                    </label>
-                </h1>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 15px;" id="wpMediaGrid"></div>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 15. CÔNG TRÌNH THỰC TẾ TIÊU BIỂU -->
-            <!-- ========================================================= -->
-            <div id="view-projects" class="screen-view">
-                <h1>
-                    <span>Công trình thực tế đã thi công</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-                <table class="wp-list-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 80px;">Hình ảnh</th>
-                            <th>Tên công trình</th>
-                            <th>Địa điểm</th>
-                            <th>Nghiệm thu</th>
-                            <th>Mô tả quy mô</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wpProjectsTableBody"></tbody>
-                </table>
-            </div>
-
-            <!-- ========================================================= -->
-            <!-- 16. CAM KẾT & LÝ DO CHỌN -->
-            <!-- ========================================================= -->
-            <div id="view-commitments" class="screen-view">
-                <h1>
-                    <span>Cam kết chất lượng & Lý do chọn Mộ Đá Đẹp</span>
-                    <button onclick="saveAllChanges()" class="button button-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
-                </h1>
-                <div class="dashboard-widgets-grid" id="wpCommitmentsGrid"></div>
-            </div>
-
         </div>
+
     </div>
 
     <!-- ========================================================= -->
-    <!-- MODAL 1: THÊM / SỬA SẢN PHẨM -->
+    <!-- MODAL THÊM / SỬA SẢN PHẨM (PRODUCT MODAL) -->
     <!-- ========================================================= -->
-    <div id="productModal" class="wp-modal">
-        <div class="wp-modal-box">
-            <div class="wp-modal-header">
-                <span id="productModalTitle">Thêm sản phẩm mới</span>
-                <span onclick="closeProductModal()" style="cursor: pointer; font-size: 20px;">&times;</span>
+    <div id="productModal" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.65); display: none; justify-content: center; align-items: center; z-index: 999999; padding: 20px;">
+        <div style="background: #fff; border-radius: 3px; width: 100%; max-width: 680px; max-height: 92vh; overflow-y: auto; box-shadow: 0 5px 25px rgba(0,0,0,0.3);">
+            <div style="padding: 12px 18px; background: #f6f7f7; border-bottom: 1px solid #dcdcde; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 15px;">
+                <span id="modalProductTitle">Thêm mới sản phẩm lăng mộ đá</span>
+                <span style="cursor: pointer; font-size: 18px; color: #646970;" onclick="closeProductModal()">✕</span>
             </div>
-            <form onsubmit="handleSaveProductWP(event)">
-                <div class="wp-modal-body">
-                    <input type="hidden" id="modal_prod_id">
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên mẫu mộ *</label>
-                        <input type="text" id="modal_prod_name" required class="regular-text" style="width: 100%;">
+            <div style="padding: 20px;">
+                <input type="hidden" id="editProductIndex" value="-1">
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tên sản phẩm / Mẫu mộ *</label>
+                    <input type="text" id="modalProdName" placeholder="Ví dụ: Mộ Đá Granite Nguyên Khối Mã 21" class="regular-text" style="width: 100%;">
+                </div>
+                <div style="display: flex; gap: 15px; margin-bottom: 12px;">
+                    <div style="flex: 1;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mã sản phẩm (SKU)</label>
+                        <input type="text" id="modalProdSku" placeholder="MD-21" class="regular-text" style="width: 100%;">
                     </div>
-                    <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                        <div style="flex: 1;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mã SP (SKU) *</label>
-                            <input type="text" id="modal_prod_code" required class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="flex: 1;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Danh mục</label>
-                            <select id="modal_prod_cat" class="regular-text" style="width: 100%; height: 32px;"></select>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                        <div style="flex: 1;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Giá bán</label>
-                            <input type="text" id="modal_prod_price" value="Liên Hệ" class="regular-text" style="width: 100%;">
-                        </div>
-                        <div style="flex: 1;">
-                            <label style="display: block; font-weight: 600; margin-bottom: 4px;">Nhãn nổi bật</label>
-                            <input type="text" id="modal_prod_badge" placeholder="Hot Nhất / Chuẩn Lỗ Ban" class="regular-text" style="width: 100%;">
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Kích thước chuẩn Lỗ Ban / Diện tích</label>
-                        <input type="text" id="modal_prod_dim" placeholder="Ví dụ: 89 x 147 cm" class="regular-text" style="width: 100%;">
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Chất liệu đá</label>
-                        <input type="text" id="modal_prod_mat" placeholder="Ví dụ: Đá xanh rêu Thanh Hóa" class="regular-text" style="width: 100%;">
-                    </div>
-                    <div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Hình ảnh đại diện sản phẩm</label>
-                        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                            <input type="text" id="modal_prod_img" required class="regular-text" style="flex: 1;">
-                            <label class="button">
-                                <i class="fa-solid fa-upload"></i> Tải ảnh
-                                <input type="file" accept="image/*" style="display: none;" onchange="uploadImageWP(event, 'modal_prod_img', 'modal_prod_preview')">
-                            </label>
-                        </div>
-                        <img id="modal_prod_preview" src="" style="height: 100px; border-radius: 4px; border: 1px solid #dcdcde;">
+                    <div style="flex: 1;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Giá bán</label>
+                        <input type="text" id="modalProdPrice" placeholder="Liên hệ báo giá" class="regular-text" style="width: 100%;">
                     </div>
                 </div>
-                <div class="wp-modal-footer">
-                    <button type="button" onclick="closeProductModal()" class="button">Hủy bỏ</button>
-                    <button type="submit" class="button button-primary">Đăng sản phẩm</button>
+                <div style="display: flex; gap: 15px; margin-bottom: 12px;">
+                    <div style="flex: 1;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Danh mục</label>
+                        <select id="modalProdCategory" style="width: 100%; padding: 6px 8px; border: 1px solid #8c8f94; border-radius: 4px;">
+                            <option value="Mộ Đá Granite">Mộ Đá Granite</option>
+                            <option value="Khuôn Viên Lăng Mộ">Khuôn Viên Lăng Mộ</option>
+                            <option value="Mộ Đá Tam Sơn">Mộ Đá Tam Sơn</option>
+                            <option value="Mộ Đá Đôi">Mộ Đá Đôi</option>
+                            <option value="Mộ Đá Tròn">Mộ Đá Tròn</option>
+                            <option value="Mộ Đá Công Giáo">Mộ Đá Công Giáo</option>
+                            <option value="Cuốn Thư Đá">Cuốn Thư Đá</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Kích thước Lỗ Ban 38.8cm</label>
+                        <input type="text" id="modalProdSize" placeholder="81 x 127 cm (Tài Vượng)" class="regular-text" style="width: 100%;">
+                    </div>
                 </div>
-            </form>
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 4px;">Link ảnh sản phẩm (URL)</label>
+                    <input type="text" id="modalProdImg" placeholder="https://..." class="regular-text" style="width: 100%;">
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <label style="display: block; font-weight: 600; margin-bottom: 4px;">Mô tả sản phẩm</label>
+                    <textarea id="modalProdDesc" rows="3" class="large-text" style="width: 100%;"></textarea>
+                </div>
+            </div>
+            <div style="padding: 12px 18px; background: #f6f7f7; border-top: 1px solid #dcdcde; display: flex; justify-content: flex-end; gap: 8px;">
+                <button type="button" onclick="closeProductModal()" class="button">Hủy bỏ</button>
+                <button type="button" onclick="saveProductModal()" class="button button-primary">Lưu sản phẩm</button>
+            </div>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MODAL 2: THÊM BÀI VIẾT MỚI (VIẾT BÀI MỚI) -->
-    <!-- ========================================================= -->
-    <div id="newPostModal" class="wp-modal">
-        <div class="wp-modal-box">
-            <div class="wp-modal-header">
-                <span>Viết bài mới ‹ Cẩm nang phong thủy</span>
-                <span onclick="closeNewPostModal()" style="cursor: pointer; font-size: 20px;">&times;</span>
-            </div>
-            <form onsubmit="handleSaveNewPost(event)">
-                <div class="wp-modal-body">
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tiêu đề bài viết *</label>
-                        <input type="text" id="modal_post_title" required placeholder="Nhập tiêu đề bài viết tại đây..." class="regular-text" style="width: 100%; font-size: 14px; font-weight: bold;">
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Chuyên mục bài viết</label>
-                        <select id="modal_post_cat" class="regular-text" style="width: 100%; height: 32px;"></select>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tóm tắt nội dung bài viết *</label>
-                        <textarea id="modal_post_desc" rows="4" required placeholder="Nội dung tóm tắt của bài viết cẩm nang..." class="large-text" style="width: 100%;"></textarea>
-                    </div>
-                    <div>
-                        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Ảnh đại diện bài viết</label>
-                        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                            <input type="text" id="modal_post_img" required placeholder="Đường dẫn ảnh hoặc tải ảnh lên" class="regular-text" style="flex: 1;">
-                            <label class="button">
-                                <i class="fa-solid fa-upload"></i> Tải ảnh
-                                <input type="file" accept="image/*" style="display: none;" onchange="uploadImageWP(event, 'modal_post_img', 'modal_post_preview')">
-                            </label>
-                        </div>
-                        <img id="modal_post_preview" src="" style="height: 100px; border-radius: 4px; border: 1px solid #dcdcde;">
-                    </div>
-                </div>
-                <div class="wp-modal-footer">
-                    <button type="button" onclick="closeNewPostModal()" class="button">Hủy bỏ</button>
-                    <button type="submit" class="button button-primary">Đăng bài viết</button>
-                </div>
-            </form>
-        </div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="wpToast">
+        <i class="fa-solid fa-circle-check" style="color: #00a32a; font-size: 16px;"></i>
+        <span id="wpToastText">Cài đặt đã được lưu thành công.</span>
     </div>
 
     <!-- ========================================================= -->
-    <!-- LOGIC XỬ LÝ DỮ LIỆU WORDPRESS ADMIN JAVASCRIPT -->
+    <!-- JAVASCRIPT: LOGIC QUẢN TRỊ 100% PERSISTENT -->
     <!-- ========================================================= -->
     <script>
-        let siteData = {};
-
-        // Danh sách Plugins mặc định
-        const defaultPlugins = [
-            { name: "WooCommerce", desc: "Hệ thống quản lý sản phẩm lăng mộ đá, báo giá và đơn hàng.", ver: "9.3.2", active: true },
-            { name: "Flatsome Theme Core", desc: "Bộ công cụ UX Builder tối ưu giao diện lăng mộ đá cao cấp.", ver: "3.17.6", active: true },
-            { name: "Rank Math SEO", desc: "Tối ưu hóa công cụ tìm kiếm Google cho mẫu lăng mộ đá.", ver: "1.0.210", active: true },
-            { name: "Button Contact VR", desc: "Tạo nút gọi Hotline 0988.226.951 và nút Chat Zalo rung lắc nổi.", ver: "2.1", active: true },
-            { name: "WP Mail SMTP", desc: "Kết nối gửi nhận thư báo giá qua Gmail Modadep8386@gmail.com.", ver: "4.1.0", active: true },
-            { name: "Contact Form 7", desc: "Tạo form thu thập yêu cầu thiết kế 3D và báo giá từ khách.", ver: "5.9.8", active: true },
-            { name: "WP Rocket / LiteSpeed Cache", desc: "Tăng tốc độ tải trang cực nhanh và nén hình ảnh đá.", ver: "3.16", active: true },
-            { name: "Table of Contents Plus", desc: "Tạo mục lục tự động cho bài viết phong thủy và Lỗ Ban.", ver: "202607.1", active: true }
+        // MASTER DEFAULT DATA
+        const DEFAULT_POSTS = [
+            {
+                id: 1,
+                title: "Làm Bia Mộ Đá Ở Đâu Uy Tín? Xưởng Chế Tác Đá Hoa Cương Granite Giá Gốc",
+                slug: "lam-bia-mo-da-o-dau-uy-tin",
+                author: "modadep hungleo",
+                category: "Kiến thức chế tác",
+                tags: "bia mộ, đá granite, lăng mộ",
+                date: "Th 8 13h, 11:12",
+                image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80",
+                content: "Bia mộ đá là phần quan trọng lưu giữ thông tin người đã khuất. Chọn đá hoa cương granite tự nhiên nguyên khối giúp bia luôn sáng bóng, bền vĩnh cửu theo thời gian."
+            },
+            {
+                id: 2,
+                title: "Tư Vấn Kích Thước Lăng Mộ Chuẩn Lỗ Ban 38.8cm",
+                slug: "tu-van-kich-thuoc-lang-mo-chuan-lo-ban",
+                author: "modadep hungleo",
+                category: "Phong thủy lăng mộ",
+                tags: "thước lỗ ban, kích thước mộ",
+                date: "Th 8 12h, 15:55",
+                image: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=600&q=80",
+                content: "Thước Lỗ Ban 38.8cm (âm phần) là kim chỉ nam trong thiết kế lăng mộ đá, giúp rơi vào các cung tốt: Quý Tử, Đại Cát, Tài Vượng, Phú Quý."
+            },
+            {
+                id: 3,
+                title: "Thi Công Lắp Đặt Lăng Mộ Đá Trọn Gói Cho Khu Lăng Mộ Gia Tộc",
+                slug: "thi-cong-lap-dat-lang-mo-da-tron-goi",
+                author: "modadep hungleo",
+                category: "Công trình hoàn thiện",
+                tags: "khuôn viên gia tộc, thi công trọn gói",
+                date: "Th 8 12h, 15:53",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+                content: "Khuôn viên lăng mộ gia tộc dòng họ quy hoạch đồng bộ bao gồm: Lăng thờ chung, cổng tứ trụ, lan can đá, cuốn thư và các mẫu mộ đơn, mộ đôi trang trọng."
+            },
+            {
+                id: 4,
+                title: "Báo Giá Lăng Mộ Đá Granite Đơn Mới Nhất 2026",
+                slug: "bao-gia-lang-mo-da-granite-don",
+                author: "modadep hungleo",
+                category: "Báo giá mộ đá",
+                tags: "báo giá, mộ granite",
+                date: "Th 8 12h, 15:51",
+                image: "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80",
+                content: "Bảng báo giá xưởng trực tiếp không qua trung gian cho các mẫu mộ đá hoa cương granite nhập khẩu Ấn Độ, Bình Định gia công bóng gương chuẩn xác."
+            }
         ];
 
-        // Khởi động
-        window.addEventListener('DOMContentLoaded', async () => {
-            await loadSiteData();
-            initDataStructure();
-            populateWPData();
-        });
+        const DEFAULT_POST_CATEGORIES = [
+            { name: "Phong thủy lăng mộ", slug: "phong-thuy-lang-mo", desc: "Cách chọn hướng, kích thước Lỗ Ban và ngày đặt mộ tốt.", count: 8 },
+            { name: "Kiến thức chế tác", slug: "kien-thuc-che-tac", desc: "Tìm hiểu chất liệu đá xanh, đá granite và kỹ thuật đục chạm.", count: 12 },
+            { name: "Báo giá mộ đá", slug: "bao-gia-mo-da", desc: "Bảng giá xưởng cập nhật các mẫu mộ đẹp giá gốc.", count: 5 },
+            { name: "Công trình hoàn thiện", slug: "cong-trinh-hoan-thien", desc: "Hình ảnh thực tế bàn giao cho gia đình tại các tỉnh thành.", count: 24 }
+        ];
 
-        async function loadSiteData() {
-            try {
-                const res = await fetch('/api/content');
-                siteData = await res.json();
-            } catch (e) {
-                const local = localStorage.getItem('modadep_local_data');
-                if (local) siteData = JSON.parse(local);
-                else siteData = {};
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 1,
+                name: "Mộ Đá Granite Mã 21",
+                sku: "MD-21",
+                category: "Mộ Đá Granite",
+                size: "81 x 127 cm (Tài Vượng)",
+                price: "Liên hệ báo giá",
+                image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80",
+                desc: "Mộ đá hoa cương granite nguyên khối đánh bóng gương sang trọng, hiện đại, bền màu vĩnh viễn."
+            },
+            {
+                id: 2,
+                name: "Mộ Đá Granite Mã 22",
+                sku: "MD-22",
+                category: "Mộ Đá Granite",
+                size: "89 x 147 cm (Thêm Đinh - Hưng Vượng)",
+                price: "Liên hệ báo giá",
+                image: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=600&q=80",
+                desc: "Kiểu dáng giật tam cấp thanh thoát, nắp mộ bo tròn tinh tế chuẩn phong thủy Lỗ Ban."
+            },
+            {
+                id: 3,
+                name: "Mộ Đá Granite Mã 23",
+                sku: "MD-23",
+                category: "Mộ Đá Granite",
+                size: "107 x 167 cm (Quý Tử - Đăng Khoa)",
+                price: "Liên hệ báo giá",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+                desc: "Đá granite kim sa đen huyền bí kết hợp hoa văn chạm sen nhẹ nhàng."
+            },
+            {
+                id: 4,
+                name: "Khuôn Viên Lăng Mộ Gia Tộc Mã 08",
+                sku: "KV-08",
+                category: "Khuôn Viên Lăng Mộ",
+                size: "Diện tích 50 - 150m²",
+                price: "Khảo sát thiết kế trọn gói",
+                image: "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80",
+                desc: "Quy hoạch khuôn viên gia đình đồng bộ lăng thờ cánh, cổng đá tứ trụ và lan can chữ Thọ."
+            },
+            {
+                id: 5,
+                name: "Mộ Đá Tam Sơn Mã 15",
+                sku: "TS-15",
+                category: "Mộ Đá Tam Sơn",
+                size: "69 x 107 cm (Đại Cát)",
+                price: "Từ 15.000.000 đ",
+                image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80",
+                desc: "Mẫu mộ tam sơn đá xanh rêu Thanh Hóa, không mái đơn giản, chạm sen và hoa cúc cổ truyền."
+            },
+            {
+                id: 6,
+                name: "Mộ Đá Đôi Mã 18",
+                sku: "MD-18",
+                category: "Mộ Đá Đôi",
+                size: "167 x 197 cm (Tiến Bảo)",
+                price: "Liên hệ xưởng",
+                image: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=600&q=80",
+                desc: "Dành riêng cho ông bà hoặc cha mẹ, thiết kế liền kề khăng khít biểu tượng cho tình nghĩa thủy chung."
+            }
+        ];
+
+        const DEFAULT_PRODUCT_CATEGORIES = [
+            { name: "Mộ Đá Granite", slug: "mo-da-granite", desc: "Mộ đá hoa cương nhập khẩu và Bình Định siêu bóng bền.", count: 18 },
+            { name: "Khuôn Viên Lăng Mộ", slug: "khuon-vien-lang-mo", desc: "Khu lăng mộ gia tộc, dòng họ quy hoạch trọn gói.", count: 12 },
+            { name: "Mộ Đá Tam Sơn", slug: "mo-da-tam-son", desc: "Mộ không mái nhỏ gọn chạm hoa văn sen, chữ thọ.", count: 15 },
+            { name: "Mộ Đá Đôi", slug: "mo-da-doi", desc: "Mẫu mộ đôi ông bà, cha mẹ thể hiện lòng hiếu thảo.", count: 9 },
+            { name: "Mộ Đá Tròn", slug: "mo-da-tron", desc: "Mẫu mộ hấp thụ nguyên khí trời đất phong thủy đỉnh cao.", count: 7 },
+            { name: "Cuốn Thư Đá", slug: "cuon-thu-da", desc: "Bình phong chắn tà khí đặt ngay sau cổng lăng mộ.", count: 11 }
+        ];
+
+        const DEFAULT_PLUGINS = [
+            { name: "Flatsome Core", version: "3.19.8", author: "UX-Themes", desc: "Bộ nhân giao diện Flatsome chuyên dụng cho modadep.com.", active: true },
+            { name: "Rank Math SEO", version: "1.0.220", author: "Rank Math", desc: "Bộ công cụ SEO tối ưu từ khóa lăng mộ đá và sitemap Google.", active: true },
+            { name: "WooCommerce", version: "9.3.3", author: "Automattic", desc: "Hệ thống quản lý sản phẩm, mẫu mộ và danh mục chi tiết.", active: true },
+            { name: "WP Rocket", version: "3.16.2", author: "WP Media", desc: "Tối ưu hóa hiệu năng, tạo bộ nhớ đệm tải trang dưới 1 giây.", active: true },
+            { name: "WP Mail SMTP", version: "4.1.0", author: "WP Mail SMTP", desc: "Gửi thông báo yêu cầu báo giá tự động vào Gmail xưởng.", active: true },
+            { name: "Button Contact VR", version: "2.1.2", author: "Vietnam Rocket", desc: "Hệ thống nút gọi Hotline 0988.226.951 và chat Zalo nổi.", active: true },
+            { name: "Contact Form 7", version: "5.9.8", author: "Rock Lobster", desc: "Xử lý form khách hàng yêu cầu báo giá nhanh trên website.", active: true },
+            { name: "Duplicator", version: "1.5.8", author: "Duplicator", desc: "Sao lưu và di chuyển website WordPress nhanh chóng.", active: true },
+            { name: "WC Product Compare", version: "1.4.1", author: "WooCommerce", desc: "So sánh kích thước Lỗ Ban giữa các mẫu mộ đá khác nhau.", active: true },
+            { name: "Schema & Structured Data", version: "1.28", author: "Magazine3", desc: "Khai báo dữ liệu cấu trúc Google Rich Snippets.", active: true },
+            { name: "TinyMCE Advanced", version: "5.6.0", author: "Automattic", desc: "Mở rộng thanh công cụ soạn thảo bài viết phong thủy.", active: true },
+            { name: "LiteSpeed Cache", version: "6.5.1", author: "LiteSpeed", desc: "Tăng tốc độ xử lý trang tĩnh.", active: true },
+            { name: "W3 Total Cache", version: "2.7.4", author: "BoldGrid", desc: "Hỗ trợ nén tài nguyên.", active: true },
+            { name: "Webcraftic Clearfy", version: "2.2.1", author: "Webcraftic", desc: "Dọn dẹp mã nguồn rác và tối ưu bảo mật.", active: true }
+        ];
+
+        const DEFAULT_QUOTES = [
+            { name: "Bác Nguyễn Văn Thành", phone: "0912.845.xxx", city: "Hà Nội", item: "Khuôn Viên Lăng Mộ Gia Tộc 80m²", size: "Theo thước Lỗ Ban", time: "11/09/2026 14:20" },
+            { name: "Anh Trần Đình Quang", phone: "0983.562.xxx", city: "Hải Phòng", item: "Mộ Đá Granite Mã 21", size: "81 x 127 cm", time: "11/09/2026 09:15" },
+            { name: "Chị Lê Thu Hà", phone: "0904.112.xxx", city: "Nam Định", item: "Mộ Đá Đôi Mã 18", size: "167 x 197 cm", time: "10/09/2026 18:40" }
+        ];
+
+        // LOAD DATA FROM STORAGE OR DEFAULTS
+        let appPosts = JSON.parse(localStorage.getItem('modadep_posts') || JSON.stringify(DEFAULT_POSTS));
+        let appPostCats = JSON.parse(localStorage.getItem('modadep_post_cats') || JSON.stringify(DEFAULT_POST_CATEGORIES));
+        let appProducts = JSON.parse(localStorage.getItem('modadep_products') || JSON.stringify(DEFAULT_PRODUCTS));
+        let appProductCats = JSON.parse(localStorage.getItem('modadep_product_cats') || JSON.stringify(DEFAULT_PRODUCT_CATEGORIES));
+        let appPlugins = JSON.parse(localStorage.getItem('modadep_plugins') || JSON.stringify(DEFAULT_PLUGINS));
+        let appQuotes = JSON.parse(localStorage.getItem('modadep_quotes') || JSON.stringify(DEFAULT_QUOTES));
+
+        // NAVIGATION LOGIC
+        function switchScreen(screenId) {
+            document.querySelectorAll('.screen-view').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Sync menu highlight
+            document.querySelectorAll('#adminmenu li').forEach(li => li.classList.remove('current', 'active'));
+            if (screenId === 'view-dashboard') document.getElementById('menu-dashboard').classList.add('current', 'active');
+            if (screenId === 'view-posts' || screenId === 'view-new-post' || screenId === 'view-post-categories') document.getElementById('menu-posts').classList.add('current', 'active');
+            if (screenId === 'view-products' || screenId === 'view-product-categories') document.getElementById('menu-products').classList.add('current', 'active');
+            if (screenId === 'view-themes') document.getElementById('menu-appearance').classList.add('current', 'active');
+            if (screenId === 'view-plugins' || screenId === 'view-add-plugin') document.getElementById('menu-plugins').classList.add('current', 'active');
+            if (screenId === 'view-rankmath') document.getElementById('menu-rankmath').classList.add('current', 'active');
+            if (screenId === 'view-quotes') document.getElementById('menu-woocommerce').classList.add('current', 'active');
+            if (screenId === 'view-settings') document.getElementById('menu-settings').classList.add('current', 'active');
+        }
+
+        function toggleSubmenu(menuId) {
+            const menu = document.getElementById(menuId);
+            if (menu) {
+                menu.classList.toggle('opened');
             }
         }
 
-        function initDataStructure() {
-            // Chuyên mục bài viết mặc định nếu chưa có
-            if (!siteData.postCategories) {
-                siteData.postCategories = [
-                    { name: "Phong Thủy Lăng Mộ", slug: "phong-thuy-lang-mo", desc: "Kiến thức âm trạch, ngày giờ hoàng đạo xây mộ.", count: 12 },
-                    { name: "Kích Thước Thước Lỗ Ban", slug: "thuoc-lo-ban", desc: "Tra cứu kích thước 38.8cm vào cung Đại Cát.", count: 8 },
-                    { name: "Kinh Nghiệm Chọn Đá", slug: "kinh-nghiem-chon-da", desc: "So sánh đá xanh rêu, xanh đen, đá granite.", count: 15 },
-                    { name: "Nghi Lễ Tâm Linh", slug: "nghi-le-tam-linh", desc: "Bài văn khấn và lễ vật tạ mộ, sang cát.", count: 6 }
-                ];
-            }
+        function showToast(msg) {
+            const toast = document.getElementById('wpToast');
+            document.getElementById('wpToastText').innerText = msg;
+            toast.style.display = 'flex';
+            setTimeout(() => { toast.style.display = 'none'; }, 3200);
+        }
 
-            // Danh mục sản phẩm mặc định
-            if (!siteData.categories) {
-                siteData.categories = [
-                    { id: "lang-mo", name: "Khu Lăng Mộ Gia Tộc", count: "120+ Mẫu đẹp", icon: "fa-landmark-dome" },
-                    { id: "mo-don", name: "Mộ Đá 1, 2, 3 Mái", count: "85+ Mẫu chuẩn", icon: "fa-monument" },
-                    { id: "cuon-thu", name: "Cuốn Thư / Bình Phong", count: "Trấn phong thủy", icon: "fa-scroll" },
-                    { id: "lan-can", name: "Lan Can Đá Tự Nhiên", count: "Đục tứ quý, hoa sen", icon: "fa-bars" },
-                    { id: "cong-tam-quan", name: "Cổng Tam Quan & Cột Đá", count: "Cột đồng trụ đình chùa", icon: "fa-torii-gate" },
-                    { id: "do-tho", name: "Lư Hương & Bàn Lễ Đá", count: "Đồ thờ tâm linh", icon: "fa-fire-burner" }
-                ];
-            }
+        function saveAllChanges(notify = false) {
+            localStorage.setItem('modadep_posts', JSON.stringify(appPosts));
+            localStorage.setItem('modadep_post_cats', JSON.stringify(appPostCats));
+            localStorage.setItem('modadep_products', JSON.stringify(appProducts));
+            localStorage.setItem('modadep_product_cats', JSON.stringify(appProductCats));
+            localStorage.setItem('modadep_plugins', JSON.stringify(appPlugins));
+            localStorage.setItem('modadep_quotes', JSON.stringify(appQuotes));
 
-            if (!siteData.plugins) {
-                siteData.plugins = defaultPlugins;
+            if (notify) {
+                showToast("Cài đặt và dữ liệu modadep.com đã được lưu thành công!");
             }
         }
 
-        function populateWPData() {
-            // Cài đặt chung
-            const g = siteData.general || {};
-            document.getElementById('set_siteTitle').value = g.brandName || 'MỘ ĐÁ ĐẸP';
-            document.getElementById('set_domain').value = g.domain || 'modadep.com.vn';
-            document.getElementById('set_hotline').value = g.hotline || '0988.226.951';
-            document.getElementById('set_phoneRaw').value = g.phoneRaw || '0988226951';
-            document.getElementById('set_email').value = g.email || 'Modadep8386@gmail.com';
-            document.getElementById('set_address').value = g.address || 'Làng Nghề Đá Mỹ Nghệ Ninh Vân, Hoa Lư, Ninh Bình';
-            document.getElementById('set_workingHours').value = g.workingHours || '7h30 - 20h00 (Cả Thứ 7, CN)';
-            document.getElementById('set_badgeText').value = g.badgeText || 'Nghệ nhân Quốc Gia - 25+ Năm Làng Nghề';
-
-            // Flatsome Banner
-            const h = siteData.hero || {};
-            document.getElementById('hero_set_badge').value = h.badge || '';
-            document.getElementById('hero_set_title1').value = h.title1 || '';
-            document.getElementById('hero_set_title2').value = h.title2 || '';
-            document.getElementById('hero_set_desc').value = h.description || '';
-            document.getElementById('hero_set_bg').value = h.bgImage || '';
-            document.getElementById('hero_preview_img').src = h.bgImage || '';
-            document.getElementById('hero_set_years').value = h.statYears || '25+ Năm';
-            document.getElementById('hero_set_yearsDesc').value = h.statYearsDesc || 'Kinh nghiệm';
-            document.getElementById('hero_set_proj').value = h.statProjects || '1.800+';
-            document.getElementById('hero_set_projDesc').value = h.statProjectsDesc || 'Công trình';
-            document.getElementById('hero_set_qual').value = h.statQuality || '100%';
-            document.getElementById('hero_set_qualDesc').value = h.statQualityDesc || 'Đá tự nhiên';
-
-            // About Us
-            const a = siteData.about || {};
-            document.getElementById('about_set_title').value = a.title || '';
-            document.getElementById('about_set_p1').value = a.p1 || '';
-            document.getElementById('about_set_p2').value = a.p2 || '';
-            document.getElementById('about_set_img').value = a.image || '';
-            document.getElementById('about_preview_img').src = a.image || '';
-
-            renderWPProducts();
-            renderWPPosts();
-            renderWPPostCategories();
-            renderWPProductCategories();
-            renderWPPlugins();
-            renderWPInstallablePlugins();
-            renderWPQuotes();
-            renderWPProjects();
-            renderWPCommitments();
-            renderWPMedia();
-            populateCategoryDropdowns();
-        }
-
-        // ==========================================
-        // 1. QUẢN LÝ BÀI VIẾT & VIẾT BÀI MỚI
-        // ==========================================
-        function renderWPPosts() {
-            const tbody = document.getElementById('wpPostsTableBody');
-            const posts = siteData.news || [];
-            tbody.innerHTML = posts.map((p, i) => `
+        // --- RENDER BÀI VIẾT (POSTS) ---
+        function renderPosts() {
+            const tbody = document.getElementById('postsTableBody');
+            tbody.innerHTML = appPosts.map((p, idx) => `
                 <tr>
+                    <td><input type="checkbox"></td>
                     <td><img src="${p.image}" class="product-thumbnail"></td>
-                    <td><strong style="color: #2271b1; font-size: 13px;">${p.title}</strong></td>
-                    <td><span style="background: #f0f0f1; padding: 2px 6px; border-radius: 3px;">${p.category}</span></td>
-                    <td style="font-size: 12px; color: #50575e;">${p.desc}</td>
-                    <td>${p.date}</td>
-                    <td style="text-align: center;">
-                        <button onclick="deletePostWP(${i})" class="button button-danger" style="padding: 0 6px;"><i class="fa-solid fa-trash"></i></button>
+                    <td>
+                        <strong><a href="javascript:void(0)" onclick="editPost(${idx})">${p.title}</a></strong>
+                        <div class="row-actions">
+                            <a href="javascript:void(0)" onclick="editPost(${idx})">Chỉnh sửa</a> | 
+                            <a href="javascript:void(0)" onclick="quickEditPost(${idx})">Sửa nhanh</a> | 
+                            <a href="javascript:void(0)" onclick="deletePost(${idx})" class="delete">Xóa</a> | 
+                            <a href="./index.html" target="_blank">Xem</a>
+                        </div>
                     </td>
+                    <td>${p.author}</td>
+                    <td><span style="background: #eef2f5; padding: 2px 6px; border-radius: 3px;">${p.category}</span></td>
+                    <td><span style="color: #646970;">${p.tags}</span></td>
+                    <td>Đã xuất bản<br><span style="color: #8c8f94; font-size: 11px;">${p.date}</span></td>
                 </tr>
+            `).join('');
+
+            // Render categories checklist in editor
+            const catBox = document.getElementById('postCategoriesChecklist');
+            catBox.innerHTML = appPostCats.map(c => `
+                <label style="display: block; margin-bottom: 4px; font-size: 13px;">
+                    <input type="checkbox" name="post_cat" value="${c.name}"> ${c.name}
+                </label>
             `).join('');
         }
 
-        function openNewPostModal() {
-            populateCategoryDropdowns();
-            document.getElementById('modal_post_title').value = '';
-            document.getElementById('modal_post_desc').value = '';
-            document.getElementById('modal_post_img').value = 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80';
-            document.getElementById('modal_post_preview').src = document.getElementById('modal_post_img').value;
-            document.getElementById('newPostModal').classList.add('show');
-        }
+        function saveNewPost(status) {
+            const title = document.getElementById('postEditorTitle').value.trim();
+            if (!title) { alert('Vui lòng nhập tiêu đề bài viết!'); return; }
+            const content = document.getElementById('postEditorContent').value.trim();
+            const image = document.getElementById('postEditorImageUrl').value.trim() || document.getElementById('postEditorImagePreview').src;
+            const excerpt = document.getElementById('postEditorExcerpt').value.trim();
+            
+            // Selected cat
+            const checkedCat = document.querySelector('input[name="post_cat"]:checked');
+            const category = checkedCat ? checkedCat.value : "Kiến thức chế tác";
 
-        function closeNewPostModal() {
-            document.getElementById('newPostModal').classList.remove('show');
-        }
-
-        function handleSaveNewPost(e) {
-            e.preventDefault();
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('vi-VN');
             const newPost = {
                 id: Date.now(),
-                title: document.getElementById('modal_post_title').value,
-                category: document.getElementById('modal_post_cat').value,
-                desc: document.getElementById('modal_post_desc').value,
-                image: document.getElementById('modal_post_img').value,
-                date: dateStr,
-                readTime: "5 phút đọc"
+                title: title,
+                slug: title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-'),
+                author: "modadep hungleo",
+                category: category,
+                tags: "mộ đá đẹp, lăng mộ",
+                date: "Vừa xong",
+                image: image,
+                content: content || excerpt
             };
 
-            if (!siteData.news) siteData.news = [];
-            siteData.news.unshift(newPost);
-
-            closeNewPostModal();
-            renderWPPosts();
-            saveAllChanges();
+            appPosts.unshift(newPost);
+            saveAllChanges(true);
+            renderPosts();
+            switchScreen('view-posts');
+            // reset
+            document.getElementById('postEditorTitle').value = '';
+            document.getElementById('postEditorContent').value = '';
+            document.getElementById('postEditorExcerpt').value = '';
         }
 
-        function deletePostWP(i) {
-            if (confirm('Xóa bài viết này?')) {
-                siteData.news.splice(i, 1);
-                renderWPPosts();
-                saveAllChanges();
+        function deletePost(idx) {
+            if (confirm(`Bạn có chắc chắn muốn xóa bài viết "${appPosts[idx].title}"?`)) {
+                appPosts.splice(idx, 1);
+                saveAllChanges(true);
+                renderPosts();
             }
         }
 
-        // ==========================================
-        // 2. CHUYÊN MỤC BÀI VIẾT (POST CATEGORIES)
-        // ==========================================
-        function renderWPPostCategories() {
-            const tbody = document.getElementById('wpPostCategoriesTableBody');
-            const cats = siteData.postCategories || [];
-            tbody.innerHTML = cats.map((c, i) => `
+        function editPost(idx) {
+            const p = appPosts[idx];
+            document.getElementById('postEditorTitle').value = p.title;
+            document.getElementById('postEditorContent').value = p.content || '';
+            document.getElementById('postEditorImagePreview').src = p.image;
+            document.getElementById('postEditorImageUrl').value = p.image;
+            switchScreen('view-new-post');
+        }
+
+        // --- RENDER CHUYÊN MỤC BÀI VIẾT ---
+        function renderPostCategories() {
+            const tbody = document.getElementById('postCategoriesTableBody');
+            tbody.innerHTML = appPostCats.map((c, idx) => `
                 <tr>
                     <td><strong>${c.name}</strong></td>
+                    <td style="color: #646970;">${c.desc || '—'}</td>
                     <td><code>${c.slug}</code></td>
-                    <td style="font-size: 11px; color: #646970;">${c.desc || ''}</td>
-                    <td><strong>${c.count || 0}</strong></td>
-                    <td style="text-align: center;">
-                        <button onclick="deletePostCategory(${i})" class="button button-danger" style="padding: 0 6px;"><i class="fa-solid fa-trash"></i></button>
-                    </td>
+                    <td style="text-align: center;"><strong>${c.count}</strong></td>
+                    <td style="text-align: center;"><a href="javascript:void(0)" onclick="deletePostCategory(${idx})" style="color: #d63638;"><i class="fa-solid fa-trash"></i></a></td>
                 </tr>
             `).join('');
         }
 
         function addNewPostCategory() {
-            const name = document.getElementById('new_post_cat_name').value.trim();
-            const slug = document.getElementById('new_post_cat_slug').value.trim() || name.toLowerCase().replace(/\s+/g, '-');
-            const desc = document.getElementById('new_post_cat_desc').value.trim();
+            const name = document.getElementById('newPostCatName').value.trim();
+            if (!name) { alert('Vui lòng nhập tên chuyên mục!'); return; }
+            const slug = document.getElementById('newPostCatSlug').value.trim() || name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            const desc = document.getElementById('newPostCatDesc').value.trim();
 
-            if (!name) { alert('Vui lòng nhập tên chuyên mục'); return; }
-
-            siteData.postCategories.push({ name, slug, desc, count: 0 });
-            document.getElementById('new_post_cat_name').value = '';
-            document.getElementById('new_post_cat_slug').value = '';
-            document.getElementById('new_post_cat_desc').value = '';
-
-            renderWPPostCategories();
-            populateCategoryDropdowns();
-            saveAllChanges();
+            appPostCats.push({ name, slug, desc, count: 0 });
+            saveAllChanges(true);
+            renderPostCategories();
+            renderPosts();
+            document.getElementById('newPostCatName').value = '';
+            document.getElementById('newPostCatSlug').value = '';
+            document.getElementById('newPostCatDesc').value = '';
         }
 
-        function deletePostCategory(i) {
-            if (confirm('Xóa chuyên mục bài viết này?')) {
-                siteData.postCategories.splice(i, 1);
-                renderWPPostCategories();
-                populateCategoryDropdowns();
-                saveAllChanges();
+        function deletePostCategory(idx) {
+            if (confirm(`Xóa chuyên mục "${appPostCats[idx].name}"?`)) {
+                appPostCats.splice(idx, 1);
+                saveAllChanges(true);
+                renderPostCategories();
             }
         }
 
-        // ==========================================
-        // 3. DANH MỤC SẢN PHẨM (PRODUCT CATEGORIES)
-        // ==========================================
-        function renderWPProductCategories() {
-            const tbody = document.getElementById('wpProductCategoriesTableBody');
-            const cats = siteData.categories || [];
-            tbody.innerHTML = cats.map((c, i) => `
+        // --- RENDER SẢN PHẨM (PRODUCTS) ---
+        function renderProducts(filter = 'all') {
+            const tbody = document.getElementById('productsTableBody');
+            let list = appProducts;
+            if (filter !== 'all') {
+                list = appProducts.filter(p => p.category.toLowerCase().includes(filter.replace('-', ' ')));
+            }
+            document.getElementById('productsCountSpan').innerText = appProducts.length;
+
+            tbody.innerHTML = list.map((p, idx) => `
                 <tr>
-                    <td><i class="fa-solid ${c.icon || 'fa-monument'}" style="color: #2271b1; font-size: 16px;"></i></td>
-                    <td><strong>${c.name}</strong></td>
-                    <td><code>${c.id}</code></td>
-                    <td><strong style="color: #007017;">${c.count}</strong></td>
-                    <td style="text-align: center;">
-                        <button onclick="deleteProductCategory(${i})" class="button button-danger" style="padding: 0 6px;"><i class="fa-solid fa-trash"></i></button>
+                    <td><input type="checkbox"></td>
+                    <td><img src="${p.image}" class="product-thumbnail"></td>
+                    <td>
+                        <strong><a href="javascript:void(0)" onclick="openProductModal(${idx})">${p.name}</a></strong>
+                        <div class="row-actions">
+                            <a href="javascript:void(0)" onclick="openProductModal(${idx})">Chỉnh sửa</a> | 
+                            <a href="javascript:void(0)" onclick="deleteProduct(${idx})" class="delete">Xóa</a> | 
+                            <a href="./index.html" target="_blank">Xem sản phẩm</a>
+                        </div>
                     </td>
+                    <td><code>${p.sku}</code></td>
+                    <td><span style="color: #00a32a; font-weight: 600;"><i class="fa-solid fa-check"></i> Còn hàng</span></td>
+                    <td><strong>${p.price}</strong></td>
+                    <td><span style="background: #eef2f5; padding: 2px 6px; border-radius: 3px;">${p.category}</span></td>
+                    <td><span style="color: #336039; font-weight: 500;">${p.size}</span></td>
+                    <td style="text-align: center;">
+                        <button onclick="openProductModal(${idx})" class="button" style="padding: 0 6px; font-size: 11px;"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterProducts(catSlug) {
+            renderProducts(catSlug);
+        }
+
+        function searchProductsTable() {
+            const q = document.getElementById('productSearchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#productsTableBody tr');
+            rows.forEach(r => {
+                r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+            });
+        }
+
+        function openProductModal(idx = -1) {
+            const modal = document.getElementById('productModal');
+            document.getElementById('editProductIndex').value = idx;
+            if (idx >= 0) {
+                const p = appProducts[idx];
+                document.getElementById('modalProductTitle').innerText = 'Chỉnh sửa sản phẩm: ' + p.name;
+                document.getElementById('modalProdName').value = p.name;
+                document.getElementById('modalProdSku').value = p.sku;
+                document.getElementById('modalProdPrice').value = p.price;
+                document.getElementById('modalProdCategory').value = p.category;
+                document.getElementById('modalProdSize').value = p.size;
+                document.getElementById('modalProdImg').value = p.image;
+                document.getElementById('modalProdDesc').value = p.desc || '';
+            } else {
+                document.getElementById('modalProductTitle').innerText = 'Thêm mới mẫu lăng mộ đá';
+                document.getElementById('modalProdName').value = '';
+                document.getElementById('modalProdSku').value = 'MD-' + Math.floor(Math.random() * 90 + 10);
+                document.getElementById('modalProdPrice').value = 'Liên hệ xưởng';
+                document.getElementById('modalProdSize').value = '81 x 127 cm (Tài Vượng)';
+                document.getElementById('modalProdImg').value = 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80';
+                document.getElementById('modalProdDesc').value = '';
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function saveProductModal() {
+            const name = document.getElementById('modalProdName').value.trim();
+            if (!name) { alert('Vui lòng nhập tên sản phẩm / mẫu mộ!'); return; }
+            const sku = document.getElementById('modalProdSku').value.trim();
+            const price = document.getElementById('modalProdPrice').value.trim() || 'Liên hệ báo giá';
+            const category = document.getElementById('modalProdCategory').value;
+            const size = document.getElementById('modalProdSize').value.trim();
+            const image = document.getElementById('modalProdImg').value.trim() || 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80';
+            const desc = document.getElementById('modalProdDesc').value.trim();
+
+            const idx = parseInt(document.getElementById('editProductIndex').value);
+            if (idx >= 0) {
+                appProducts[idx] = { id: appProducts[idx].id, name, sku, category, size, price, image, desc };
+            } else {
+                appProducts.unshift({ id: Date.now(), name, sku, category, size, price, image, desc });
+            }
+
+            saveAllChanges(true);
+            renderProducts();
+            closeProductModal();
+        }
+
+        function deleteProduct(idx) {
+            if (confirm(`Bạn có chắc muốn xóa mẫu mộ "${appProducts[idx].name}"?`)) {
+                appProducts.splice(idx, 1);
+                saveAllChanges(true);
+                renderProducts();
+            }
+        }
+
+        // --- RENDER DANH MỤC SẢN PHẨM ---
+        function renderProductCategories() {
+            const tbody = document.getElementById('productCategoriesTableBody');
+            tbody.innerHTML = appProductCats.map((c, idx) => `
+                <tr>
+                    <td><strong>${c.name}</strong></td>
+                    <td style="color: #646970;">${c.desc || '—'}</td>
+                    <td><code>${c.slug}</code></td>
+                    <td style="text-align: center;"><strong>${c.count}</strong></td>
+                    <td style="text-align: center;"><a href="javascript:void(0)" onclick="deleteProductCategory(${idx})" style="color: #d63638;"><i class="fa-solid fa-trash"></i></a></td>
                 </tr>
             `).join('');
         }
 
         function addNewProductCategory() {
-            const name = document.getElementById('new_prod_cat_name').value.trim();
-            const slug = document.getElementById('new_prod_cat_slug').value.trim() || name.toLowerCase().replace(/\s+/g, '-');
-            const count = document.getElementById('new_prod_cat_count').value.trim() || '20+ Mẫu đẹp';
+            const name = document.getElementById('newProdCatName').value.trim();
+            if (!name) { alert('Vui lòng nhập tên danh mục sản phẩm!'); return; }
+            const slug = document.getElementById('newProdCatSlug').value.trim() || name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            const desc = document.getElementById('newProdCatDesc').value.trim();
 
-            if (!name) { alert('Vui lòng nhập tên danh mục sản phẩm'); return; }
-
-            siteData.categories.push({ id: slug, name, count, icon: 'fa-monument' });
-            document.getElementById('new_prod_cat_name').value = '';
-            document.getElementById('new_prod_cat_slug').value = '';
-            document.getElementById('new_prod_cat_count').value = '';
-
-            renderWPProductCategories();
-            populateCategoryDropdowns();
-            saveAllChanges();
+            appProductCats.push({ name, slug, desc, count: 0 });
+            saveAllChanges(true);
+            renderProductCategories();
+            document.getElementById('newProdCatName').value = '';
+            document.getElementById('newProdCatSlug').value = '';
+            document.getElementById('newProdCatDesc').value = '';
         }
 
-        function deleteProductCategory(i) {
-            if (confirm('Xóa danh mục sản phẩm này?')) {
-                siteData.categories.splice(i, 1);
-                renderWPProductCategories();
-                populateCategoryDropdowns();
-                saveAllChanges();
+        function deleteProductCategory(idx) {
+            if (confirm(`Xóa danh mục sản phẩm "${appProductCats[idx].name}"?`)) {
+                appProductCats.splice(idx, 1);
+                saveAllChanges(true);
+                renderProductCategories();
             }
         }
 
-        function populateCategoryDropdowns() {
-            // Dropdown danh mục sản phẩm
-            const prodSelect = document.getElementById('modal_prod_cat');
-            if (prodSelect && siteData.categories) {
-                prodSelect.innerHTML = siteData.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            }
-
-            // Dropdown chuyên mục bài viết
-            const postSelect = document.getElementById('modal_post_cat');
-            if (postSelect && siteData.postCategories) {
-                postSelect.innerHTML = siteData.postCategories.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-            }
-        }
-
-        // ==========================================
-        // 4. QUẢN LÝ PLUGIN
-        // ==========================================
-        function renderWPPlugins() {
-            const tbody = document.getElementById('wpPluginsTableBody');
-            const plugins = siteData.plugins || defaultPlugins;
-            tbody.innerHTML = plugins.map((p, i) => `
-                <tr style="${p.active ? 'background: #f7fcfe;' : ''}">
-                    <td>
-                        <strong style="color: #2271b1; font-size: 13px;">${p.name}</strong>
-                        <div style="font-size: 11px; color: #646970; margin-top: 4px;">
-                            ${p.active ? '<span style="color: #007017; font-weight: bold;">Đang kích hoạt</span> | <a href="javascript:void(0)" onclick="togglePluginActive('+i+')" style="color: #d63638;">Ngừng kích hoạt</a>' : '<span style="color: #646970;">Đang tắt</span> | <a href="javascript:void(0)" onclick="togglePluginActive('+i+')" style="color: #2271b1;">Kích hoạt</a>'}
+        // --- RENDER PLUGINS ---
+        function renderPlugins() {
+            const tbody = document.getElementById('pluginsTableBody');
+            tbody.innerHTML = appPlugins.map((pl, idx) => `
+                <tr style="${!pl.active ? 'background: #fbfbfb;' : ''}">
+                    <td><input type="checkbox" ${pl.active ? 'checked' : ''}></td>
+                    <td style="width: 250px;">
+                        <strong>${pl.name}</strong>
+                        <div class="row-actions" style="visibility: visible;">
+                            <a href="javascript:void(0)" onclick="togglePlugin(${idx})">${pl.active ? 'Ngừng kích hoạt' : 'Kích hoạt'}</a> | 
+                            <a href="javascript:void(0)" onclick="alert('Cấu hình plugin: ${pl.name}')">Cài đặt</a>
                         </div>
                     </td>
                     <td>
-                        <p>${p.desc}</p>
-                        <span style="font-size: 11px; color: #646970;">Phiên bản: ${p.ver}</span>
-                    </td>
-                    <td>
-                        ${p.active ? '<span style="background: #e7f3ff; color: #185a9d; padding: 2px 8px; border-radius: 3px; font-weight: bold; font-size: 11px;">Hoạt động</span>' : '<span style="background: #f0f0f1; padding: 2px 8px; border-radius: 3px; font-size: 11px;">Chưa bật</span>'}
+                        <p style="margin-bottom: 4px;">${pl.desc}</p>
+                        <div style="font-size: 11px; color: #646970;">Phiên bản ${pl.version} | Bởi <a href="javascript:void(0)">${pl.author}</a></div>
                     </td>
                 </tr>
             `).join('');
         }
 
-        function togglePluginActive(i) {
-            siteData.plugins[i].active = !siteData.plugins[i].active;
-            renderWPPlugins();
-            saveAllChanges();
+        function togglePlugin(idx) {
+            appPlugins[idx].active = !appPlugins[idx].active;
+            saveAllChanges(true);
+            renderPlugins();
         }
 
-        function renderWPInstallablePlugins() {
-            const grid = document.getElementById('wpInstallPluginsGrid');
-            const store = [
-                { name: "Elementor Website Builder", desc: "Kéo thả trang tùy biến nâng cao.", author: "Elementor.com" },
-                { name: "Google Site Kit", desc: "Kết nối Google Search Console và Google Analytics.", author: "Google" },
-                { name: "Yoast SEO", desc: "Bộ công cụ SEO kinh điển thay thế.", author: "Team Yoast" },
-                { name: "Duplicator Pro", desc: "Sao lưu và chuyển website sang hosting khác dễ dàng.", author: "Snap Creek" }
-            ];
-
-            grid.innerHTML = store.map(s => `
-                <div class="postbox" style="padding: 15px;">
-                    <strong style="font-size: 14px; color: #2271b1;">${s.name}</strong>
-                    <p style="font-size: 12px; color: #646970; margin: 6px 0 10px;">${s.desc}</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 11px; color: #8c8f94;">Tác giả: ${s.author}</span>
-                        <button onclick="installStorePlugin('${s.name}', '${s.desc}')" class="button button-primary">Cài đặt ngay</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function installStorePlugin(name, desc) {
-            if (!siteData.plugins) siteData.plugins = [];
-            siteData.plugins.push({ name, desc, ver: "1.0", active: true });
-            alert('Đã cài đặt và kích hoạt thành công plugin: ' + name);
-            renderWPPlugins();
-            saveAllChanges();
-        }
-
-        // ==========================================
-        // 5. WOOCOMMERCE SẢN PHẨM
-        // ==========================================
-        function renderWPProducts(filterCat = 'all') {
-            const tbody = document.getElementById('wpProductsTableBody');
-            const prods = siteData.products || [];
-            document.getElementById('totalProductsCount').innerText = prods.length;
-
-            const filtered = filterCat === 'all' ? prods : prods.filter(p => p.category === filterCat);
-
-            tbody.innerHTML = filtered.map((p, i) => `
+        // --- RENDER YÊU CẦU BÁO GIÁ (QUOTES) ---
+        function renderQuotes() {
+            const tbody = document.getElementById('quotesTableBody');
+            tbody.innerHTML = appQuotes.map((q, idx) => `
                 <tr>
-                    <td><img src="${p.image}" class="product-thumbnail"></td>
-                    <td>
-                        <strong style="color: #2271b1; font-size: 14px;">${p.name}</strong>
-                        ${p.badge ? `<span style="background: #e7f3ff; color: #185a9d; padding: 1px 6px; border-radius: 3px; font-size: 10px; margin-left: 6px; font-weight: bold;">${p.badge}</span>` : ''}
-                        <div style="font-size: 11px; color: #646970; margin-top: 4px;">
-                            <span>Chất liệu: ${p.material || 'Đá xanh rêu'}</span>
-                        </div>
-                    </td>
-                    <td><code>${p.code}</code></td>
-                    <td><span style="background: #f0f0f1; padding: 2px 6px; border-radius: 3px;">${p.category}</span></td>
-                    <td><strong style="color: #007017;">${p.dimension || 'Chuẩn Lỗ Ban'}</strong></td>
-                    <td><strong style="color: #d63638;">${p.price}</strong></td>
-                    <td style="text-align: center;">
-                        <button onclick="editProductWP(${i})" class="button" style="padding: 0 6px; font-size: 11px;"><i class="fa-solid fa-pen"></i> Sửa</button>
-                        <button onclick="deleteProductWP(${i})" class="button button-danger" style="padding: 0 6px; font-size: 11px;"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function filterTableCategory(cat) { renderWPProducts(cat); }
-
-        function openProductModal(index = -1) {
-            populateCategoryDropdowns();
-            const modal = document.getElementById('productModal');
-            const title = document.getElementById('productModalTitle');
-            if (index >= 0) {
-                const p = siteData.products[index];
-                title.innerText = 'Sửa mẫu mộ: ' + p.name;
-                document.getElementById('modal_prod_id').value = index;
-                document.getElementById('modal_prod_name').value = p.name;
-                document.getElementById('modal_prod_code').value = p.code;
-                document.getElementById('modal_prod_cat').value = p.category;
-                document.getElementById('modal_prod_badge').value = p.badge || '';
-                document.getElementById('modal_prod_price').value = p.price || 'Liên Hệ';
-                document.getElementById('modal_prod_dim').value = p.dimension || '';
-                document.getElementById('modal_prod_mat').value = p.material || '';
-                document.getElementById('modal_prod_img').value = p.image || '';
-                document.getElementById('modal_prod_preview').src = p.image || '';
-            } else {
-                title.innerText = 'Thêm mẫu mộ mới';
-                document.getElementById('modal_prod_id').value = -1;
-                document.getElementById('modal_prod_name').value = '';
-                document.getElementById('modal_prod_code').value = 'MD-' + Math.floor(100 + Math.random() * 900);
-                document.getElementById('modal_prod_badge').value = 'Mẫu Đẹp 2026';
-                document.getElementById('modal_prod_price').value = 'Liên Hệ';
-                document.getElementById('modal_prod_dim').value = '89 x 147 cm';
-                document.getElementById('modal_prod_mat').value = 'Đá xanh rêu Thanh Hóa';
-                document.getElementById('modal_prod_img').value = 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80';
-                document.getElementById('modal_prod_preview').src = document.getElementById('modal_prod_img').value;
-            }
-            modal.classList.add('show');
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('show');
-        }
-
-        function handleSaveProductWP(e) {
-            e.preventDefault();
-            const idx = parseInt(document.getElementById('modal_prod_id').value);
-            const item = {
-                id: idx >= 0 ? siteData.products[idx].id : Date.now(),
-                name: document.getElementById('modal_prod_name').value,
-                code: document.getElementById('modal_prod_code').value,
-                category: document.getElementById('modal_prod_cat').value,
-                badge: document.getElementById('modal_prod_badge').value,
-                price: document.getElementById('modal_prod_price').value,
-                dimension: document.getElementById('modal_prod_dim').value,
-                material: document.getElementById('modal_prod_mat').value,
-                image: document.getElementById('modal_prod_img').value
-            };
-
-            if (idx >= 0) siteData.products[idx] = item;
-            else {
-                if (!siteData.products) siteData.products = [];
-                siteData.products.push(item);
-            }
-            closeProductModal();
-            renderWPProducts();
-            saveAllChanges();
-        }
-
-        function editProductWP(i) { openProductModal(i); }
-        function deleteProductWP(i) {
-            if (confirm('Bạn có chắc muốn xóa sản phẩm này?')) {
-                siteData.products.splice(i, 1);
-                renderWPProducts();
-                saveAllChanges();
-            }
-        }
-
-        // ==========================================
-        // 6. CÔNG TRÌNH, CAM KẾT & QUOTES
-        // ==========================================
-        function renderWPProjects() {
-            const tbody = document.getElementById('wpProjectsTableBody');
-            const items = siteData.projects || [];
-            tbody.innerHTML = items.map((p, i) => `
-                <tr>
-                    <td><img src="${p.image}" class="product-thumbnail"></td>
-                    <td><input type="text" value="${p.title}" onchange="siteData.projects[${i}].title = this.value" class="regular-text" style="width: 100%; font-weight: bold;"></td>
-                    <td><input type="text" value="${p.location}" onchange="siteData.projects[${i}].location = this.value" class="regular-text" style="width: 100px;"></td>
-                    <td><input type="text" value="${p.date}" onchange="siteData.projects[${i}].date = this.value" class="regular-text" style="width: 110px;"></td>
-                    <td><textarea onchange="siteData.projects[${i}].desc = this.value" rows="2" class="large-text" style="width: 100%; font-size: 11px;">${p.desc}</textarea></td>
-                </tr>
-            `).join('');
-        }
-
-        function renderWPQuotes() {
-            const tbody = document.getElementById('wpQuotesTableBody');
-            const items = siteData.quotes || [];
-            document.getElementById('topbarQuotesCount').innerText = items.length;
-            document.getElementById('menuQuoteBadge').innerText = items.length;
-
-            const dashWidget = document.getElementById('dashboardQuotesWidget');
-            if (items.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #8c8f94; padding: 20px;">Chưa có yêu cầu báo giá nào từ khách hàng.</td></tr>`;
-                dashWidget.innerHTML = `<p style="color: #646970;">Chưa có đơn yêu cầu báo giá nào mới.</p>`;
-                return;
-            }
-
-            const latest = items[0];
-            dashWidget.innerHTML = `
-                <div style="background: #f6f7f7; padding: 10px; border-radius: 4px; border-left: 4px solid #2271b1;">
-                    <p><strong>Khách hàng:</strong> ${latest.name} - <a href="tel:${latest.phone}" style="color: #d63638; font-weight: bold;">${latest.phone}</a></p>
-                    <p style="font-size: 12px; margin-top: 4px;"><strong>Hạng mục:</strong> ${latest.item} (${latest.address || ''})</p>
-                    <p style="font-size: 11px; color: #646970; margin-top: 4px;">${latest.note || ''}</p>
-                </div>
-            `;
-
-            tbody.innerHTML = items.map((q, i) => `
-                <tr>
-                    <td style="color: #646970;">${q.createdAt || ''}</td>
                     <td><strong>${q.name}</strong></td>
-                    <td><a href="tel:${q.phone}" style="color: #d63638; font-weight: bold;">${q.phone}</a></td>
-                    <td>${q.item}</td>
-                    <td>${q.address || ''}</td>
-                    <td style="max-width: 250px; font-size: 11px; color: #50575e;">${q.note || ''}</td>
+                    <td><a href="tel:${q.phone}" style="color: #336039; font-weight: 700;"><i class="fa-solid fa-phone"></i> ${q.phone}</a></td>
+                    <td>${q.city}</td>
+                    <td><span style="background: #eef2f5; padding: 2px 6px; border-radius: 3px; font-weight: 500;">${q.item}</span></td>
+                    <td>${q.size}</td>
+                    <td><span style="color: #8c8f94; font-size: 12px;">${q.time}</span></td>
                     <td style="text-align: center;">
-                        <button onclick="deleteQuoteWP(${i})" class="button button-danger" style="padding: 0 6px;"><i class="fa-solid fa-trash"></i></button>
+                        <a href="https://zalo.me/${q.phone.replace(/[^0-9]/g, '')}" target="_blank" class="button button-primary" style="padding: 0 8px; font-size: 11px; background: #0068ff; border-color: #0068ff;"><i class="fa-solid fa-comment-dots"></i> Zalo</a>
+                        <button onclick="deleteQuote(${idx})" class="button button-danger" style="padding: 0 6px; font-size: 11px;"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             `).join('');
         }
 
-        function deleteQuoteWP(i) {
-            if (confirm('Xóa thông tin khách hàng này?')) {
-                siteData.quotes.splice(i, 1);
-                renderWPQuotes();
-                saveAllChanges();
+        function deleteQuote(idx) {
+            if (confirm(`Xóa yêu cầu của khách hàng "${appQuotes[idx].name}"?`)) {
+                appQuotes.splice(idx, 1);
+                saveAllChanges(true);
+                renderQuotes();
             }
         }
 
-        function clearAllQuotesWP() {
-            if (confirm('Xóa toàn bộ thư báo giá?')) {
-                siteData.quotes = [];
-                renderWPQuotes();
-                saveAllChanges();
-            }
+        function saveQuickDraft() {
+            const t = document.getElementById('quickDraftTitle').value.trim();
+            const c = document.getElementById('quickDraftContent').value.trim();
+            if (!t) { alert('Vui lòng nhập tiêu đề bản nháp!'); return; }
+            appPosts.unshift({
+                id: Date.now(),
+                title: t,
+                slug: t.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+                author: "modadep hungleo",
+                category: "Bản nháp",
+                tags: "nháp",
+                date: "Vừa xong",
+                image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=600&q=80",
+                content: c
+            });
+            saveAllChanges(true);
+            renderPosts();
+            document.getElementById('quickDraftTitle').value = '';
+            document.getElementById('quickDraftContent').value = '';
+            showToast("Bản nháp đã được lưu vào danh sách bài viết!");
         }
 
-        function renderWPCommitments() {
-            const container = document.getElementById('wpCommitmentsGrid');
-            const items = siteData.commitments || [];
-            container.innerHTML = items.map((c, i) => `
-                <div class="postbox">
-                    <div class="postbox-header"><span>Cam kết ${i+1}: ${c.title}</span></div>
-                    <div class="postbox-content">
-                        <input type="text" value="${c.title}" onchange="siteData.commitments[${i}].title = this.value" class="regular-text" style="width: 100%; margin-bottom: 8px; font-weight: bold;">
-                        <textarea rows="3" onchange="siteData.commitments[${i}].desc = this.value" class="large-text" style="width: 100%;">${c.desc}</textarea>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderWPMedia() {
-            const grid = document.getElementById('wpMediaGrid');
-            const prods = siteData.products || [];
-            const projs = siteData.projects || [];
-            const images = [...new Set([...prods.map(p => p.image), ...projs.map(p => p.image)])];
-
-            grid.innerHTML = images.map(img => `
-                <div style="border: 1px solid #dcdcde; border-radius: 4px; overflow: hidden; background: #fff; text-align: center; padding: 4px;">
-                    <img src="${img}" style="width: 100%; height: 90px; object-fit: cover; border-radius: 2px;">
-                    <button onclick="navigator.clipboard.writeText('${img}'); alert('Đã sao chép link ảnh!');" class="button" style="width: 100%; margin-top: 4px; font-size: 10px; padding: 0;">Copy link</button>
-                </div>
-            `).join('');
-        }
-
-        function uploadImageWP(event, targetInputId, targetPreviewId) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const base64Data = e.target.result;
-                if (targetPreviewId) document.getElementById(targetPreviewId).src = base64Data;
-                if (targetInputId) document.getElementById(targetInputId).value = base64Data;
-
-                try {
-                    const res = await fetch('/api/upload', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ base64: base64Data })
-                    });
-                    const d = await res.json();
-                    if (d.success && d.url) {
-                        if (targetInputId) document.getElementById(targetInputId).value = d.url;
-                        if (targetPreviewId) document.getElementById(targetPreviewId).src = d.url;
-                    }
-                } catch (err) {}
-                renderWPMedia();
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // ==========================================
-        // 7. LƯU THAY ĐỔI TOÀN BỘ
-        // ==========================================
-        async function saveAllChanges() {
-            if (!siteData.general) siteData.general = {};
-            siteData.general.brandName = document.getElementById('set_siteTitle').value;
-            siteData.general.domain = document.getElementById('set_domain').value;
-            siteData.general.hotline = document.getElementById('set_hotline').value;
-            siteData.general.phoneRaw = document.getElementById('set_phoneRaw').value;
-            siteData.general.email = document.getElementById('set_email').value;
-            siteData.general.address = document.getElementById('set_address').value;
-            siteData.general.workingHours = document.getElementById('set_workingHours').value;
-            siteData.general.badgeText = document.getElementById('set_badgeText').value;
-
-            if (!siteData.hero) siteData.hero = {};
-            siteData.hero.badge = document.getElementById('hero_set_badge').value;
-            siteData.hero.title1 = document.getElementById('hero_set_title1').value;
-            siteData.hero.title2 = document.getElementById('hero_set_title2').value;
-            siteData.hero.description = document.getElementById('hero_set_desc').value;
-            siteData.hero.bgImage = document.getElementById('hero_set_bg').value;
-            siteData.hero.statYears = document.getElementById('hero_set_years').value;
-            siteData.hero.statYearsDesc = document.getElementById('hero_set_yearsDesc').value;
-            siteData.hero.statProjects = document.getElementById('hero_set_proj').value;
-            siteData.hero.statProjectsDesc = document.getElementById('hero_set_projDesc').value;
-            siteData.hero.statQuality = document.getElementById('hero_set_qual').value;
-            siteData.hero.statQualityDesc = document.getElementById('hero_set_qualDesc').value;
-
-            if (!siteData.about) siteData.about = {};
-            siteData.about.title = document.getElementById('about_set_title').value;
-            siteData.about.p1 = document.getElementById('about_set_p1').value;
-            siteData.about.p2 = document.getElementById('about_set_p2').value;
-            siteData.about.image = document.getElementById('about_set_img').value;
-
-            localStorage.setItem('modadep_local_data', JSON.stringify(siteData));
-
-            try {
-                await fetch('/api/content', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(siteData)
-                });
-            } catch (e) {}
-
-            const notice = document.getElementById('wpSaveNotice');
-            notice.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => { notice.style.display = 'none'; }, 4000);
-        }
-
-        // Chuyển màn hình
-        function switchScreen(viewId) {
-            document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById(viewId);
-            if (target) target.classList.add('active');
-
-            document.querySelectorAll('#adminmenu li').forEach(el => el.classList.remove('current', 'active'));
-            if (event && event.currentTarget) {
-                const li = event.currentTarget.closest('li');
-                if (li) li.classList.add('current', 'active');
-            }
-        }
+        // INITIALIZE ALL
+        window.onload = function() {
+            renderPosts();
+            renderPostCategories();
+            renderProducts();
+            renderProductCategories();
+            renderPlugins();
+            renderQuotes();
+        };
     </script>
 </body>
 </html>

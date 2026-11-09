@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MỘ ĐÁ ĐẸP (modadep.com.vn) - Chuyên Thiết Kế Thi Công Lăng Mộ Đá Cao Cấp</title>
+    <title>Mộ Đá Đẹp Ninh Bình - Chuyên Thiết Kế, Chế Tác Và Thi Công Đá Mỹ Nghệ</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Tailwind CSS CDN -->
@@ -17,1246 +17,776 @@
             theme: {
                 extend: {
                     colors: {
-                        stonegold: {
-                            50: '#fdfbf7',
-                            100: '#f7f2e7',
-                            200: '#ede0c8',
-                            300: '#dfc79f',
-                            400: '#cfa971',
-                            500: '#c2904d',
-                            600: '#b0793b',
-                            700: '#8c5c2d',
-                            800: '#6f4726',
-                            900: '#4d321d',
+                        modagreen: {
+                            50: '#f2f8f3',
+                            100: '#e1efe4',
+                            200: '#c4dfca',
+                            500: '#336039', // Màu xanh rêu thương hiệu chuẩn của modadep.com
+                            600: '#2a522f',
+                            700: '#234427',
+                            800: '#1b351e',
+                            900: '#132616',
                         },
-                        stoneblue: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            950: '#080d1a',
-                        },
-                        rubyred: '#8b1e1e'
+                        modagold: '#dd9933',
+                        modared: '#d63638',
                     },
                     fontFamily: {
-                        heading: ['Playfair Display', 'serif'],
-                        cinzel: ['Cinzel', 'serif'],
-                        body: ['Montserrat', 'sans-serif'],
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif']
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        .font-heading { font-family: 'Playfair Display', serif; }
-        .font-cinzel { font-family: 'Cinzel', serif; }
-        
-        /* Gold gradient button */
+        body { font-family: 'Roboto', sans-serif; color: #333333; }
+        .bg-modagreen { background-color: #336039; }
+        .text-modagreen { color: #336039; }
+        .border-modagreen { border-color: #336039; }
+        .btn-green {
+            background-color: #336039;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-green:hover {
+            background-color: #234427;
+            box-shadow: 0 4px 12px rgba(51, 96, 57, 0.35);
+        }
         .btn-gold {
-            background: linear-gradient(135deg, #dfc79f 0%, #c2904d 50%, #8c5c2d 100%);
+            background-color: #dd9933;
             color: #ffffff;
             transition: all 0.3s ease;
         }
         .btn-gold:hover {
-            background: linear-gradient(135deg, #eedbc1 0%, #d4a564 50%, #9e6934 100%);
-            box-shadow: 0 4px 15px rgba(194, 144, 77, 0.4);
-            transform: translateY(-2px);
+            background-color: #c48225;
+        }
+
+        /* Section Title Bar chuẩn Flatsome modadep.com */
+        .section-title-modadep {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #336039;
+            margin-bottom: 25px;
+            padding-bottom: 8px;
+        }
+        .section-title-modadep h2 {
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #336039;
+            margin: 0;
+            position: relative;
+        }
+        .section-title-modadep a.view-all {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .section-title-modadep a.view-all:hover {
+            color: #336039;
+            text-decoration: underline;
+        }
+
+        /* Product Card Style */
+        .product-card-modadep {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card-modadep:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: #336039;
+        }
+        .product-card-modadep img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card-modadep:hover img {
+            transform: scale(1.05);
         }
 
         /* Pulsing Phone Ring */
         @keyframes phoneRing {
-            0% { transform: rotate(0) scale(1) skew(1deg); }
-            10% { transform: rotate(-25deg) scale(1.1) skew(1deg); }
-            20% { transform: rotate(25deg) scale(1.1) skew(1deg); }
-            30% { transform: rotate(-25deg) scale(1.1) skew(1deg); }
-            40% { transform: rotate(25deg) scale(1.1) skew(1deg); }
-            50% { transform: rotate(0) scale(1) skew(1deg); }
-            100% { transform: rotate(0) scale(1) skew(1deg); }
+            0% { transform: rotate(0) scale(1); }
+            10% { transform: rotate(-25deg) scale(1.1); }
+            20% { transform: rotate(25deg) scale(1.1); }
+            30% { transform: rotate(-25deg) scale(1.1); }
+            40% { transform: rotate(25deg) scale(1.1); }
+            50% { transform: rotate(0) scale(1); }
+            100% { transform: rotate(0) scale(1); }
         }
-        .shake-phone {
-            animation: phoneRing 1.5s infinite ease-in-out;
-        }
-        
-        /* Subtle Pattern */
-        .bg-pattern {
-            background-color: #0f172a;
-            background-image: radial-gradient(rgba(194, 144, 77, 0.12) 1px, transparent 0);
-            background-size: 24px 24px;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #b0793b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #c2904d; }
-
-        .gold-border {
-            border-image: linear-gradient(to right, transparent, #c2904d, transparent) 1;
-        }
+        .shake-phone { animation: phoneRing 1.5s infinite ease-in-out; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-stonegold-500 selection:text-white">
+<body class="bg-gray-50 text-gray-800 antialiased">
 
     <!-- ========================================================= -->
-    <!-- 1. TOP BAR (Thanh thông tin liên hệ trên cùng - Chuẩn HanoiFire) -->
+    <!-- 1. TOPBAR TRÊN CÙNG (Chuẩn modadep.com) -->
     <!-- ========================================================= -->
-    <div class="bg-stoneblue-950 text-gray-300 text-xs border-b border-stonegold-700/30 py-2">
+    <div class="bg-gray-100 text-gray-600 text-xs py-2 border-b border-gray-200">
         <div class="container mx-auto px-4 flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center space-x-6 flex-wrap">
-                <span class="flex items-center text-gray-300">
-                    <i class="fa-solid fa-location-dot text-stonegold-400 mr-2"></i> Làng Nghề Đá Mỹ Nghệ Ninh Vân, Hoa Lư, Ninh Bình
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center">
+                    <i class="fa-regular fa-clock text-modagreen mr-1.5"></i> Giờ mở cửa: <strong>6:30 – 21:00</strong> (Các ngày trong tuần)
                 </span>
-                <span class="hidden md:flex items-center text-gray-300">
-                    <i class="fa-regular fa-clock text-stonegold-400 mr-2"></i> Giờ làm việc: 7h30 - 20h00 (Cả Thứ 7, CN)
+                <span class="hidden md:flex items-center">
+                    <i class="fa-solid fa-envelope text-modagreen mr-1.5"></i> Email: <a href="mailto:Modadep8386@gmail.com" class="hover:text-modagreen ml-1">Modadep8386@gmail.com</a>
                 </span>
-                <span class="hidden lg:flex items-center text-gray-300">
-                    <i class="fa-solid fa-award text-stonegold-400 mr-2"></i> Nghệ nhân Quốc Gia - 25+ Năm Làng Nghề
+                <span class="hidden lg:flex items-center">
+                    <i class="fa-solid fa-location-dot text-modagreen mr-1.5"></i> Làng Nghề Đá Ninh Vân, Hoa Lư, Ninh Bình
                 </span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="tel:0988226951" class="text-stonegold-400 font-bold hover:text-stonegold-300 flex items-center">
+                <a href="tel:0988226951" class="text-modared font-bold flex items-center hover:underline">
                     <i class="fa-solid fa-phone-volume mr-1.5 shake-phone"></i> Hotline/Zalo: 0988.226.951
                 </a>
-                <span class="text-gray-600">|</span>
-                <div class="flex space-x-3 text-sm">
-                    <a href="#" class="text-gray-400 hover:text-stonegold-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-stonegold-400 transition"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-stonegold-400 transition"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
+                <span class="text-gray-300">|</span>
+                <a href="/admin" target="_blank" class="hover:text-modagreen"><i class="fa-solid fa-lock text-[11px] mr-1"></i>Quản trị</a>
             </div>
         </div>
     </div>
 
     <!-- ========================================================= -->
-    <!-- 2. MAIN HEADER (Logo, Slogan, Tìm kiếm, Hotline Báo giá) -->
+    <!-- 2. MAIN HEADER (Logo, Search bar, Hotline box - Chuẩn modadep.com) -->
     <!-- ========================================================= -->
-    <header class="bg-stoneblue-900 sticky top-0 z-50 shadow-md border-b border-stonegold-600/30">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <header class="bg-white py-4 shadow-sm">
+        <div class="container mx-auto px-4 flex items-center justify-between gap-4">
             <!-- Brand Logo -->
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-12 h-12 rounded-full border-2 border-stonegold-500 bg-stoneblue-950 flex items-center justify-center shadow-inner group-hover:border-stonegold-400 transition">
-                    <i class="fa-solid fa-monument text-stonegold-400 text-2xl"></i>
+            <a href="/" class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded bg-modagreen text-white flex items-center justify-center font-bold text-2xl shadow">
+                    <i class="fa-solid fa-monument"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-cinzel font-bold text-stonegold-300 tracking-wider uppercase leading-none">
-                        MỘ ĐÁ ĐẸP
-                    </h1>
-                    <span class="text-[11px] text-stonegold-400 font-semibold tracking-wider block mt-1">
-                        modadep.com.vn • Hotline: 0988.226.951
-                    </span>
+                    <div class="text-2xl md:text-3xl font-extrabold text-modagreen tracking-wide uppercase leading-tight">
+                        MODADEP
+                    </div>
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        MỘ ĐÁ ĐẸP NINH BÌNH • THƯƠNG HIỆU TRĂM NĂM
+                    </div>
                 </div>
             </a>
 
-            <!-- Search Bar (Tương tự HanoiFire) -->
-            <div class="hidden lg:flex flex-1 max-w-md mx-6">
-                <form class="w-full relative flex">
-                    <input type="text" placeholder="Tìm mẫu lăng mộ đá, mộ đôi, cuốn thư, lan can..." 
-                           class="w-full bg-stoneblue-950 text-sm text-gray-200 placeholder-gray-400 rounded-l-md px-4 py-2.5 border border-stonegold-700/50 focus:outline-none focus:border-stonegold-400">
-                    <button type="button" class="btn-gold px-5 rounded-r-md text-stoneblue-950 font-bold hover:opacity-90 transition">
+            <!-- Search Form -->
+            <div class="hidden md:flex flex-1 max-w-md mx-6">
+                <form class="w-full flex relative">
+                    <input type="text" placeholder="Tìm kiếm mẫu lăng mộ đá, mộ granite, mộ đôi, cuốn thư..." 
+                           class="w-full border-2 border-modagreen rounded-l px-4 py-2 text-sm focus:outline-none">
+                    <button type="button" class="btn-green px-5 rounded-r font-bold">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
             </div>
 
-            <!-- Hotline & CTA Báo Giá -->
-            <div class="hidden sm:flex items-center space-x-4">
-                <div class="flex items-center space-x-3 border-r border-stonegold-700/40 pr-4">
-                    <div class="w-10 h-10 rounded-full bg-rubyred/80 flex items-center justify-center text-white text-lg">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <div>
-                        <div class="text-[11px] uppercase text-gray-400 font-semibold">Tư Vấn Phong Thủy 24/7</div>
-                        <a href="tel:0988226951" class="text-stonegold-400 font-bold text-base hover:text-stonegold-300">0988.226.951</a>
-                    </div>
+            <!-- Hotline Box -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-full bg-red-100 flex items-center justify-center text-modared text-xl">
+                    <i class="fa-solid fa-headset"></i>
                 </div>
-                <button onclick="openQuoteModal()" class="btn-gold px-4 py-2.5 rounded text-xs uppercase tracking-wider font-bold shadow flex items-center space-x-2">
-                    <i class="fa-solid fa-calculator"></i>
-                    <span>Dự Toán Chi Phí</span>
-                </button>
+                <div>
+                    <div class="text-[11px] font-bold text-gray-500 uppercase">TƯ VẤN PHONG THỦY 24/7</div>
+                    <a href="tel:0988226951" class="text-modared font-extrabold text-lg leading-tight hover:underline">0988.226.951</a>
+                </div>
             </div>
 
-            <!-- Mobile Hamburger -->
-            <button id="mobileMenuBtn" class="lg:hidden text-stonegold-400 text-2xl p-2 focus:outline-none">
+            <!-- Mobile menu button -->
+            <button id="mobileMenuToggle" class="lg:hidden text-modagreen text-2xl p-2 focus:outline-none">
                 <i class="fa-solid fa-bars"></i>
             </button>
-        </div>
-
-        <!-- ========================================================= -->
-        <!-- 3. NAVIGATION MENU (Thanh Điều Hướng Đa Cấp - Chuẩn HanoiFire) -->
-        <!-- ========================================================= -->
-        <nav class="bg-stoneblue-950 border-t border-stonegold-900/80 hidden lg:block">
-            <div class="container mx-auto px-4">
-                <ul class="flex items-center space-x-1 text-sm font-semibold uppercase tracking-wide text-gray-200">
-                    <li class="relative group">
-                        <a href="#" class="block py-3 px-3 text-stonegold-400 hover:text-stonegold-300 font-bold border-b-2 border-stonegold-500">
-                            <i class="fa-solid fa-house mr-1"></i> Trang Chủ
-                        </a>
-                    </li>
-                    <li class="relative group">
-                        <a href="#gioi-thieu" class="block py-3 px-3 hover:text-stonegold-400 transition">Giới Thiệu Xưởng</a>
-                    </li>
-                    
-                    <!-- Dropdown Lăng Mộ Đá (Sản phẩm cốt lõi) -->
-                    <li class="relative group">
-                        <a href="#san-pham" class="flex items-center py-3 px-3 hover:text-stonegold-400 transition">
-                            <span>Lăng Mộ Đá</span>
-                            <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 opacity-70"></i>
-                        </a>
-                        <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-stoneblue-900 border border-stonegold-600/50 shadow-2xl py-2 z-50">
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Khu Lăng Mộ Gia Tộc
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá Tam Sơn (Không Mái)
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá 1 Mái / 2 Mái / 3 Mái
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá Đôi Cha Mẹ
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá Tròn Phong Thủy
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá Hoa Cương (Granite)
-                            </a>
-                            <a href="#san-pham" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Mộ Đá Công Giáo
-                            </a>
-                        </div>
-                    </li>
-
-                    <!-- Dropdown Kiến Trúc Đá -->
-                    <li class="relative group">
-                        <a href="#danh-muc" class="flex items-center py-3 px-3 hover:text-stonegold-400 transition">
-                            <span>Kiến Trúc & Đồ Thờ Đá</span>
-                            <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 opacity-70"></i>
-                        </a>
-                        <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-stoneblue-900 border border-stonegold-600/50 shadow-2xl py-2 z-50">
-                            <a href="#danh-muc" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Cổng Tam Quan Bằng Đá
-                            </a>
-                            <a href="#danh-muc" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Cuốn Thư Đá (Bình Phong)
-                            </a>
-                            <a href="#danh-muc" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Lan Can Đá (Hàng Rào Đá)
-                            </a>
-                            <a href="#danh-muc" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300 border-b border-gray-800">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Cột Đá Đồng Trụ - Cột Hiên
-                            </a>
-                            <a href="#danh-muc" class="block px-4 py-2.5 text-xs text-gray-300 hover:bg-stoneblue-800 hover:text-stonegold-300">
-                                <i class="fa-solid fa-angle-right mr-2 text-stonegold-500"></i> Lư Hương, Bàn Lễ, Đèn Đá
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="relative group">
-                        <a href="#danh-muc" class="block py-3 px-3 hover:text-stonegold-400 transition">Tượng Đá Phong Thủy</a>
-                    </li>
-                    <li class="relative group">
-                        <a href="#cong-trinh" class="block py-3 px-3 hover:text-stonegold-400 transition">Dự Án Đã Thi Công</a>
-                    </li>
-                    <li class="relative group">
-                        <a href="#lo-ban" class="block py-3 px-3 text-yellow-300 hover:text-yellow-200 transition">
-                            <i class="fa-solid fa-ruler-combined mr-1 text-stonegold-400"></i> Thước Lỗ Ban 38.8cm
-                        </a>
-                    </li>
-                    <li class="relative group">
-                        <a href="#tin-tuc" class="block py-3 px-3 hover:text-stonegold-400 transition">Phong Thủy Lăng Mộ</a>
-                    </li>
-                    <li class="relative group">
-                        <a href="#lien-he" class="block py-3 px-3 hover:text-stonegold-400 transition">Liên Hệ & Báo Giá</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-stoneblue-950 border-t border-stonegold-800 px-4 py-4 space-y-2 text-sm text-gray-200 uppercase font-semibold">
-            <a href="#" class="block py-2 text-stonegold-400 border-b border-gray-800">Trang Chủ</a>
-            <a href="#gioi-thieu" class="block py-2 border-b border-gray-800">Giới Thiệu Xưởng</a>
-            <a href="#san-pham" class="block py-2 border-b border-gray-800">Lăng Mộ Đá Ninh Bình</a>
-            <a href="#danh-muc" class="block py-2 border-b border-gray-800">Kiến Trúc & Đồ Thờ Đá</a>
-            <a href="#cong-trinh" class="block py-2 border-b border-gray-800">Công Trình Tiêu Biểu</a>
-            <a href="#lo-ban" class="block py-2 text-yellow-400 border-b border-gray-800">Thước Lỗ Ban Phong Thủy</a>
-            <a href="#tin-tuc" class="block py-2 border-b border-gray-800">Cẩm Nang Phong Thủy</a>
-            <a href="#lien-he" class="block py-2 text-stonegold-400">Liên Hệ Trực Tiếp</a>
         </div>
     </header>
 
     <!-- ========================================================= -->
-    <!-- SECTION 1: HERO BANNER SLIDER (Tương tự Section 1 HanoiFire) -->
+    <!-- 3. NAVIGATION MENU (Thanh menu xanh rêu chuẩn modadep.com) -->
     <!-- ========================================================= -->
-    <section class="relative bg-stoneblue-950 text-white min-h-[540px] lg:min-h-[620px] flex items-center overflow-hidden">
-        <!-- Background Overlay Image -->
-        <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity bg-cover bg-center" 
+    <nav class="bg-modagreen text-white sticky top-0 z-50 shadow-md hidden lg:block">
+        <div class="container mx-auto px-4">
+            <ul class="flex items-center space-x-1 text-sm font-bold uppercase tracking-wide">
+                <li><a href="#" class="block py-3.5 px-3 bg-modagreen-700 text-yellow-300"><i class="fa-solid fa-house mr-1"></i> Trang Chủ</a></li>
+                <li><a href="#ve-chung-toi" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">VỀ MODADEP</a></li>
+                
+                <!-- Lăng Mộ Đá Dropdown -->
+                <li class="relative group">
+                    <a href="#lang-mo" class="flex items-center py-3.5 px-3 hover:bg-modagreen-600 transition">
+                        <span>Lăng Mộ Đá</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-1.5 opacity-80"></i>
+                    </a>
+                    <div class="absolute left-0 top-full hidden group-hover:block w-56 bg-white text-gray-800 shadow-xl border-t-2 border-modagreen py-2 text-xs normal-case font-semibold z-50">
+                        <a href="#khuon-vien" class="block px-4 py-2 hover:bg-gray-100 hover:text-modagreen">Khuôn Viên Lăng Mộ Gia Tộc</a>
+                        <a href="#lang-mo" class="block px-4 py-2 hover:bg-gray-100 hover:text-modagreen">Lăng Thờ Đá Chung</a>
+                        <a href="#mo-tam-son" class="block px-4 py-2 hover:bg-gray-100 hover:text-modagreen">Mộ Đá Tam Sơn</a>
+                        <a href="#mo-mai" class="block px-4 py-2 hover:bg-gray-100 hover:text-modagreen">Mộ Đá 1, 2, 3 Mái</a>
+                    </div>
+                </li>
+
+                <li><a href="#khuon-vien" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Khuôn Viên Lăng Mộ</a></li>
+                <li><a href="#mo-granite" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Mộ Đá Granite</a></li>
+                <li><a href="#mo-doi" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Mộ Đá Đôi</a></li>
+                <li><a href="#mo-tron" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Mộ Đá Tròn</a></li>
+                <li><a href="#mo-cong-giao" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Mộ Đá Công Giáo</a></li>
+                <li><a href="#kien-truc-da" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Cổng Tứ Trụ & Lan Can</a></li>
+                <li><a href="#lo-ban" class="block py-3.5 px-3 text-yellow-300 hover:bg-modagreen-600 transition"><i class="fa-solid fa-ruler-combined mr-1"></i> Thước Lỗ Ban</a></li>
+                <li><a href="#lien-he" class="block py-3.5 px-3 hover:bg-modagreen-600 transition">Báo Giá</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileDrawer" class="hidden lg:hidden bg-modagreen-800 text-white px-4 py-3 space-y-2 text-sm font-semibold uppercase">
+        <a href="#" class="block py-2 border-b border-modagreen-700 text-yellow-300">Trang Chủ</a>
+        <a href="#ve-chung-toi" class="block py-2 border-b border-modagreen-700">Về MODADEP</a>
+        <a href="#mo-granite" class="block py-2 border-b border-modagreen-700">Mộ Đá Granite</a>
+        <a href="#lang-mo" class="block py-2 border-b border-modagreen-700">Lăng Mộ Đá</a>
+        <a href="#khuon-vien" class="block py-2 border-b border-modagreen-700">Khuôn Viên Lăng Mộ</a>
+        <a href="#mo-doi" class="block py-2 border-b border-modagreen-700">Mộ Đá Đôi</a>
+        <a href="#lo-ban" class="block py-2 border-b border-modagreen-700 text-yellow-300">Thước Lỗ Ban 38.8cm</a>
+        <a href="#lien-he" class="block py-2">Nhận Báo Giá</a>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 4. HERO BANNER / SLIDER (Chuẩn Banner modadep.com) -->
+    <!-- ========================================================= -->
+    <section class="relative bg-gray-900 text-white min-h-[460px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-40" 
              style="background-image: url('https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1920&q=80');">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-r from-stoneblue-950 via-stoneblue-950/90 to-transparent z-10"></div>
-        
-        <div class="container mx-auto px-4 relative z-20 py-16">
-            <div class="max-w-2xl space-y-6">
-                <div class="inline-flex items-center space-x-2 bg-stonegold-500/20 border border-stonegold-500/50 text-stonegold-300 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>Tinh Hoa Làng Nghề Đá Truyền Thống Ninh Vân</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl lg:text-6xl font-cinzel font-bold text-white leading-tight">
-                    THIẾT KẾ & THI CÔNG <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-stonegold-200 via-stonegold-400 to-stonegold-600">
-                        KHU LĂNG MỘ ĐÁ GIA TỘC
-                    </span>
-                </h2>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed">
-                    Kế thừa tinh hoa chế tác đá tự nhiên nguyên khối hơn 25 năm. Chạm khắc hoa văn tinh xảo, 
-                    chuẩn kích thước Lỗ Ban âm trạch mang lại đại cát, hưng thịnh và trường tồn cho nhiều đời con cháu.
-                </p>
-                <div class="pt-4 flex flex-wrap gap-4 items-center">
-                    <a href="#san-pham" class="btn-gold px-7 py-3.5 rounded text-sm uppercase tracking-wider font-bold shadow-lg flex items-center space-x-2">
-                        <span>Xem Mẫu Mộ Đẹp 2026</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <button onclick="openQuoteModal()" class="border-2 border-stonegold-400 text-stonegold-300 hover:bg-stonegold-400/20 px-6 py-3.5 rounded text-sm uppercase tracking-wider font-bold transition flex items-center space-x-2">
-                        <i class="fa-solid fa-phone-flip"></i>
-                        <span>Nhận Báo Giá Tại Xưởng</span>
-                    </button>
-                </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent"></div>
 
-                <!-- Trust Badges -->
-                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-stonegold-800/80 text-center">
-                    <div>
-                        <div class="text-xl md:text-2xl font-bold font-cinzel text-stonegold-400">25+ Năm</div>
-                        <div class="text-[11px] text-gray-400 uppercase mt-0.5">Kinh nghiệm làng nghề</div>
-                    </div>
-                    <div>
-                        <div class="text-xl md:text-2xl font-bold font-cinzel text-stonegold-400">1.800+</div>
-                        <div class="text-[11px] text-gray-400 uppercase mt-0.5">Công trình toàn quốc</div>
-                    </div>
-                    <div>
-                        <div class="text-xl md:text-2xl font-bold font-cinzel text-stonegold-400">100%</div>
-                        <div class="text-[11px] text-gray-400 uppercase mt-0.5">Đá tự nhiên nguyên khối</div>
-                    </div>
-                </div>
+        <div class="container mx-auto px-4 relative z-10 py-16 max-w-4xl">
+            <span class="inline-block bg-modagold text-white text-xs font-bold uppercase px-3 py-1 rounded mb-3">
+                MỘ ĐÁ ĐẸP NINH BÌNH • THƯƠNG HIỆU UY TÍN
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black uppercase text-white leading-tight mb-4">
+                THIẾT KẾ, CHẾ TÁC VÀ THI CÔNG <br>
+                <span class="text-yellow-400">ĐÁ MỸ NGHỆ CAO CẤP</span>
+            </h1>
+            <p class="text-gray-200 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
+                Công ty TNHH Mộ Đá Đẹp Ninh Bình chuyên tư vấn phong thủy, thiết kế bản vẽ 3D và trực tiếp thi công lăng mộ đá, mộ đá hoa cương Granite, cuốn thư, lan can đá tự nhiên nguyên khối trên toàn quốc.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="#mo-granite" class="btn-gold px-6 py-3 rounded text-sm font-bold uppercase tracking-wider shadow">
+                    Xem Mẫu Mộ Đẹp
+                </a>
+                <a href="tel:0988226951" class="btn-green px-6 py-3 rounded text-sm font-bold uppercase tracking-wider shadow flex items-center">
+                    <i class="fa-solid fa-phone mr-2"></i> Hotline: 0988.226.951
+                </a>
             </div>
         </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- SECTION 2: GIỚI THIỆU DOANH NGHIỆP (Tương tự Section 2 HanoiFire) -->
+    <!-- 5. THANH 4 CAM KẾT / TIÊU CHÍ VÀNG (Chuẩn modadep.com) -->
     <!-- ========================================================= -->
-    <section id="gioi-thieu" class="py-16 md:py-20 bg-white">
+    <div class="bg-white border-b border-gray-200 py-6">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-5 relative">
-                    <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl border-4 border-stonegold-200">
-                        <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=800&q=80" 
-                             alt="Nghệ nhân đục đẽo đá mỹ nghệ" class="w-full h-[420px] object-cover hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 bg-stoneblue-900 border-2 border-stonegold-500 text-white p-6 rounded-lg shadow-xl hidden sm:block z-20 max-w-[220px]">
-                        <div class="text-3xl font-bold text-stonegold-400 font-cinzel">100%</div>
-                        <div class="text-xs uppercase tracking-wider font-semibold mt-1">Đá Khai Thác Mỏ Tự Nhiên Loại 1</div>
-                    </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="p-4 border rounded hover:border-modagreen transition">
+                    <div class="text-modagreen text-3xl mb-2"><i class="fa-solid fa-gem"></i></div>
+                    <h4 class="font-bold text-sm uppercase text-gray-800">100% Đá Tự Nhiên</h4>
+                    <p class="text-xs text-gray-500 mt-1">Đá xanh rêu, xanh đen, granite nguyên khối tuyển chọn kỹ càng.</p>
                 </div>
-
-                <div class="lg:col-span-7 space-y-5">
-                    <div class="inline-block text-stonegold-600 font-bold text-xs uppercase tracking-widest border-b-2 border-stonegold-500 pb-1">
-                        Về Xưởng Chế Tác Chúng Tôi
-                    </div>
-                    <h2 class="text-2xl md:text-4xl font-heading font-bold text-stoneblue-950 leading-tight">
-                        CƠ SỞ ĐÁ MỸ NGHỆ MỘ ĐÁ ĐẸP (MODADEP.COM.VN)
-                    </h2>
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
-                        Chào mừng quý khách đến với <strong>Mộ Đá Đẹp (modadep.com.vn)</strong>! 
-                        Sinh ra và lớn lên tại cái nôi của làng nghề đá truyền thống Ninh Vân (Hoa Lư – Ninh Bình), 
-                        chúng tôi tự hào là đơn vị tiên phong kết hợp giữa <strong>bàn tay hoa mỹ của nghệ nhân kỳ cựu</strong> 
-                        cùng hệ thống máy cắt tiện CNC công nghệ cao để tạo ra những tác phẩm lăng mộ đá, đồ thờ tâm linh 
-                        đạt độ tinh xảo tột bậc.
-                    </p>
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
-                        Mỗi phiến đá xanh rêu Thanh Hóa, đá xanh đen Ninh Bình hay đá hoa cương nguyên khối đều được 
-                        tuyển chọn kỹ càng, không nứt rạn rêu phong, chạm rồng phượng, hoa sen mềm mại, 
-                        đáp ứng mọi yêu cầu khắt khe về mặt <strong>phong thủy âm trạch</strong>.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-4 pt-3">
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-stonegold-600 text-lg mt-0.5"></i>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950">Chất Liệu Đá Tuyển Chọn</h4>
-                                <p class="text-xs text-gray-500">Đá xanh rêu, xanh đen, đá trắng, granite mỏ tự nhiên.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-stonegold-600 text-lg mt-0.5"></i>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950">Thiết Kế 3D Miễn Phí</h4>
-                                <p class="text-xs text-gray-500">Lên phối cảnh khuôn viên gia tộc trước khi chế tác.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-stonegold-600 text-lg mt-0.5"></i>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950">Thước Lỗ Ban Chuẩn Chỉ</h4>
-                                <p class="text-xs text-gray-500">Vào các cung Đại Cát: Tiến Bảo, Đăng Khoa, Tài Vượng.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-circle-check text-stonegold-600 text-lg mt-0.5"></i>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950">Bảo Hành Vĩnh Cửu</h4>
-                                <p class="text-xs text-gray-500">Bền bỉ cùng thời gian, cam kết bảo hành lâu dài.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="p-4 border rounded hover:border-modagreen transition">
+                    <div class="text-modagreen text-3xl mb-2"><i class="fa-solid fa-ruler-combined"></i></div>
+                    <h4 class="font-bold text-sm uppercase text-gray-800">Chuẩn Thước Lỗ Ban</h4>
+                    <p class="text-xs text-gray-500 mt-1">Kích thước âm phần 38.8cm chọn đúng cung Đại Cát hưng vượng.</p>
+                </div>
+                <div class="p-4 border rounded hover:border-modagreen transition">
+                    <div class="text-modagreen text-3xl mb-2"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <h4 class="font-bold text-sm uppercase text-gray-800">Giá Gốc Tại Xưởng</h4>
+                    <p class="text-xs text-gray-500 mt-1">Sản xuất trực tiếp tại làng nghề Ninh Vân, không qua trung gian.</p>
+                </div>
+                <div class="p-4 border rounded hover:border-modagreen transition">
+                    <div class="text-modagreen text-3xl mb-2"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h4 class="font-bold text-sm uppercase text-gray-800">Lắp Đặt Toàn Quốc</h4>
+                    <p class="text-xs text-gray-500 mt-1">Vận chuyển và cẩu hạ an toàn tại cả 63 tỉnh thành Việt Nam.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- ========================================================= -->
-    <!-- SECTION 3: DANH MỤC SẢN PHẨM CHÍNH (Tương tự Section 3 HanoiFire) -->
+    <!-- SECTION 1: MỘ ĐÁ GRANITE (Mục tiêu biểu của modadep.com) -->
     <!-- ========================================================= -->
-    <section id="danh-muc" class="py-16 bg-gray-100 border-t border-b border-gray-200">
+    <section id="mo-granite" class="py-12 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Hạng Mục Sản Xuất</span>
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-stoneblue-950 mt-1">DANH MỤC SẢN PHẨM TIÊU BIỂU</h3>
-                <div class="w-16 h-1 bg-stonegold-500 mx-auto mt-3"></div>
+            <div class="section-title-modadep">
+                <h2>MỘ ĐÁ GRANITE (MỘ ĐÁ HOA CƯƠNG)</h2>
+                <a href="#lien-he" class="view-all">Xem tất cả mẫu Granite &raquo;</a>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                <!-- Danh mục 1 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-landmark-dome"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Khu Lăng Mộ Gia Tộc</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">120+ Mẫu đẹp</span>
-                </div>
-
-                <!-- Danh mục 2 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-monument"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Mộ Đá 1, 2, 3 Mái</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">85+ Mẫu chuẩn</span>
-                </div>
-
-                <!-- Danh mục 3 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-scroll"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Cuốn Thư / Bình Phong</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">Trấn phong thủy</span>
-                </div>
-
-                <!-- Danh mục 4 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Lan Can Đá Tự Nhiên</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">Đục tứ quý, hoa sen</span>
-                </div>
-
-                <!-- Danh mục 5 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-torii-gate"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Cổng Tam Quan & Cột Đá</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">Cột đồng trụ đình chùa</span>
-                </div>
-
-                <!-- Danh mục 6 -->
-                <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition text-center group border border-gray-200 cursor-pointer">
-                    <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-stonegold-100 flex items-center justify-center text-stonegold-700 text-2xl group-hover:bg-stoneblue-900 group-hover:text-stonegold-400 transition duration-300">
-                        <i class="fa-solid fa-fire-burner"></i>
-                    </div>
-                    <h4 class="font-bold text-xs uppercase text-stoneblue-950 group-hover:text-stonegold-600">Lư Hương & Bàn Lễ Đá</h4>
-                    <span class="text-[11px] text-gray-500 block mt-1">Đồ thờ tâm linh</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- SECTION 4: SẢN PHẨM NỔI BẬT CÓ TABS (Tương tự Section 4 HanoiFire) -->
-    <!-- ========================================================= -->
-    <section id="san-pham" class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-gray-200 gap-4">
-                <div>
-                    <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Kiệt Tác Đá Mỹ Nghệ</span>
-                    <h3 class="text-2xl md:text-3xl font-heading font-bold text-stoneblue-950 mt-1">MẪU CÔNG TRÌNH & SẢN PHẨM NỔI BẬT</h3>
-                </div>
-                
-                <!-- Category Tabs -->
-                <div class="flex flex-wrap gap-2 text-xs font-bold uppercase">
-                    <button onclick="filterProducts('all')" class="tab-btn active bg-stoneblue-900 text-stonegold-300 px-4 py-2 rounded">Tất Cả</button>
-                    <button onclick="filterProducts('lang-mo')" class="tab-btn bg-gray-100 text-gray-700 hover:bg-stoneblue-900 hover:text-stonegold-300 px-4 py-2 rounded transition">Khu Lăng Mộ</button>
-                    <button onclick="filterProducts('mo-don')" class="tab-btn bg-gray-100 text-gray-700 hover:bg-stoneblue-900 hover:text-stonegold-300 px-4 py-2 rounded transition">Mộ Đá Xanh Rêu</button>
-                    <button onclick="filterProducts('cuon-thu')" class="tab-btn bg-gray-100 text-gray-700 hover:bg-stoneblue-900 hover:text-stonegold-300 px-4 py-2 rounded transition">Cuốn Thư & Lan Can</button>
-                </div>
-            </div>
-
-            <!-- Product Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Sản phẩm 1 -->
-                <div class="product-card group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-cat="lang-mo">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" 
-                             alt="Khu lăng mộ đá gia tộc xanh rêu" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-2 left-2 bg-rubyred text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded">Hot Nhất 2026</span>
+                <!-- Sản phẩm Granite 1 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Granite Mã 25">
                     </div>
-                    <div class="p-4 space-y-2">
-                        <div class="text-[11px] text-gray-500 uppercase">Mã SP: LMD-GT88</div>
-                        <h4 class="font-bold text-sm text-stoneblue-950 group-hover:text-stonegold-600 line-clamp-2">
-                            Khu Lăng Mộ Gia Tộc Đá Xanh Rêu Thanh Hóa
-                        </h4>
-                        <div class="text-xs text-gray-600 space-y-1 pt-1 border-t border-gray-100">
-                            <div><i class="fa-solid fa-ruler text-stonegold-600 mr-1.5"></i> Diện tích: <strong>60m² - 200m²</strong></div>
-                            <div><i class="fa-solid fa-gem text-stonegold-600 mr-1.5"></i> Chất liệu: Đá xanh rêu loại 1</div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between">
-                            <span class="text-rubyred font-bold text-sm">Giá: Liên Hệ</span>
-                            <button onclick="openQuoteModal('Khu Lăng Mộ Gia Tộc Đá Xanh Rêu')" class="btn-gold text-[11px] font-bold uppercase px-3 py-1.5 rounded">
-                                Báo Giá
-                            </button>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Granite Mã 25</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Chất liệu: Đá hoa cương nguyên khối bóng gương</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Granite Mã 25')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sản phẩm 2 -->
-                <div class="product-card group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-cat="mo-don">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" 
-                             alt="Mộ đá hai mái truyền thống" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-2 left-2 bg-stonegold-600 text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded">Chuẩn Lỗ Ban</span>
+                <!-- Sản phẩm Granite 2 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Granite Mã 24">
                     </div>
-                    <div class="p-4 space-y-2">
-                        <div class="text-[11px] text-gray-500 uppercase">Mã SP: MD-2M09</div>
-                        <h4 class="font-bold text-sm text-stoneblue-950 group-hover:text-stonegold-600 line-clamp-2">
-                            Mẫu Mộ Đá Hai Mái Chạm Rồng Đá Xanh Ninh Bình
-                        </h4>
-                        <div class="text-xs text-gray-600 space-y-1 pt-1 border-t border-gray-100">
-                            <div><i class="fa-solid fa-ruler text-stonegold-600 mr-1.5"></i> Kích thước: <strong>89 x 147 cm</strong></div>
-                            <div><i class="fa-solid fa-gem text-stonegold-600 mr-1.5"></i> Hoa văn: Mây rồng đao lá</div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between">
-                            <span class="text-rubyred font-bold text-sm">Giá: Liên Hệ</span>
-                            <button onclick="openQuoteModal('Mộ Đá Hai Mái Chạm Rồng')" class="btn-gold text-[11px] font-bold uppercase px-3 py-1.5 rounded">
-                                Báo Giá
-                            </button>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Granite Mã 24</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Thiết kế hiện đại, chịu nắng mưa vĩnh cửu</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Granite Mã 24')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sản phẩm 3 -->
-                <div class="product-card group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-cat="mo-don">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" 
-                             alt="Mộ đá đôi ba mái cha mẹ" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <!-- Sản phẩm Granite 3 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Granite Mã 23">
                     </div>
-                    <div class="p-4 space-y-2">
-                        <div class="text-[11px] text-gray-500 uppercase">Mã SP: MDD-3M02</div>
-                        <h4 class="font-bold text-sm text-stoneblue-950 group-hover:text-stonegold-600 line-clamp-2">
-                            Mộ Đá Đôi Ba Mái Cha Mẹ Tự Nhiên Nguyên Khối
-                        </h4>
-                        <div class="text-xs text-gray-600 space-y-1 pt-1 border-t border-gray-100">
-                            <div><i class="fa-solid fa-ruler text-stonegold-600 mr-1.5"></i> Kích thước: <strong>167 x 197 cm</strong></div>
-                            <div><i class="fa-solid fa-gem text-stonegold-600 mr-1.5"></i> Đá xanh rêu không rạn nứt</div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between">
-                            <span class="text-rubyred font-bold text-sm">Giá: Liên Hệ</span>
-                            <button onclick="openQuoteModal('Mộ Đá Đôi Ba Mái Cha Mẹ')" class="btn-gold text-[11px] font-bold uppercase px-3 py-1.5 rounded">
-                                Báo Giá
-                            </button>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Granite Mã 23</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Đá Granite đen Ấn Độ / Bình Định loại 1</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Granite Mã 23')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sản phẩm 4 -->
-                <div class="product-card group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-cat="cuon-thu">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" 
-                             alt="Cuốn thư đá ngũ phúc lâm môn" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <!-- Sản phẩm Granite 4 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Granite Mã 22">
                     </div>
-                    <div class="p-4 space-y-2">
-                        <div class="text-[11px] text-gray-500 uppercase">Mã SP: CT-NP01</div>
-                        <h4 class="font-bold text-sm text-stoneblue-950 group-hover:text-stonegold-600 line-clamp-2">
-                            Cuốn Thư Đá (Bình Phong) Trấn Phong Thủy Ngũ Phúc
-                        </h4>
-                        <div class="text-xs text-gray-600 space-y-1 pt-1 border-t border-gray-100">
-                            <div><i class="fa-solid fa-ruler text-stonegold-600 mr-1.5"></i> Chiều dài: <strong>155cm - 217cm</strong></div>
-                            <div><i class="fa-solid fa-gem text-stonegold-600 mr-1.5"></i> Khắc Ngũ Phúc, Chữ Thọ, Bút Kiếm</div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between">
-                            <span class="text-rubyred font-bold text-sm">Giá: Liên Hệ</span>
-                            <button onclick="openQuoteModal('Cuốn Thư Đá Ngũ Phúc')" class="btn-gold text-[11px] font-bold uppercase px-3 py-1.5 rounded">
-                                Báo Giá
-                            </button>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Granite Mã 22</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Kiểu dáng trang nghiêm, hoa văn sắc nét</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Granite Mã 22')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-10">
-                <a href="#lien-he" class="inline-flex items-center space-x-2 border-2 border-stoneblue-900 text-stoneblue-900 hover:bg-stoneblue-900 hover:text-stonegold-400 font-bold px-8 py-3 rounded uppercase text-xs tracking-wider transition duration-300">
-                    <span>Xem Tất Cả Hơn 200+ Mẫu Lăng Mộ Đá</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- SECTION 5: CHÚNG TÔI CAM KẾT (Tương tự Section 5 HanoiFire) -->
-    <!-- ========================================================= -->
-    <section class="py-16 bg-stoneblue-900 text-white bg-pattern border-t border-b border-stonegold-700/40">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-stonegold-400 text-xs font-bold uppercase tracking-widest">Đạo Hiếu & Trách Nhiệm</span>
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-white mt-1">CAM KẾT CHẤT LƯỢNG VĨNH CỬU</h3>
-                <p class="text-gray-300 text-xs md:text-sm mt-2">Chúng tôi hiểu rằng xây dựng nơi an nghỉ cho tổ tiên là việc trọng đại cả đời người.</p>
-                <div class="w-16 h-1 bg-stonegold-500 mx-auto mt-3"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Cam kết 1 -->
-                <div class="bg-stoneblue-950/80 p-6 rounded-lg border border-stonegold-600/30 hover:border-stonegold-400 transition text-center space-y-3">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-stonegold-500/20 text-stonegold-400 flex items-center justify-center text-2xl border border-stonegold-500/40">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h4 class="font-bold text-sm uppercase text-stonegold-300">100% Đá Tự Nhiên</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Nói không với đá gắn ghép, đá non nứt vỡ. Toàn bộ là đá khối già được tuyển lựa khắt khe từ mỏ.
-                    </p>
-                </div>
-
-                <!-- Cam kết 2 -->
-                <div class="bg-stoneblue-950/80 p-6 rounded-lg border border-stonegold-600/30 hover:border-stonegold-400 transition text-center space-y-3">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-stonegold-500/20 text-stonegold-400 flex items-center justify-center text-2xl border border-stonegold-500/40">
-                        <i class="fa-solid fa-compass-drafting"></i>
-                    </div>
-                    <h4 class="font-bold text-sm uppercase text-stonegold-300">Chuẩn Thước Lỗ Ban</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Thiết kế chính xác theo thước Lỗ Ban 38.8cm (âm phần), chọn đúng cung Đỏ mang lại cát tường cho gia đạo.
-                    </p>
-                </div>
-
-                <!-- Cam kết 3 -->
-                <div class="bg-stoneblue-950/80 p-6 rounded-lg border border-stonegold-600/30 hover:border-stonegold-400 transition text-center space-y-3">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-stonegold-500/20 text-stonegold-400 flex items-center justify-center text-2xl border border-stonegold-500/40">
-                        <i class="fa-solid fa-truck-fast"></i>
-                    </div>
-                    <h4 class="font-bold text-sm uppercase text-stonegold-300">Lắp Đặt Toàn Quốc</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Trang bị xe cẩu tự hành, đội ngũ thợ lành nghề vận chuyển và lắp dựng an toàn tại cả 63 tỉnh thành.
-                    </p>
-                </div>
-
-                <!-- Cam kết 4 -->
-                <div class="bg-stoneblue-950/80 p-6 rounded-lg border border-stonegold-600/30 hover:border-stonegold-400 transition text-center space-y-3">
-                    <div class="w-14 h-14 mx-auto rounded-full bg-stonegold-500/20 text-stonegold-400 flex items-center justify-center text-2xl border border-stonegold-500/40">
-                        <i class="fa-solid fa-handshake-angle"></i>
-                    </div>
-                    <h4 class="font-bold text-sm uppercase text-stonegold-300">Giá Gốc Tại Xưởng</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Sản xuất trực tiếp tại làng nghề Ninh Vân, không qua bất kỳ khâu trung gian nào, tiết kiệm tối đa chi phí.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- SECTION 6: LÝ DO LỰA CHỌN CHÚNG TÔI (Tương tự Section 6 HanoiFire) -->
+    <!-- SECTION 2: LĂNG MỘ ĐÁ & KHUÔN VIÊN LĂNG MỘ GIA ĐÌNH -->
     <!-- ========================================================= -->
-    <section class="py-16 md:py-20 bg-white">
+    <section id="khuon-vien" class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-6 space-y-6">
+            <div class="section-title-modadep">
+                <h2>KHUÔN VIÊN LĂNG MỘ GIA TỘC & LĂNG THỜ CHUNG</h2>
+                <a href="#lien-he" class="view-all">Xem tất cả khuôn viên &raquo;</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Khuôn viên 1 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" alt="Mẫu Khuôn Viên Lăng Mộ Gia Đình Đẹp Mã 10">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-gray-800 hover:text-modagreen"><a href="#lien-he">Mẫu Khuôn Viên Lăng Mộ Gia Đình Đẹp – Mã 10</a></h3>
+                        <p class="text-xs text-gray-500 mt-1">Quy mô từ 80m² - 200m², thiết kế gồm lăng thờ cánh 3 mái, lan can đá hoa sen, cuốn thư trấn trạch.</p>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá gốc tại xưởng</span>
+                            <button onclick="openModalQuickQuote('Khuôn Viên Lăng Mộ Mã 10')" class="btn-green text-xs font-semibold px-3 py-1.5 rounded">Tư Vấn Thiết Kế 3D</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khuôn viên 2 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=600&q=80" alt="Mẫu Khuôn Viên Lăng Mộ Gia Đình Đẹp Mã 09">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-gray-800 hover:text-modagreen"><a href="#lien-he">Mẫu Khuôn Viên Lăng Mộ Gia Đình Đẹp – Mã 09</a></h3>
+                        <p class="text-xs text-gray-500 mt-1">Chất liệu đá xanh rêu Thanh Hóa già đá không rạn nứt, chế tác hoa văn rồng phượng tinh xảo.</p>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá gốc tại xưởng</span>
+                            <button onclick="openModalQuickQuote('Khuôn Viên Lăng Mộ Mã 09')" class="btn-green text-xs font-semibold px-3 py-1.5 rounded">Tư Vấn Thiết Kế 3D</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khuôn viên 3 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" alt="Mẫu Lăng Mộ Đá Nguyên Khối Chuẩn Phong Thủy">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-base text-gray-800 hover:text-modagreen"><a href="#lien-he">Mẫu Lăng Mộ Đá Nguyên Khối Chuẩn Phong Thủy</a></h3>
+                        <p class="text-xs text-gray-500 mt-1">Đỉnh cao nghệ thuật chế tác lăng mộ đá Ninh Vân, bảo hành vĩnh cửu cùng thời gian.</p>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá gốc tại xưởng</span>
+                            <button onclick="openModalQuickQuote('Lăng Mộ Đá Nguyên Khối')" class="btn-green text-xs font-semibold px-3 py-1.5 rounded">Tư Vấn Thiết Kế 3D</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 3: MỘ ĐÁ ĐÔI, MỘ ĐÁ TAM SƠN & MỘ ĐÁ TRÒN -->
+    <!-- ========================================================= -->
+    <section id="mo-doi" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="section-title-modadep">
+                <h2>MỘ ĐÁ ĐÔI, MỘ ĐÁ TAM SƠN & MỘ ĐÁ TRÒN PHONG THỦY</h2>
+                <a href="#lien-he" class="view-all">Xem tất cả &raquo;</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Mộ Đôi 1 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Đôi Ba Mái Cha Mẹ">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Đôi Ba Mái Cha Mẹ</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Kích thước: 167 x 197 cm chuẩn Lỗ Ban</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Đôi Ba Mái')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mộ Tam Sơn 2 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Tam Sơn Không Mái">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Tam Sơn (Hậu Bành)</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Kích thước: 81 x 127 cm nhỏ gọn đẹp</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Tam Sơn')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mộ Tròn 3 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Tròn Phong Thủy">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Tròn Phong Thủy Tụ Khí</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Đường kính: 133cm, 147cm, 167cm</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Tròn Phong Thủy')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mộ Công Giáo 4 -->
+                <div class="product-card-modadep">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" alt="Mộ Đá Công Giáo">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-800 hover:text-modagreen"><a href="#lien-he">Mộ Đá Công Giáo (Cây Thánh Giá)</a></h3>
+                        <div class="text-xs text-gray-500 mt-1">Khắc hoa văn dây nho, sách kinh thánh</div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
+                            <span class="text-modared font-bold text-sm">Giá: Liên Hệ</span>
+                            <button onclick="openModalQuickQuote('Mộ Đá Công Giáo')" class="btn-green text-xs font-semibold px-3 py-1 rounded">Báo Giá</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 4: THƯỚC LỖ BAN 38.8CM ONLINE (Đặc sản phong thủy) -->
+    <!-- ========================================================= -->
+    <section id="lo-ban" class="py-12 bg-amber-50 border-t border-b border-amber-200">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-6">
+                <span class="text-modared font-bold text-xs uppercase tracking-wider">TIỆN ÍCH PHONG THỦY ÂM TRẠCH</span>
+                <h2 class="text-2xl font-bold text-modagreen mt-1">TRA CỨU KÍCH THƯỚC THƯỚC LỖ BAN 38.8CM ONLINE</h2>
+                <p class="text-xs text-gray-600 mt-1">Nhập kích thước chiều rộng hoặc chiều dài của mộ (cm) để kiểm tra cung tốt hay xấu.</p>
+            </div>
+
+            <div class="flex gap-2">
+                <input type="number" id="loBanInput" placeholder="Ví dụ nhập: 81, 89, 107, 127... (cm)" class="flex-1 border-2 border-modagreen rounded px-4 py-2.5 text-sm focus:outline-none">
+                <button onclick="checkLoBanOnline()" class="btn-green px-6 py-2.5 rounded font-bold text-sm uppercase">Kiểm Tra</button>
+            </div>
+
+            <div id="loBanResult" class="mt-4 p-4 rounded bg-white border border-gray-300 text-sm hidden"></div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 5: VỀ MODADEP - SẢN PHẨM CAO CẤP - UY TÍN CHẤT LƯỢNG -->
+    <!-- ========================================================= -->
+    <section id="ve-chung-toi" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <span class="text-modagold font-bold text-xs uppercase tracking-widest">VỀ MODADEP</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-modagreen mt-1 leading-tight">
+                        CÔNG TY TNHH MỘ ĐÁ ĐẸP NINH BÌNH
+                    </h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mt-4 text-justify">
+                        <strong>MODADEP (Mộ Đá Đẹp Ninh Bình)</strong> tự hào là thương hiệu nổi tiếng chế tác mộ đá trăm năm xuất thân từ cái nôi làng nghề truyền thống Ninh Vân, Hoa Lư, Ninh Bình. 
+                        Chúng tôi chuyên thiết kế, chế tác, thi công và lắp đặt hoàn thiện các công trình đá mỹ nghệ cao cấp như: lăng mộ đá, khuôn viên lăng mộ gia tộc, mộ đá hoa cương Granite, nhà thờ họ, cuốn thư đá, cổng tứ trụ, lan can đá.
+                    </p>
+                    <p class="text-gray-600 text-sm leading-relaxed mt-3 text-justify">
+                        Với đội ngũ nghệ nhân bàn tay vàng hơn 25 năm kinh nghiệm kết hợp trang thiết bị máy tiện, máy cắt CNC hiện đại, chúng tôi cam kết đem lại những công trình tâm linh trang nghiêm, trường tồn vĩnh cửu cho các dòng họ trên khắp 63 tỉnh thành.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="border-l-4 border-modagreen pl-3">
+                            <h4 class="font-bold text-sm text-gray-800">Sản Phẩm Cao Cấp</h4>
+                            <p class="text-xs text-gray-500">100% đá khối tự nhiên khai thác chuẩn mỏ.</p>
+                        </div>
+                        <div class="border-l-4 border-modagreen pl-3">
+                            <h4 class="font-bold text-sm text-gray-800">Uy Tín – Chất Lượng</h4>
+                            <p class="text-xs text-gray-500">Hợp đồng minh bạch, cam kết bảo hành lâu dài.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=700&q=80" alt="Nghệ nhân Mộ Đá Đẹp" class="rounded shadow-xl w-full h-[360px] object-cover">
+                    <div class="absolute -bottom-4 -left-4 bg-modagreen text-white p-4 rounded shadow-lg hidden sm:block">
+                        <div class="text-2xl font-black text-yellow-400">25+ NĂM</div>
+                        <div class="text-xs font-semibold uppercase">Kinh Nghiệm Làng Nghề Ninh Vân</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 6: FORM NHẬN BÁO GIÁ NHANH TẠI XƯỞNG -->
+    <!-- ========================================================= -->
+    <section id="lien-he" class="py-14 bg-modagreen text-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-8">
+                <span class="text-yellow-300 text-xs font-bold uppercase tracking-widest">DỰ TOÁN CHI PHÍ</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold uppercase mt-1">ĐĂNG KÝ NHẬN BÁO GIÁ TẠI XƯỞNG & THIẾT KẾ 3D MIỄN PHÍ</h2>
+                <p class="text-xs md:text-sm text-gray-200 mt-2">Nghệ nhân xưởng Mộ Đá Đẹp sẽ gọi lại tư vấn phong thủy và báo giá chi tiết theo diện tích khuôn viên.</p>
+            </div>
+
+            <form onsubmit="handleQuoteSubmit(event)" class="bg-white text-gray-800 p-6 md:p-8 rounded shadow-2xl space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Giá Trị Cốt Lõi</span>
-                        <h3 class="text-2xl md:text-4xl font-heading font-bold text-stoneblue-950 mt-1">LÝ DO NÊN CHỌN MỘ ĐÁ ĐẸP (MODADEP.COM.VN)</h3>
-                        <p class="text-gray-600 text-sm mt-3">Với phương châm <em>"Tâm Sáng Khắc Đá - Đức Sâu Vẹn Toàn"</em>, chúng tôi cam kết đem lại sự an tâm tuyệt đối.</p>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Họ tên quý khách *</label>
+                        <input type="text" id="quote_name" required placeholder="Ví dụ: Nguyễn Văn An" class="w-full border rounded px-3 py-2 text-sm focus:border-modagreen focus:outline-none">
                     </div>
-
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:border-stonegold-400 transition">
-                            <span class="text-2xl font-bold font-cinzel text-stonegold-600">01</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950 uppercase">Đội Ngũ Nghệ Nhân Kỳ Cựu</h4>
-                                <p class="text-xs text-gray-600 mt-1">Nghệ nhân được công nhận cấp Quốc Gia, hơn 25 năm kinh nghiệm truyền đời với tay nghề đục gọt tinh xảo.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:border-stonegold-400 transition">
-                            <span class="text-2xl font-bold font-cinzel text-stonegold-600">02</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950 uppercase">Quy Trình Thi Công Minh Bạch</h4>
-                                <p class="text-xs text-gray-600 mt-1">Khảo sát địa hình thực tế, tư vấn phong thủy hướng mộ miễn phí, ký hợp đồng rõ ràng và không phụ thu chi phí.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:border-stonegold-400 transition">
-                            <span class="text-2xl font-bold font-cinzel text-stonegold-600">03</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950 uppercase">Ứng Dụng Công Nghệ CNC Hiện Đại</h4>
-                                <p class="text-xs text-gray-600 mt-1">Kết hợp máy tiện đá và máy điêu khắc CNC giúp đường nét chính xác 100%, sắc sảo từng milimet.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 border border-gray-100 hover:border-stonegold-400 transition">
-                            <span class="text-2xl font-bold font-cinzel text-stonegold-600">04</span>
-                            <div>
-                                <h4 class="font-bold text-sm text-stoneblue-950 uppercase">Đúng Tiến Độ & Giờ Hoàng Đạo</h4>
-                                <p class="text-xs text-gray-600 mt-1">Lắp đặt chính xác vào ngày lành tháng tốt theo nguyện vọng gia chủ để nghi lễ tạ mộ diễn ra trang trọng nhất.</p>
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Số điện thoại / Zalo *</label>
+                        <input type="tel" id="quote_phone" required placeholder="Ví dụ: 0988 226 951" class="w-full border rounded px-3 py-2 text-sm focus:border-modagreen focus:outline-none">
                     </div>
                 </div>
 
-                <div class="lg:col-span-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=500&q=80" 
-                             alt="Thi công đá lăng mộ" class="rounded-lg shadow-md h-56 w-full object-cover">
-                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=500&q=80" 
-                             alt="Chạm khắc đá hoa văn" class="rounded-lg shadow-md h-56 w-full object-cover mt-6">
-                        <img src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=500&q=80" 
-                             alt="Nghệ nhân mài đá" class="rounded-lg shadow-md h-56 w-full object-cover -mt-6">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80" 
-                             alt="Kiến trúc đá lăng mộ" class="rounded-lg shadow-md h-56 w-full object-cover">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Hạng mục quan tâm</label>
+                        <select id="quote_item" class="w-full border rounded px-3 py-2 text-sm focus:border-modagreen focus:outline-none">
+                            <option>Mộ Đá Granite (Hoa Cương)</option>
+                            <option>Khu Lăng Mộ Gia Tộc Trọn Gói</option>
+                            <option>Mộ Đá Đôi Cha Mẹ</option>
+                            <option>Mộ Đá Tam Sơn</option>
+                            <option>Mộ Đá Tròn Phong Thủy</option>
+                            <option>Mộ Đá Công Giáo</option>
+                            <option>Cuốn Thư & Lan Can Đá</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Địa chỉ lắp đặt dự kiến</label>
+                        <input type="text" id="quote_address" placeholder="Tỉnh / huyện thi công" class="w-full border rounded px-3 py-2 text-sm focus:border-modagreen focus:outline-none">
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ========================================================= -->
-    <!-- TIỆN ÍCH ĐẶC BIỆT: TRA CỨU THƯỚC LỖ BAN 38.8CM ONLINE -->
-    <!-- ========================================================= -->
-    <section id="lo-ban" class="py-14 bg-amber-50 border-t border-b border-amber-200">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-md border border-stonegold-300">
-                <div class="text-center mb-6">
-                    <div class="inline-flex items-center space-x-2 text-rubyred font-bold text-xs uppercase tracking-wider">
-                        <i class="fa-solid fa-ruler-combined"></i>
-                        <span>Tiện Ích Phong Thủy</span>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-heading font-bold text-stoneblue-950 mt-1">
-                        TRA CỨU KÍCH THƯỚC THƯỚC LỖ BAN 38.8CM (ÂM PHẦN)
-                    </h3>
-                    <p class="text-xs text-gray-500 mt-1">Nhập kích thước chiều rộng hoặc chiều dài của mộ (cm) để kiểm tra cung tốt / xấu.</p>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Ghi chú yêu cầu cụ thể</label>
+                    <textarea id="quote_note" rows="3" placeholder="Ví dụ: Cần làm khu lăng mộ 100m2, đá xanh rêu, làm trước tháng 10 âm lịch..." class="w-full border rounded px-3 py-2 text-sm focus:border-modagreen focus:outline-none"></textarea>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <input type="number" id="loBanInput" placeholder="Nhập kích thước (Ví dụ: 81, 89, 107, 127... cm)" 
-                           class="flex-1 px-4 py-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-stonegold-600">
-                    <button onclick="checkLoBan()" class="btn-gold px-6 py-2.5 rounded font-bold uppercase text-xs tracking-wider">
-                        Kiểm Tra Phong Thủy
+                <div class="text-center pt-2">
+                    <button type="submit" class="btn-green px-8 py-3 rounded text-sm font-bold uppercase tracking-wider shadow">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Gửi Yêu Cầu Báo Giá Nhanh
                     </button>
                 </div>
-
-                <!-- Kết quả hiển thị -->
-                <div id="loBanResult" class="mt-4 p-4 rounded-lg bg-gray-50 border border-gray-200 text-sm hidden">
-                    <!-- Dynamic result inserted here -->
-                </div>
-
-                <!-- Kích thước thông dụng -->
-                <div class="mt-5 pt-4 border-t border-gray-200">
-                    <div class="text-[11px] font-bold uppercase text-gray-600 mb-2">Một số kích thước mộ đá cung Đại Cát thông dụng:</div>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-red-100 text-rubyred font-semibold px-2.5 py-1 rounded">69 x 107 cm (Đại Cát - Quý Tử)</span>
-                        <span class="bg-red-100 text-rubyred font-semibold px-2.5 py-1 rounded">81 x 127 cm (Tài Trí - Tiến Bảo)</span>
-                        <span class="bg-red-100 text-rubyred font-semibold px-2.5 py-1 rounded">89 x 147 cm (Thêm Phúc - Hưng Vượng)</span>
-                        <span class="bg-red-100 text-rubyred font-semibold px-2.5 py-1 rounded">107 x 167 cm (Đại Cát - Quý Tử)</span>
-                        <span class="bg-red-100 text-rubyred font-semibold px-2.5 py-1 rounded">127 x 217 cm (Tiến Bảo - Tài Lộc)</span>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- SECTION 7: DỰ ÁN ĐÃ THI CÔNG (Thực tế công trình - HanoiFire) -->
+    <!-- 7. FOOTER CHÂN TRANG (Chuẩn nội dung modadep.com) -->
     <!-- ========================================================= -->
-    <section id="cong-trinh" class="py-16 md:py-20 bg-gray-50">
+    <footer class="bg-gray-900 text-gray-400 text-xs pt-12 pb-6 border-t-4 border-modagreen">
         <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Hình Ảnh Nghiệm Thu</span>
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-stoneblue-950 mt-1">CÔNG TRÌNH THỰC TẾ TRÊN TOÀN QUỐC</h3>
-                <div class="w-16 h-1 bg-stonegold-500 mx-auto mt-3"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Dự án 1 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition border border-gray-200">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" 
-                             alt="Lắp đặt lăng mộ tại Hải Dương" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute bottom-2 left-2 bg-stoneblue-950/80 text-white text-[10px] px-2 py-0.5 rounded">Hải Dương</span>
-                    </div>
-                    <div class="p-4">
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600">
-                            Hoàn Thiện Khu Lăng Mộ Họ Nguyễn Văn (Nam Sách, Hải Dương)
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-1">Quy mô 150m², chất liệu đá xanh rêu nguyên khối gồm 1 lăng thờ cánh, 6 mộ đơn và lan can chạm sen.</p>
-                        <div class="text-[11px] text-stonegold-600 font-semibold mt-3 flex items-center justify-between">
-                            <span>Nghiệm thu: Tháng 10/2026</span>
-                            <a href="#" class="hover:underline">Xem album ảnh <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dự án 2 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition border border-gray-200">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" 
-                             alt="Lắp đặt lăng mộ tại Hà Nam" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute bottom-2 left-2 bg-stoneblue-950/80 text-white text-[10px] px-2 py-0.5 rounded">Hà Nam</span>
-                    </div>
-                    <div class="p-4">
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600">
-                            Công Trình Mộ Đôi Đá Hoa Cương Granite Tại Kim Bảng
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-1">Mộ đá hoa cương nguyên khối bóng gương chịu mưa nắng vĩnh cửu, thiết kế hiện đại trang nhã.</p>
-                        <div class="text-[11px] text-stonegold-600 font-semibold mt-3 flex items-center justify-between">
-                            <span>Nghiệm thu: Tháng 09/2026</span>
-                            <a href="#" class="hover:underline">Xem album ảnh <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dự án 3 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition border border-gray-200">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" 
-                             alt="Lắp đặt cổng tam quan tại Nam Định" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute bottom-2 left-2 bg-stoneblue-950/80 text-white text-[10px] px-2 py-0.5 rounded">Nam Định</span>
-                    </div>
-                    <div class="p-4">
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600">
-                            Lắp Đặt Cổng Tam Quan & Cuốn Thư Đá Nhà Thờ Tổ Tại Giao Thủy
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-1">Cột tứ trụ chạm câu đối chữ Nho, cuốn thư đá trấn trạch ngũ phúc lâm môn sắc nét.</p>
-                        <div class="text-[11px] text-stonegold-600 font-semibold mt-3 flex items-center justify-between">
-                            <span>Nghiệm thu: Tháng 08/2026</span>
-                            <a href="#" class="hover:underline">Xem album ảnh <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- SECTION 8: GIẤY CHỨNG NHẬN & BẰNG KHEN (Tương tự Section 8 HanoiFire) -->
-    <!-- ========================================================= -->
-    <section class="py-14 bg-white border-t border-gray-200">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Năng Lực & Uy Tín</span>
-                <h3 class="text-xl md:text-2xl font-heading font-bold text-stoneblue-950 mt-1">CHỨNG NHẬN LÀNG NGHỀ & CHẤT LƯỢNG</h3>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="p-5 border border-stonegold-200 rounded-lg bg-stonegold-50/50 hover:shadow-md transition">
-                    <div class="text-stonegold-600 text-3xl mb-2"><i class="fa-solid fa-award"></i></div>
-                    <h5 class="font-bold text-xs uppercase text-stoneblue-950">Nghệ Nhân Bàn Tay Vàng</h5>
-                    <p class="text-[11px] text-gray-500 mt-1">Hiệp Hội Làng Nghề Việt Nam cấp chứng nhận</p>
-                </div>
-                <div class="p-5 border border-stonegold-200 rounded-lg bg-stonegold-50/50 hover:shadow-md transition">
-                    <div class="text-stonegold-600 text-3xl mb-2"><i class="fa-solid fa-certificate"></i></div>
-                    <h5 class="font-bold text-xs uppercase text-stoneblue-950">Chứng Nhận OCOP 4 Sao</h5>
-                    <p class="text-[11px] text-gray-500 mt-1">Sản phẩm điêu khắc đá mỹ nghệ Ninh Bình</p>
-                </div>
-                <div class="p-5 border border-stonegold-200 rounded-lg bg-stonegold-50/50 hover:shadow-md transition">
-                    <div class="text-stonegold-600 text-3xl mb-2"><i class="fa-solid fa-microscope"></i></div>
-                    <h5 class="font-bold text-xs uppercase text-stoneblue-950">Kiểm Định Mỏ Đá Tự Nhiên</h5>
-                    <p class="text-[11px] text-gray-500 mt-1">Viện Khoa Học Vật Liệu Xây Dựng kiểm chuẩn</p>
-                </div>
-                <div class="p-5 border border-stonegold-200 rounded-lg bg-stonegold-50/50 hover:shadow-md transition">
-                    <div class="text-stonegold-600 text-3xl mb-2"><i class="fa-solid fa-star"></i></div>
-                    <h5 class="font-bold text-xs uppercase text-stoneblue-950">Thương Hiệu Xuất Sắc</h5>
-                    <p class="text-[11px] text-gray-500 mt-1">Top 10 cơ sở chế tác đá uy tín miền Bắc</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- SECTION 9: TIN TỨC & PHONG THỦY (Tương tự Section 7 HanoiFire) -->
-    <!-- ========================================================= -->
-    <section id="tin-tuc" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                <div>
-                    <span class="text-stonegold-600 text-xs font-bold uppercase tracking-widest">Kiến Thức Âm Trạch</span>
-                    <h3 class="text-2xl md:text-3xl font-heading font-bold text-stoneblue-950 mt-1">CẨM NANG PHONG THỦY XÂY MỘ</h3>
-                </div>
-                <a href="#" class="text-stonegold-700 font-bold text-xs uppercase tracking-wider hover:underline">
-                    Xem Tất Cả Bài Viết <i class="fa-solid fa-arrow-right ml-1"></i>
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Tin 1 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition">
-                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" 
-                         alt="Kích thước xây lăng mộ chuẩn Lỗ Ban" class="w-full h-44 object-cover">
-                    <div class="p-5">
-                        <span class="text-[11px] text-stonegold-600 font-bold uppercase">Phong Thủy Lăng Mộ</span>
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600 mt-1">
-                            Bảng Tra Kích Thước Lăng Mộ Đá Chuẩn Thước Lỗ Ban 38.8cm Mới Nhất
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-2 line-clamp-2">
-                            Cách chọn cung đỏ Tiến Bảo, Thêm Phúc, Đăng Khoa để xây mộ mang lại phúc lộc cho con cháu muôn đời.
-                        </p>
-                        <div class="mt-4 text-[11px] text-gray-400">Ngày đăng: 02/11/2026 • 5 phút đọc</div>
-                    </div>
-                </div>
-
-                <!-- Tin 2 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition">
-                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80" 
-                         alt="So sánh đá xanh rêu và xanh đen" class="w-full h-44 object-cover">
-                    <div class="p-5">
-                        <span class="text-[11px] text-stonegold-600 font-bold uppercase">Kinh Nghiệm Chọn Đá</span>
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600 mt-1">
-                            So Sánh Đá Xanh Rêu Thanh Hóa Và Đá Xanh Đen Ninh Bình: Loại Nào Bền Hơn?
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-2 line-clamp-2">
-                            Phân tích chi tiết độ cứng, thớ đá, khả năng chịu thời tiết và sự chênh lệch giá giữa hai loại đá được ưa chuộng nhất.
-                        </p>
-                        <div class="mt-4 text-[11px] text-gray-400">Ngày đăng: 28/10/2026 • 7 phút đọc</div>
-                    </div>
-                </div>
-
-                <!-- Tin 3 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200 hover:shadow-md transition">
-                    <img src="https://images.unsplash.com/photo-1590059390046-51e289bfad16?auto=format&fit=crop&w=600&q=80" 
-                         alt="Thủ tục tạ mộ cuối năm" class="w-full h-44 object-cover">
-                    <div class="p-5">
-                        <span class="text-[11px] text-stonegold-600 font-bold uppercase">Nghi Lễ Tâm Linh</span>
-                        <h4 class="font-bold text-sm text-stoneblue-950 hover:text-stonegold-600 mt-1">
-                            Bài Văn Khấn Và Lễ Vật Cúng Tạ Mộ Mới Xây Đầy Đủ & Trang Trọng Nhất
-                        </h4>
-                        <p class="text-xs text-gray-500 mt-2 line-clamp-2">
-                            Hướng dẫn chuẩn bị mâm lễ chay, mâm lễ mặn và văn khấn thần linh, thổ địa sau khi hoàn thành lắp đặt mộ phần.
-                        </p>
-                        <div class="mt-4 text-[11px] text-gray-400">Ngày đăng: 20/10/2026 • 6 phút đọc</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- SECTION 10: FORM ĐĂNG KÝ BÁO GIÁ & TƯ VẤN (Tương tự Form Báo Giá) -->
-    <!-- ========================================================= -->
-    <section id="lien-he" class="py-16 bg-stoneblue-950 text-white relative">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-stoneblue-900 border border-stonegold-600/40 rounded-xl p-8 md:p-12 shadow-2xl">
-                <div class="text-center space-y-2 mb-8">
-                    <span class="text-stonegold-400 text-xs font-bold uppercase tracking-widest">Dự Toán Nhanh</span>
-                    <h3 class="text-2xl md:text-3xl font-heading font-bold text-white">ĐĂNG KÝ NHẬN BÁO GIÁ TẠI XƯỞNG & THIẾT KẾ 3D MIỄN PHÍ</h3>
-                    <p class="text-gray-300 text-xs md:text-sm">Để lại thông tin, nghệ nhân làng nghề sẽ trực tiếp liên hệ và gửi bản vẽ 3D phù hợp khuôn viên của quý vị.</p>
-                </div>
-
-                <form onsubmit="handleFormSubmit(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Họ Tên Quý Khách *</label>
-                            <input type="text" required placeholder="Ví dụ: Nguyễn Văn An" 
-                                   class="w-full bg-stoneblue-950 border border-stonegold-700/50 rounded px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400">
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Số Điện Thoại / Zalo *</label>
-                            <input type="tel" required placeholder="Ví dụ: 0988 226 951" 
-                                   class="w-full bg-stoneblue-950 border border-stonegold-700/50 rounded px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Hạng Mục Quan Tâm</label>
-                            <select class="w-full bg-stoneblue-950 border border-stonegold-700/50 rounded px-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-stonegold-400">
-                                <option>Khu Lăng Mộ Gia Tộc Trọn Gói</option>
-                                <option>Mộ Đá Đơn / Mộ Tam Sơn</option>
-                                <option>Mộ Đá Đôi Cha Mẹ</option>
-                                <option>Mộ Đá Hoa Cương Granite</option>
-                                <option>Cuốn Thư & Lan Can Đá</option>
-                                <option>Cổng Tam Quan / Cột Đá Nhà Thờ</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Địa Chỉ Dự Kiến Lắp Đặt</label>
-                            <input type="text" placeholder="Ví dụ: Nam Sách, Hải Dương hoặc Hà Nội..." 
-                                   class="w-full bg-stoneblue-950 border border-stonegold-700/50 rounded px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Kích Thước Dự Kiến Hoặc Yêu Cầu Cụ Thể</label>
-                        <textarea rows="3" placeholder="Ví dụ: Cần làm khu lăng mộ diện tích 8x12m, đá xanh rêu, dự kiến hoàn thành trước tháng 11 âm lịch..." 
-                                  class="w-full bg-stoneblue-950 border border-stonegold-700/50 rounded px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-stonegold-400"></textarea>
-                    </div>
-
-                    <div class="text-center pt-2">
-                        <button type="submit" class="btn-gold px-10 py-3 rounded text-sm uppercase tracking-wider font-bold shadow-lg">
-                            <i class="fa-solid fa-paper-plane mr-2"></i> Gửi Yêu Cầu Báo Giá Nhanh
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- FOOTER CHÂN TRANG (Tương tự Footer HanoiFire) -->
-    <!-- ========================================================= -->
-    <footer class="bg-stoneblue-950 text-gray-400 border-t border-stonegold-700/30 text-xs">
-        <div class="container mx-auto px-4 py-14">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Cột 1: Thông tin công ty -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full border border-stonegold-500 flex items-center justify-center text-stonegold-400 text-lg">
-                            <i class="fa-solid fa-monument"></i>
-                        </div>
-                        <span class="text-base font-cinzel font-bold text-stonegold-300 tracking-wider">MỘ ĐÁ ĐẸP - MODADEP.COM.VN</span>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <!-- Cột 1: Thông tin liên hệ -->
+                <div class="space-y-3">
+                    <div class="text-white text-base font-extrabold uppercase tracking-wide">THÔNG TIN LIÊN HỆ</div>
                     <p class="leading-relaxed">
-                        Cơ sở chuyên sản xuất và thi công lăng mộ đá, tượng đá, kiến trúc đá tự nhiên cao cấp với bề dày hơn 25 năm kinh nghiệm.
+                        <strong>MODADEP (Mộ Đá Đẹp Ninh Bình)</strong> chuyên thiết kế, chế tác, thi công và lắp đặt hoàn thiện các công trình đá mỹ nghệ cao cấp như lăng mộ đá, mộ đá granite, nhà thờ đá, lan can đá.
                     </p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-location-dot text-stonegold-400 mt-1 mr-2.5"></i>
-                            <span>Xưởng chế tác: Làng nghề đá Ninh Vân, Hoa Lư, Ninh Bình</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-phone text-stonegold-400 mr-2.5"></i>
-                            <span>Hotline / Zalo: <a href="tel:0988226951" class="text-stonegold-400 font-bold hover:underline">0988.226.951</a></span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-envelope text-stonegold-400 mr-2.5"></i>
-                            <span>Email: <a href="mailto:Modadep8386@gmail.com" class="text-white hover:text-stonegold-400">Modadep8386@gmail.com</a></span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-globe text-stonegold-400 mr-2.5"></i>
-                            <span>Website: <a href="https://modadep.com.vn" class="text-stonegold-400 font-bold hover:underline">modadep.com.vn</a></span>
-                        </li>
+                    <ul class="space-y-1.5 text-gray-300">
+                        <li><i class="fa-solid fa-phone text-modagold mr-2"></i> Hotline: <strong class="text-white">0988.226.951</strong> (Zalo)</li>
+                        <li><i class="fa-solid fa-envelope text-modagold mr-2"></i> Email: Modadep8386@gmail.com</li>
+                        <li><i class="fa-solid fa-clock text-modagold mr-2"></i> Giờ mở cửa: 6:30 – 21:00 (Hàng ngày)</li>
+                        <li><i class="fa-solid fa-location-dot text-modagold mr-2"></i> Xưởng: Làng Nghề Đá Ninh Vân, Hoa Lư, Ninh Bình</li>
                     </ul>
                 </div>
 
-                <!-- Cột 2: Danh mục sản phẩm -->
+                <!-- Cột 2: Sản phẩm chính -->
                 <div>
-                    <h4 class="font-cinzel text-sm font-bold text-stonegold-300 uppercase tracking-wider mb-4 border-b border-stonegold-800 pb-2">
-                        SẢN PHẨM CHỦ LỰC
-                    </h4>
+                    <div class="text-white text-base font-extrabold uppercase tracking-wide mb-3">SẢN PHẨM CHÍNH</div>
                     <ul class="space-y-2">
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Khu lăng mộ đá gia tộc</a></li>
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Mộ đá đôi ba mái</a></li>
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Mộ đá hoa cương Granite</a></li>
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Cuốn thư đá trấn trạch</a></li>
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Lan can đá lăng mộ</a></li>
-                        <li><a href="#san-pham" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Cột đồng trụ & Cổng tam quan</a></li>
+                        <li><a href="#mo-granite" class="hover:text-white transition">» Mộ Đá Granite (Hoa Cương)</a></li>
+                        <li><a href="#khuon-vien" class="hover:text-white transition">» Khuôn Viên Lăng Mộ Gia Tộc</a></li>
+                        <li><a href="#mo-doi" class="hover:text-white transition">» Mộ Đá Đôi Ba Mái</a></li>
+                        <li><a href="#mo-doi" class="hover:text-white transition">» Mộ Đá Tam Sơn</a></li>
+                        <li><a href="#mo-doi" class="hover:text-white transition">» Mộ Đá Tròn Phong Thủy</a></li>
+                        <li><a href="#mo-doi" class="hover:text-white transition">» Mộ Đá Công Giáo</a></li>
                     </ul>
                 </div>
 
-                <!-- Cột 3: Chính sách hỗ trợ (Tương tự HanoiFire) -->
+                <!-- Cột 3: Chính sách -->
                 <div>
-                    <h4 class="font-cinzel text-sm font-bold text-stonegold-300 uppercase tracking-wider mb-4 border-b border-stonegold-800 pb-2">
-                        CHÍNH SÁCH & HỖ TRỢ
-                    </h4>
+                    <div class="text-white text-base font-extrabold uppercase tracking-wide mb-3">CHÍNH SÁCH & HỖ TRỢ</div>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Quy trình thiết kế & đặt hàng</a></li>
-                        <li><a href="#" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Chính sách bảo hành trọn đời</a></li>
-                        <li><a href="#" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Vận chuyển & cẩu hạ an toàn</a></li>
-                        <li><a href="#" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Phương thức thanh toán theo đợt</a></li>
-                        <li><a href="#lo-ban" class="hover:text-stonegold-400 transition flex items-center"><i class="fa-solid fa-angle-right text-[10px] mr-2 text-stonegold-500"></i> Tra cứu thước Lỗ Ban 38.8cm</a></li>
+                        <li><a href="#" class="hover:text-white transition">» Quy trình tư vấn & thiết kế 3D</a></li>
+                        <li><a href="#" class="hover:text-white transition">» Chính sách bảo hành trọn đời</a></li>
+                        <li><a href="#" class="hover:text-white transition">» Vận chuyển và lắp đặt toàn quốc</a></li>
+                        <li><a href="#" class="hover:text-white transition">» Phương thức thanh toán theo tiến độ</a></li>
+                        <li><a href="#lo-ban" class="hover:text-white transition">» Tra cứu thước Lỗ Ban 38.8cm</a></li>
                     </ul>
                 </div>
 
-                <!-- Cột 4: Showroom & Bản đồ chỉ đường -->
-                <div>
-                    <h4 class="font-cinzel text-sm font-bold text-stonegold-300 uppercase tracking-wider mb-4 border-b border-stonegold-800 pb-2">
-                        VĂN PHÒNG & XƯỞNG ĐÁ
-                    </h4>
-                    <p class="mb-3 text-gray-300">
-                        Kính mời quý khách tới thăm trực tiếp xưởng sản xuất để tận mắt xem các khối đá nguyên khối và nghệ nhân chạm khắc.
-                    </p>
-                    <div class="rounded overflow-hidden border border-stonegold-700/50 aspect-video bg-stoneblue-900 flex items-center justify-center text-center p-3">
-                        <div>
-                            <i class="fa-solid fa-map-location-dot text-2xl text-stonegold-400 mb-1"></i>
-                            <div class="text-[11px] text-gray-300">Bản Đồ Google Maps Làng Nghề Ninh Vân, Hoa Lư, Ninh Bình</div>
-                        </div>
+                <!-- Cột 4: Doanh nghiệp pháp lý -->
+                <div class="space-y-2">
+                    <div class="text-white text-base font-extrabold uppercase tracking-wide mb-3">CÔNG TY TNHH MỘ ĐÁ ĐẸP NINH BÌNH</div>
+                    <p>Sở Kế hoạch và Đầu tư tỉnh Ninh Bình cấp phép.</p>
+                    <p>Đại Diện: CEO Phạm Minh Hiếu</p>
+                    <p>Số Điện Thoại: <strong class="text-white">0988.226.951</strong></p>
+                    <div class="p-3 bg-gray-800 rounded border border-gray-700 mt-3">
+                        <i class="fa-solid fa-shield-halved text-modagold mr-1"></i> Cam kết 100% đá tự nhiên không gắn vá.
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright -->
-            <div class="mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-500 gap-2">
-                <div>
-                    © 2026 Mộ Đá Đẹp (<a href="https://modadep.com.vn" class="text-stonegold-400 hover:underline">modadep.com.vn</a>). Hotline: 0988.226.951 • Email: Modadep8386@gmail.com
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-stonegold-400">Điều khoản</a>
-                    <span>•</span>
-                    <a href="#" class="hover:text-stonegold-400">Bảo mật thông tin</a>
-                    <span>•</span>
-                    <a href="#" class="hover:text-stonegold-400">Sơ đồ trang</a>
-                    <span>•</span>
-                    <a href="/admin" target="_blank" class="text-stonegold-400 font-bold hover:underline"><i class="fa-solid fa-lock text-[10px] mr-1"></i>Quản Trị</a>
-                </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-gray-500">
+                © 2026 CÔNG TY TNHH MỘ ĐÁ ĐẸP NINH BÌNH (modadep.com.vn). Hotline: 0988.226.951.
             </div>
         </div>
     </footer>
 
     <!-- ========================================================= -->
-    <!-- FLOATING CONTACT BUTTONS (Giống hệt hệ thống nút nổi HanoiFire) -->
+    <!-- 8. NÚT GỌI & ZALO NỔI (Button Contact VR chuẩn modadep.com) -->
     <!-- ========================================================= -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
-        <!-- Zalo Chat Button -->
+        <!-- Zalo -->
         <a href="https://zalo.me/0988226951" target="_blank" rel="noopener noreferrer" 
            class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition duration-300 relative group"
-           title="Chat Zalo ngay (0988.226.951)">
+           title="Chat Zalo 0988.226.951">
             <span class="font-bold text-xs">Zalo</span>
-            <span class="absolute right-14 bg-stoneblue-950 text-white text-[11px] font-semibold px-2.5 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
+            <span class="absolute right-14 bg-gray-900 text-white text-xs px-2.5 py-1 rounded shadow whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
                 Zalo: 0988.226.951
             </span>
         </a>
 
-        <!-- Hotline Shake Button -->
+        <!-- Hotline Call Button -->
         <a href="tel:0988226951" 
-           class="w-14 h-14 bg-rubyred rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition duration-300 relative group border-2 border-yellow-300"
-           title="Gọi ngay 0988.226.951">
+           class="w-14 h-14 bg-modared rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition duration-300 border-2 border-yellow-300 relative group"
+           title="Gọi ngay: 0988.226.951">
             <i class="fa-solid fa-phone text-xl shake-phone"></i>
-            <span class="absolute right-16 bg-rubyred text-white text-[11px] font-bold px-3 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
+            <span class="absolute right-16 bg-modared text-white text-xs font-bold px-3 py-1 rounded shadow whitespace-nowrap opacity-0 group-hover:opacity-100 transition">
                 Hotline: 0988.226.951
             </span>
         </a>
-
-        <!-- Back to Top Button -->
-        <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
-                class="w-10 h-10 bg-stoneblue-900 border border-stonegold-600 text-stonegold-300 rounded-full flex items-center justify-center shadow-lg hover:bg-stonegold-500 hover:text-stoneblue-950 transition opacity-0 pointer-events-none">
-            <i class="fa-solid fa-chevron-up text-xs"></i>
-        </button>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MODAL POPUP BÁO GIÁ NHANH -->
-    <!-- ========================================================= -->
-    <div id="quoteModal" class="fixed inset-0 bg-black/75 z-50 hidden items-center justify-center p-4">
-        <div class="bg-stoneblue-900 border border-stonegold-500 rounded-xl max-w-lg w-full p-6 text-white relative shadow-2xl">
-            <button onclick="closeQuoteModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-center mb-5">
-                <h3 class="text-xl font-heading font-bold text-stonegold-300">YÊU CẦU BÁO GIÁ CHI TIẾT</h3>
-                <p class="text-xs text-gray-300 mt-1" id="quoteModalSubtitle">Xưởng chế tác sẽ gửi bảng kê chi tiết kích thước & khối lượng đá.</p>
-            </div>
-            <form onsubmit="handleModalSubmit(event)" class="space-y-3">
-                <input type="hidden" id="modalProductName" value="">
-                <div>
-                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Họ & Tên *</label>
-                    <input type="text" required placeholder="Họ tên của bạn" class="w-full bg-stoneblue-950 border border-stonegold-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-stonegold-400">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Số Điện Thoại / Zalo *</label>
-                    <input type="tel" required placeholder="Số điện thoại nhận báo giá" class="w-full bg-stoneblue-950 border border-stonegold-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-stonegold-400">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Tỉnh / Thành Lắp Đặt</label>
-                    <input type="text" placeholder="Tỉnh / huyện thi công" class="w-full bg-stoneblue-950 border border-stonegold-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-stonegold-400">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase font-semibold text-gray-300 mb-1">Ghi chú thêm</label>
-                    <textarea rows="2" placeholder="Ví dụ: Kích thước dự kiến, thời gian cần xong..." class="w-full bg-stoneblue-950 border border-stonegold-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-stonegold-400"></textarea>
-                </div>
-                <button type="submit" class="w-full btn-gold py-2.5 rounded font-bold uppercase text-xs tracking-wider mt-2">
-                    Gửi Yêu Cầu Cho Nghệ Nhân
-                </button>
+    <!-- Modal báo giá nhanh -->
+    <div id="quickModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeModalQuickQuote()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 text-xl font-bold">&times;</button>
+            <h3 class="font-bold text-modagreen text-base mb-1" id="modalQuoteTitle">YÊU CẦU BÁO GIÁ</h3>
+            <p class="text-xs text-gray-500 mb-4">Để lại số điện thoại, xưởng sẽ gửi bảng kích thước & báo giá chi tiết.</p>
+            <form onsubmit="handleModalQuote(event)" class="space-y-3">
+                <input type="hidden" id="modal_product_name">
+                <input type="text" id="modal_user_name" required placeholder="Họ tên của bạn *" class="w-full border rounded px-3 py-2 text-sm">
+                <input type="tel" id="modal_user_phone" required placeholder="Số điện thoại / Zalo *" class="w-full border rounded px-3 py-2 text-sm">
+                <input type="text" id="modal_user_address" placeholder="Tỉnh / huyện thi công" class="w-full border rounded px-3 py-2 text-sm">
+                <button type="submit" class="w-full btn-green py-2.5 rounded font-bold uppercase text-xs">Gửi Yêu Cầu</button>
             </form>
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- INTERACTIVE JAVASCRIPT -->
-    <!-- ========================================================= -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Mobile menu drawer
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        const drawer = document.getElementById('mobileDrawer');
+        toggleBtn.addEventListener('click', () => { drawer.classList.toggle('hidden'); });
 
-        // Back to top button visibility
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                backToTop.classList.remove('opacity-0', 'pointer-events-none');
-            } else {
-                backToTop.classList.add('opacity-0', 'pointer-events-none');
-            }
-        });
-
-        // Product Filter Tabs
-        function filterProducts(category) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-stoneblue-900', 'text-stonegold-300');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            event.target.classList.remove('bg-gray-100', 'text-gray-700');
-            event.target.classList.add('bg-stoneblue-900', 'text-stonegold-300');
-
-            const products = document.querySelectorAll('.product-card');
-            products.forEach(prod => {
-                if (category === 'all' || prod.getAttribute('data-cat') === category) {
-                    prod.style.display = 'block';
-                } else {
-                    prod.style.display = 'none';
-                }
-            });
+        // Modal quote
+        function openModalQuickQuote(name) {
+            document.getElementById('modalQuoteTitle').innerText = 'BÁO GIÁ: ' + name;
+            document.getElementById('modal_product_name').value = name;
+            const m = document.getElementById('quickModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
         }
 
-        // Modal Báo Giá
-        function openQuoteModal(productName = '') {
-            const modal = document.getElementById('quoteModal');
-            const subtitle = document.getElementById('quoteModalSubtitle');
-            const inputProd = document.getElementById('modalProductName');
-            
-            if (productName) {
-                subtitle.innerText = 'Sản phẩm quan tâm: ' + productName;
-                inputProd.value = productName;
-            } else {
-                subtitle.innerText = 'Xưởng chế tác sẽ gửi bảng kê chi tiết kích thước & khối lượng đá.';
-                inputProd.value = '';
-            }
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+        function closeModalQuickQuote() {
+            const m = document.getElementById('quickModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
         }
 
-        function closeQuoteModal() {
-            const modal = document.getElementById('quoteModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        async function handleModalSubmit(e) {
+        async function handleModalQuote(e) {
             e.preventDefault();
-            const form = e.target;
-            const name = form.querySelector('input[type="text"]').value;
-            const phone = form.querySelector('input[type="tel"]').value;
-            const address = form.querySelectorAll('input[type="text"]')[1].value;
-            const note = form.querySelector('textarea').value;
-            const item = document.getElementById('modalProductName').value || 'Tư vấn lăng mộ đá';
+            const name = document.getElementById('modal_user_name').value;
+            const phone = document.getElementById('modal_user_phone').value;
+            const address = document.getElementById('modal_user_address').value;
+            const item = document.getElementById('modal_product_name').value;
+
+            try {
+                await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone, address, item, note: 'Báo giá nhanh từ popup' })
+                });
+            } catch (err) {}
+
+            alert('Cảm ơn Quý khách! Mộ Đá Đẹp (Hotline: 0988.226.951) sẽ liên hệ tư vấn báo giá ngay.');
+            closeModalQuickQuote();
+        }
+
+        async function handleQuoteSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('quote_name').value;
+            const phone = document.getElementById('quote_phone').value;
+            const item = document.getElementById('quote_item').value;
+            const address = document.getElementById('quote_address').value;
+            const note = document.getElementById('quote_note').value;
 
             try {
                 await fetch('/api/quote', {
@@ -1264,157 +794,41 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, phone, item, address, note })
                 });
-            } catch (err) { /* Offline mode */ }
+            } catch (err) {}
 
-            alert('Cảm ơn Quý khách! Mộ Đá Đẹp (modadep.com.vn - Hotline: 0988.226.951) đã ghi nhận thông tin và sẽ liên hệ báo giá, gửi bản vẽ 3D trong vòng 15 phút.');
-            closeQuoteModal();
-            form.reset();
+            alert('Đăng ký nhận báo giá thành công! Xưởng Mộ Đá Đẹp sẽ gọi lại tư vấn phương án phong thủy tốt nhất cho quý khách.');
+            e.target.reset();
         }
 
-        async function handleFormSubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const inputs = form.querySelectorAll('input');
-            const name = inputs[0].value;
-            const phone = inputs[1].value;
-            const item = form.querySelector('select') ? form.querySelector('select').value : 'Chưa rõ';
-            const address = inputs[2].value;
-            const note = form.querySelector('textarea').value;
-
-            try {
-                await fetch('/api/quote', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone, item, address, note })
-                });
-            } catch (err) { /* Offline mode */ }
-
-            alert('Đăng ký nhận báo giá thành công! Nghệ nhân xưởng Mộ Đá Đẹp sẽ gọi lại tư vấn phương án phong thủy tốt nhất cho quý khách.');
-            form.reset();
-        }
-
-        // Tự động đồng bộ nội dung nếu admin đã chỉnh sửa qua /admin
-        async function loadDynamicContent() {
-            let data = null;
-            try {
-                const res = await fetch('/api/content');
-                data = await res.json();
-            } catch (e) {
-                const local = localStorage.getItem('modadep_local_data');
-                if (local) data = JSON.parse(local);
-            }
-
-            if (!data) return;
-
-            // Cập nhật thông tin chung nếu có thay đổi
-            if (data.general) {
-                const g = data.general;
-                if (g.hotline) {
-                    document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-                        a.href = 'tel:' + (g.phoneRaw || g.hotline.replace(/\D/g, ''));
-                    });
-                }
-                if (g.phoneRaw) {
-                    document.querySelectorAll('a[href^="https://zalo.me/"]').forEach(a => {
-                        a.href = 'https://zalo.me/' + g.phoneRaw;
-                    });
-                }
-            }
-
-            // Cập nhật sản phẩm nếu có thêm/sửa/xóa từ admin
-            if (data.products && data.products.length > 0) {
-                const grid = document.querySelector('#san-pham .grid');
-                if (grid) {
-                    grid.innerHTML = data.products.map(p => `
-                        <div class="product-card group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-cat="${p.category}">
-                            <div class="relative overflow-hidden aspect-[4/3]">
-                                <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                ${p.badge ? `<span class="absolute top-2 left-2 bg-rubyred text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded">${p.badge}</span>` : ''}
-                            </div>
-                            <div class="p-4 space-y-2">
-                                <div class="text-[11px] text-gray-500 uppercase">Mã SP: ${p.code}</div>
-                                <h4 class="font-bold text-sm text-stoneblue-950 group-hover:text-stonegold-600 line-clamp-2">
-                                    ${p.name}
-                                </h4>
-                                <div class="text-xs text-gray-600 space-y-1 pt-1 border-t border-gray-100">
-                                    <div><i class="fa-solid fa-ruler text-stonegold-600 mr-1.5"></i> ${p.dimension || 'Chuẩn thước Lỗ Ban'}</div>
-                                    <div><i class="fa-solid fa-gem text-stonegold-600 mr-1.5"></i> ${p.material || 'Đá tự nhiên nguyên khối'}</div>
-                                </div>
-                                <div class="pt-2 flex items-center justify-between">
-                                    <span class="text-rubyred font-bold text-sm">Giá: ${p.price || 'Liên Hệ'}</span>
-                                    <button onclick="openQuoteModal('${p.name.replace(/'/g, "\\'")}')" class="btn-gold text-[11px] font-bold uppercase px-3 py-1.5 rounded">
-                                        Báo Giá
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', loadDynamicContent);
-
-        // Thước Lỗ Ban 38.8cm (Thước âm phần) Tra Cứu
-        function checkLoBan() {
+        // Thước Lỗ Ban 38.8cm online
+        function checkLoBanOnline() {
             const val = parseFloat(document.getElementById('loBanInput').value);
             const res = document.getElementById('loBanResult');
-            if (!val || val <= 0) {
-                alert('Vui lòng nhập kích thước dương hợp lệ (cm).');
-                return;
-            }
+            if (!val || val <= 0) { alert('Vui lòng nhập số cm'); return; }
 
-            // Chu kỳ thước 38.8cm có 10 cung:
-            // 1. Đinh (Tốt) [0 - 3.88]
-            // 2. Hại (Xấu) [3.88 - 7.76]
-            // 3. Vượng (Tốt) [7.76 - 11.64]
-            // 4. Khổ (Xấu) [11.64 - 15.52]
-            // 5. Nghĩa (Tốt) [15.52 - 19.4]
-            // 6. Quan (Tốt) [19.4 - 23.28]
-            // 7. Tử (Xấu) [23.28 - 27.16]
-            // 8. Hưng (Tốt) [27.16 - 31.04]
-            // 9. Thất (Xấu) [31.04 - 34.92]
-            // 10. Tài (Tốt) [34.92 - 38.8]
-            
             const cycle = 38.8;
             const remainder = val % cycle;
             const slot = Math.floor(remainder / 3.88);
-
-            const cungInfo = [
+            const cungList = [
                 { name: 'Cung ĐINH (Tốt - Đỏ)', desc: 'Chủ về con đường khoa cử, thêm đinh, phúc lộc đầy nhà.', good: true },
-                { name: 'Cung HẠI (Xấu - Đen)', desc: 'Chủ về bệnh tật, tai họa, tuyệt tự hoặc khẩu thiệt tranh chấp.', good: false },
-                { name: 'Cung VƯỢNG (Tốt - Đỏ)', desc: 'Chủ về tiền của gia tăng, kinh doanh phát đạt, hỷ sự lâm môn.', good: true },
-                { name: 'Cung KHỔ (Xấu - Đen)', desc: 'Chủ về mất của, tranh chấp kiện cáo, vất vả truân chuyên.', good: false },
+                { name: 'Cung HẠI (Xấu - Đen)', desc: 'Chủ về bệnh tật, tai họa, khẩu thiệt tranh chấp.', good: false },
+                { name: 'Cung VƯỢNG (Tốt - Đỏ)', desc: 'Chủ về tiền của gia tăng, kinh doanh phát đạt, hỷ sự.', good: true },
+                { name: 'Cung KHỔ (Xấu - Đen)', desc: 'Chủ về mất của, tranh chấp kiện cáo vất vả.', good: false },
                 { name: 'Cung NGHĨA (Tốt - Đỏ)', desc: 'Chủ về con cháu hiếu thảo, sinh quý tử, tiền tài tự đến.', good: true },
-                { name: 'Cung QUAN (Tốt - Đỏ)', desc: 'Chủ về thăng quan tiến chức, công danh rạng rỡ, thuận lợi quan trường.', good: true },
-                { name: 'Cung TỬ (Xấu - Đen)', desc: 'Chủ về hao tán người và của, ly tán, tuyệt đinh.', good: false },
-                { name: 'CUNG HƯNG (Tốt - Đỏ)', desc: 'Chủ về hưng thịnh, đỗ đạt cao, thêm quý tử, gia đình vinh hiển.', good: true },
-                { name: 'Cung THẤT (Xấu - Đen)', desc: 'Chủ về thoát tài, cô quả, tù tội, làm ăn thất bát.', good: false },
-                { name: 'Cung TÀI (Tốt - Đỏ)', desc: 'Chủ về của cải dồi dào, phúc lộc trời ban, tài đức song toàn.', good: true }
+                { name: 'Cung QUAN (Tốt - Đỏ)', desc: 'Chủ về thăng quan tiến chức, công danh rạng rỡ.', good: true },
+                { name: 'Cung TỬ (Xấu - Đen)', desc: 'Chủ về hao tán người và của, ly tán.', good: false },
+                { name: 'CUNG HƯNG (Tốt - Đỏ)', desc: 'Chủ về hưng thịnh, đỗ đạt cao, thêm quý tử.', good: true },
+                { name: 'Cung THẤT (Xấu - Đen)', desc: 'Chủ về thoát tài, cô quả, làm ăn thất bát.', good: false },
+                { name: 'Cung TÀI (Tốt - Đỏ)', desc: 'Chủ về của cải dồi dào, phúc lộc trời ban, tài đức.', good: true }
             ];
-
-            const index = Math.min(slot, 9);
-            const cung = cungInfo[index];
-
+            const cung = cungList[Math.min(slot, 9)];
             res.classList.remove('hidden');
             if (cung.good) {
-                res.className = "mt-4 p-4 rounded-lg bg-red-50 border border-red-200 text-sm";
-                res.innerHTML = `
-                    <div class="flex items-center text-rubyred font-bold text-base">
-                        <i class="fa-solid fa-circle-check mr-2 text-lg"></i> Kích thước ${val} cm: ${cung.name}
-                    </div>
-                    <p class="text-gray-700 text-xs mt-1 font-medium">${cung.desc}</p>
-                    <div class="text-[11px] text-green-700 font-bold mt-2">✓ Đây là kích thước Đại Cát rất tốt để xây dựng mộ phần, lăng thờ, cuốn thư.</div>
-                `;
+                res.className = "mt-4 p-4 rounded bg-red-50 border border-red-200 text-sm";
+                res.innerHTML = `<strong class="text-red-700 text-base">✓ Kích thước ${val} cm: ${cung.name}</strong><p class="text-gray-700 text-xs mt-1">${cung.desc}</p><div class="text-[11px] text-green-700 font-bold mt-1">Đây là số đỏ Đại Cát rất tốt để xây dựng mộ phần.</div>`;
             } else {
-                res.className = "mt-4 p-4 rounded-lg bg-gray-100 border border-gray-300 text-sm";
-                res.innerHTML = `
-                    <div class="flex items-center text-gray-800 font-bold text-base">
-                        <i class="fa-solid fa-triangle-exclamation mr-2 text-amber-600 text-lg"></i> Kích thước ${val} cm: ${cung.name}
-                    </div>
-                    <p class="text-gray-600 text-xs mt-1">${cung.desc}</p>
-                    <div class="text-[11px] text-red-600 font-bold mt-2">⚠ Kích thước này rơi vào cung Xấu (Đen), nên cân nhắc tăng hoặc giảm về các số đỏ như: 81cm, 89cm, 107cm, 127cm...</div>
-                `;
+                res.className = "mt-4 p-4 rounded bg-gray-100 border border-gray-300 text-sm";
+                res.innerHTML = `<strong class="text-gray-800 text-base">⚠ Kích thước ${val} cm: ${cung.name}</strong><p class="text-gray-600 text-xs mt-1">${cung.desc}</p><div class="text-[11px] text-red-600 font-bold mt-1">Rơi vào cung xấu (đen), nên đổi về các số đỏ: 81cm, 89cm, 107cm, 127cm...</div>`;
             }
         }
     </script>
